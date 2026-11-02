@@ -8,11 +8,13 @@ var SHEET_ID = "14q-LysI0cKpZFfei0DTEiu3R8ygfF5ZdLDJq7XV8FfA";
 var TZ = "Asia/Ho_Chi_Minh";
 var TOKEN_DAYS = 30;
 var ROLES = ["Chủ tiệm", "Quầy", "Kỹ thuật viên", "Thợ may"];
-var MON_TT = ["Chờ làm", "Đang làm", "Gửi xưởng", "Chờ kiểm", "Sẵn sàng trả", "Đã trả", "Có sự cố"];
+var MON_TT = ["Chờ làm", "Chờ khách duyệt", "Đã phân loại", "Đang làm", "Đang phơi", "Gửi xưởng", "Chờ kiểm", "Chờ đóng gói", "Sẵn sàng trả", "Đã trả", "Có sự cố"];
 var PHIEU_TT = ["Đang làm", "Sẵn sàng trả", "Đã trả", "Hủy"];
 var LICH_TT = ["Mới", "Đã xác nhận", "Đã nhận đồ", "Hủy"];
 var LOAI_KHACH = ["Khách ngoài", "Doanh nghiệp", "Thuê đầm", "Office", "Seconde"];
 var SITE = "https://care.cherie.io.vn/tra-cuu/";
+var THEO_DOI = "https://care.cherie.io.vn/theo-doi/";
+var LINK_NGAY = 7; /* link khách xem quá trình sống thêm 7 ngày sau khi bàn giao */
 
 function doGet() { return out({ ok: true, app: "CHÉRIE Care" }); }
 function doPost(e) {
@@ -42,6 +44,8 @@ function handle(q) {
     case "webInfo": return webInfo();
     case "webDatLich": return webDatLich(q);
     case "webTraDon": return webTraDon(q);
+    case "webTheoDoi": return webTheoDoi(q);
+    case "buoc": return buoc(auth(q.token), q);
     case "staff": return { staff: staffList() };
     case "login": return login(q.nv, q.pin);
     case "logout": props().deleteProperty("tk_" + q.token); return { ok: true };
@@ -138,7 +142,7 @@ function laSua(dv) { return /sửa/i.test(String(dv || "")); }
 function strip(o) { var x = {}; Object.keys(o).forEach(function (k) { if (k.charAt(0) !== "_") x[k] = o[k]; }); return x; }
 function load(me) {
   var phieu = tab("Phieu").rows.map(strip), mon = tab("Mon").rows.map(strip), gia = tab("BangGia").rows.map(strip);
-  var res = { gia: gia };
+  var res = { gia: gia, buoc: suKienGanDay(phieu) };
   if (isDesk(me)) {
     res.phieu = phieu; res.mon = mon; res.lich = tab("DatLich").rows.map(strip);
     if (isOwner(me)) res.nhanSu = tab("NhanSu").rows.map(function (n) { var x = strip(n); x.coPin = !!String(x.PIN || "").trim(); delete x.PIN; return x; });
@@ -175,29 +179,30 @@ function taoPhieu(me, q) {
     var row = { MaPhieu: maP, NgayNhan: luc, SDT: sdt, TenKhach: txt(p.TenKhach, 80), LoaiKhach: loai, CachNhan: txt(p.CachNhan, 30) || "Tại quầy",
       DiaChi: txt(p.DiaChi, 200), HenTra: txt(p.HenTra, 16), SoMon: mons.length, TongTien: tong, GiamGia: giam || "", PhaiThu: phai, DaThu: thu,
       CachThu: thu ? txt(p.CachThu, 30) || "Tiền mặt" : "", TrangThai: "Đang làm", NguoiNhan: me.ten, MaLich: txt(p.MaLich, 20), GhiChu: txt(p.GhiChu, 300), CapNhat: luc };
+    row.KhoaXem = khoa(); row.HetHanXem = "";
     appendObjs(tp, [row]); appendObjs(tm, mons);
+    ghiBuoc(me, mons.map(function (m) { return { MaMon: m.MaMon, MaPhieu: maP, Buoc: "NHAN", Anh: [m.Anh1, m.Anh2, m.Anh3, m.Anh4].filter(Boolean).join(","), DuLieu: JSON.stringify({ tinhTrang: m.TinhTrangNhan, dichVu: m.DichVu }) }; }));
     if (row.MaLich) { var tl = tab("DatLich"), l = find(tl, "MaLich", row.MaLich); if (l) writeObj(tl, l._r, { TrangThai: "Đã nhận đồ", MaPhieu: maP, XuLy: me.ten }); }
     log(me, "Nhận đồ", maP, mons.length + " món, " + phai + "đ");
-    return { ok: true, phieu: row, mon: mons, traCuu: SITE + "?tra=" + maP };
+    return { ok: true, phieu: row, mon: mons, traCuu: SITE + "?tra=" + maP, theoDoi: THEO_DOI + "?p=" + maP + "&k=" + row.KhoaXem };
   });
 }
 function idOk(v) { v = txt(v, 80); return /^[A-Za-z0-9_\-]{20,80}$/.test(v) ? v : ""; }
 
 /* ---------- cập nhật món ở xưởng ---------- */
-var F_XUONG = ["TrangThai", "NguoiLam", "NoiLam", "XuongDoiTac", "GhiChuXuong", "SuCo"];
-var F_QUAY = F_XUONG.concat(["TenMon", "Loai", "DichVu", "ChiTiet", "Gia", "GiaTriKhai", "TinhTrangNhan", "GiaXuong", "DenBu", "Anh1", "Anh2", "Anh3", "Anh4"]);
+/* trạng thái chỉ đổi qua từng bước (hàm buoc) để có nhật ký, ảnh và giờ */
+var F_XUONG = ["GhiChuXuong"];
+var F_QUAY = F_XUONG.concat(["TenMon", "Loai", "DichVu", "ChiTiet", "Gia", "GiaTriKhai", "TinhTrangNhan", "GiaXuong", "DenBu", "XuongDoiTac", "Anh1", "Anh2", "Anh3", "Anh4"]);
 function capNhatMon(me, q) {
   return withLock(function () {
     var tm = tab("Mon"), m = find(tm, "MaMon", txt(q.ma, 20)); if (!m) fail("Không tìm thấy món " + q.ma, "not_found");
     if (me.vaiTro === "Thợ may") need(laSua(m.DichVu), "Món này không có việc sửa");
     var allow = isDesk(me) ? F_QUAY : F_XUONG, o = q.obj || {}, w = {};
     Object.keys(o).forEach(function (k) { if (allow.indexOf(k) > -1) w[k] = o[k]; });
-    if (w.TrangThai != null) { w.TrangThai = pick(w.TrangThai, MON_TT, m.TrangThai); if (w.TrangThai === "Đã trả") need(isDesk(me), "Chỉ quầy được trả đồ"); }
     ["Gia", "GiaTriKhai", "GiaXuong", "DenBu"].forEach(function (k) { if (w[k] != null) w[k] = Math.max(0, num(w[k])) || ""; });
     ["Anh1", "Anh2", "Anh3", "Anh4"].forEach(function (k) { if (w[k] != null) w[k] = idOk(w[k]); });
     ["TenMon", "Loai", "DichVu", "NguoiLam", "NoiLam", "XuongDoiTac"].forEach(function (k) { if (w[k] != null) w[k] = txt(w[k], 80); });
     ["ChiTiet", "TinhTrangNhan", "GhiChuXuong", "SuCo"].forEach(function (k) { if (w[k] != null) w[k] = txt(w[k], 300); });
-    if (w.TrangThai && w.TrangThai !== m.TrangThai && !w.NguoiLam && /Đang làm|Gửi xưởng/.test(w.TrangThai)) w.NguoiLam = me.ten;
     w.CapNhat = now();
     writeObj(tm, m._r, w); Object.keys(w).forEach(function (k) { m[k] = w[k]; });
     var p = dongBoPhieu(m.MaPhieu, w.Gia != null);
@@ -252,10 +257,15 @@ function traDo(me, q) {
     var phai = num(p.PhaiThu), thu = Math.min(phai, num(p.DaThu) + Math.max(0, num(q.thuThem)));
     /* kiểm tiền trước khi ghi, để báo lỗi không làm lệch dữ liệu */
     if (!con && thu < phai && !q.choNo) fail("Khách còn thiếu " + (phai - thu) + "đ. Thu đủ rồi mới trả hết đồ.", "con_no");
+    var chua = tra.filter(function (m) { return m.TrangThai !== "Sẵn sàng trả"; });
+    if (chua.length && !q.traNguyen) fail(chua.map(function (m) { return m.MaMon; }).join(", ") + " chưa qua kiểm tra và đóng gói, chưa trả được.", "chua_xong");
+    var anh = idOk(q.anh); if (!anh) fail("Chụp 1 ảnh lúc bàn giao (đồ trong tay khách hoặc tại cửa phòng).", "thieu_anh");
+    var nguoiNhan = txt(q.nguoiNhan, 60) || p.TenKhach || "Khách";
     tra.forEach(function (m) { writeObj(tm, m._r, { TrangThai: "Đã trả", CapNhat: luc }); m.TrangThai = "Đã trả"; });
+    ghiBuoc(me, tra.map(function (m) { return { MaMon: m.MaMon, MaPhieu: p.MaPhieu, Buoc: "BAN_GIAO", Anh: anh, DuLieu: JSON.stringify({ nguoiNhan: nguoiNhan, cach: txt(q.cach, 30) || "Tại quầy" }) }; }));
     var w = { DaThu: thu, CapNhat: luc };
     if (num(q.thuThem)) w.CachThu = txt(q.cachThu, 30) || "Tiền mặt";
-    if (!con) { w.TrangThai = "Đã trả"; w.NgayTra = luc; w.NguoiTra = me.ten; }
+    if (!con) { w.TrangThai = "Đã trả"; w.NgayTra = luc; w.NguoiTra = me.ten; w.NguoiNhanDo = nguoiNhan; w.HetHanXem = Utilities.formatDate(new Date(Date.now() + LINK_NGAY * 864e5), TZ, "yyyy-MM-dd HH:mm"); }
     writeObj(tp, p._r, w); Object.keys(w).forEach(function (k) { p[k] = w[k]; });
     log(me, "Trả đồ", p.MaPhieu, n + " món, thu thêm " + num(q.thuThem) + "đ");
     return { ok: true, phieu: strip(p), mon: tm.rows.filter(function (m) { return m.MaPhieu === p.MaPhieu; }).map(strip) };
@@ -371,7 +381,126 @@ function webTraDon(q) {
   if (!p || String(p.SDT || "").slice(-4) !== so) fail("Không tìm thấy phiếu. Kiểm tra lại mã và 4 số cuối Zalo.", "not_found");
   var mons = tm.rows.filter(function (m) { return m.MaPhieu === p.MaPhieu; }).map(function (m) { return { ma: m.MaMon, ten: m.TenMon, dv: m.DichVu, tt: m.TrangThai === "Có sự cố" ? "Đang làm" : m.TrangThai }; });
   var phai = num(p.PhaiThu), thu = num(p.DaThu);
-  return { ok: true, phieu: { ma: p.MaPhieu, ngayNhan: p.NgayNhan, henTra: p.HenTra, tt: p.TrangThai, ngayTra: p.NgayTra, phai: phai, thu: thu, con: Math.max(0, phai - thu), ten: String(p.TenKhach || "").split(" ").slice(-1)[0] }, mon: mons };
+  var conXem = p.KhoaXem && !(p.TrangThai === "Đã trả" && p.HetHanXem && p.HetHanXem < now());
+  return { ok: true, phieu: { ma: p.MaPhieu, ngayNhan: p.NgayNhan, henTra: p.HenTra, tt: p.TrangThai, ngayTra: p.NgayTra, phai: phai, thu: thu, con: Math.max(0, phai - thu), ten: String(p.TenKhach || "").split(" ").slice(-1)[0], xem: conXem ? THEO_DOI + "?p=" + p.MaPhieu + "&k=" + p.KhoaXem : "" }, mon: mons };
+}
+
+
+/* ---------- quy trình từng món: mỗi bước một nút, có ảnh, giờ, người làm ---------- */
+var DANG_CHAY = ["Chờ làm", "Chờ khách duyệt", "Đã phân loại", "Đang làm", "Đang phơi", "Gửi xưởng", "Chờ kiểm", "Chờ đóng gói"];
+var BUOC = {
+  KIEM_DAU:    { ten: "Kiểm đầu vào tại xưởng", tu: ["Chờ làm"], anh: 2 },
+  KHACH_DUYET: { ten: "Khách đồng ý cách xử lý", tu: ["Chờ khách duyệt"], quay: true },
+  XU_LY_VET:   { ten: "Xử lý vết", tu: ["Đã phân loại"], anh: 1 },
+  BAT_DAU:     { ten: "Bắt đầu làm", tu: ["Đã phân loại"] },
+  GUI_XUONG:   { ten: "Gửi xưởng giặt khô", tu: ["Đã phân loại"] },
+  XONG:        { ten: "Làm xong", tu: ["Đang làm"] },
+  KHO:         { ten: "Đã khô", tu: ["Đang phơi"] },
+  XUONG_TRA:   { ten: "Xưởng trả về", tu: ["Gửi xưởng"], anh: 1 },
+  QC_DAT:      { ten: "Kiểm tra đạt", tu: ["Chờ kiểm"], anh: 2 },
+  QC_LAI:      { ten: "Kiểm tra chưa đạt, làm lại", tu: ["Chờ kiểm"], ghiChu: true },
+  DONG_GOI:    { ten: "Đóng gói", tu: ["Chờ đóng gói"], anh: 1 },
+  SU_CO:       { ten: "Báo sự cố", tu: DANG_CHAY, anh: 1, ghiChu: true },
+  XU_LY_SU_CO: { ten: "Đã xử lý sự cố", tu: ["Có sự cố"], quay: true, ghiChu: true }
+};
+var PHUONG_PHAP = ["Hấp", "Giặt nước nhẹ", "Giặt tay", "Giặt khô (xưởng)", "Sửa"];
+var CAN_PHOI = ["Giặt nước nhẹ", "Giặt tay"];
+var BUOC_HEAD = ["MaSuKien", "Luc", "MaMon", "MaPhieu", "Buoc", "MaNV", "Ten", "Anh", "DuLieu", "GhiChu"];
+function tabBuoc() {
+  var sh = ss().getSheetByName("BuocMon");
+  if (!sh) { sh = ss().insertSheet("BuocMon"); sh.getRange(1, 1, 1, BUOC_HEAD.length).setValues([BUOC_HEAD]).setFontWeight("bold"); sh.setFrozenRows(1); }
+  return sh;
+}
+function ghiBuoc(me, ds) {
+  if (!ds.length) return;
+  var sh = tabBuoc(), luc = now("yyyy-MM-dd HH:mm:ss"), base = Date.now().toString(36);
+  var vals = ds.map(function (d, i) { return BUOC_HEAD.map(function (k) {
+    if (k === "MaSuKien") return base + "-" + i; if (k === "Luc") return cell(luc); if (k === "MaNV") return me ? me.id : ""; if (k === "Ten") return me ? me.ten : "";
+    return cell(d[k] == null ? "" : d[k]); }); });
+  sh.getRange(sh.getLastRow() + 1, 1, vals.length, BUOC_HEAD.length).setValues(vals);
+}
+function suKienCua(maMon) { return tab("BuocMon").rows.filter(function (r) { return r.MaMon === maMon; }); }
+function suKienGanDay(phieu) {
+  var giu = {}, han = Utilities.formatDate(new Date(Date.now() - 7 * 864e5), TZ, "yyyy-MM-dd");
+  phieu.forEach(function (p) { if (p.TrangThai !== "Đã trả" || String(p.NgayTra) >= han) giu[p.MaPhieu] = 1; });
+  var sh = ss().getSheetByName("BuocMon"); if (!sh) return [];
+  return tab("BuocMon").rows.filter(function (r) { return giu[r.MaPhieu]; }).map(strip);
+}
+function khoa() { var c = "abcdefghjkmnpqrstuvwxyz23456789", x = ""; for (var i = 0; i < 10; i++) x += c.charAt(Math.floor(Math.random() * c.length)); return x; }
+function buoc(me, q) {
+  var b = String(q.buoc || ""), cf = BUOC[b]; if (!cf) fail("Không rõ bước", "bad_request");
+  if (cf.quay) need(isDesk(me), "Bước này do quầy hoặc chủ tiệm xác nhận");
+  var anh = (Array.isArray(q.anh) ? q.anh : []).map(idOk).filter(Boolean).slice(0, 6);
+  if (cf.anh && anh.length < cf.anh) fail("Bước \"" + cf.ten + "\" cần ít nhất " + cf.anh + " ảnh.", "thieu_anh");
+  var gc = txt(q.ghiChu, 300); if (cf.ghiChu && !gc) fail("Ghi rõ lý do ở ô ghi chú.", "thieu_ghi_chu");
+  var d = q.duLieu && typeof q.duLieu === "object" ? q.duLieu : {};
+  return withLock(function () {
+    var tm = tab("Mon"), m = find(tm, "MaMon", txt(q.ma, 20)); if (!m) fail("Không tìm thấy món " + q.ma, "not_found");
+    var p = find(tab("Phieu"), "MaPhieu", m.MaPhieu); if (p && p.TrangThai === "Hủy") fail("Phiếu đã huỷ", "bad_request");
+    if (me.vaiTro === "Thợ may") need(laSua(m.DichVu), "Món này không có việc sửa");
+    if (cf.tu.indexOf(m.TrangThai) < 0) fail(m.MaMon + " đang ở bước \"" + m.TrangThai + "\", chưa làm được \"" + cf.ten + "\". Tải lại để xem bước mới nhất.", "sai_buoc");
+    var w = {}, luu = {};
+    if (b === "KIEM_DAU") {
+      ["nhan", "chatLieu", "mau", "phuongPhap", "ro"].forEach(function (k) { if (!txt(d[k], 60)) fail("Điền đủ: nhãn giặt, chất liệu, màu, cách làm, rổ.", "thieu_du_lieu"); });
+      if (PHUONG_PHAP.indexOf(d.phuongPhap) < 0) fail("Cách làm chưa đúng", "bad_request");
+      if (d.khopAnh !== true) fail("Đối chiếu với 4 ảnh lúc nhận và xác nhận khớp, hoặc báo sự cố.", "chua_doi_chieu");
+      w.Ro = txt(d.ro, 20); w.PhuongPhap = d.phuongPhap; w.TrangThai = d.ruiRo ? "Chờ khách duyệt" : "Đã phân loại";
+    }
+    if (b === "KHACH_DUYET") w.TrangThai = d.dongY === false ? "Sẵn sàng trả" : "Đã phân loại";
+    if (b === "BAT_DAU") { var pp = PHUONG_PHAP.indexOf(d.phuongPhap) > -1 ? d.phuongPhap : m.PhuongPhap; if (pp === "Giặt khô (xưởng)") fail("Đồ giặt khô bấm \"Gửi xưởng\".", "bad_request"); w.PhuongPhap = pp; w.TrangThai = "Đang làm"; w.NguoiLam = me.ten; }
+    if (b === "GUI_XUONG") { w.TrangThai = "Gửi xưởng"; w.NoiLam = "Gửi xưởng giặt khô"; w.XuongDoiTac = txt(d.xuong, 60); w.PhuongPhap = "Giặt khô (xưởng)"; w.NguoiLam = me.ten; }
+    if (b === "XONG") w.TrangThai = CAN_PHOI.indexOf(m.PhuongPhap) > -1 ? "Đang phơi" : "Chờ kiểm";
+    if (b === "KHO" || b === "XUONG_TRA") w.TrangThai = "Chờ kiểm";
+    if (b === "QC_DAT") {
+      if (d.dat !== true) fail("Tick đủ các mục kiểm tra trước khi xác nhận đạt.", "chua_kiem");
+      var lam = suKienCua(m.MaMon).filter(function (r) { return ["BAT_DAU", "XONG", "GUI_XUONG"].indexOf(r.Buoc) > -1; }).map(function (r) { return r.MaNV; });
+      var soNguoi = tab("NhanSu").rows.filter(function (n) { return n.Nghi !== "Có"; }).length;
+      if (lam.indexOf(me.id) > -1 && !isOwner(me) && soNguoi > 1) fail("Người kiểm phải khác người làm món này. Nhờ đồng nghiệp hoặc chủ tiệm kiểm.", "cung_nguoi");
+      w.TrangThai = "Chờ đóng gói";
+    }
+    if (b === "QC_LAI") { w.TrangThai = "Đã phân loại"; w.LanLamLai = num(m.LanLamLai) + 1; }
+    if (b === "DONG_GOI") w.TrangThai = "Sẵn sàng trả";
+    if (b === "SU_CO") { w.TrangThai = "Có sự cố"; w.SuCo = gc; }
+    if (b === "XU_LY_SU_CO") w.TrangThai = "Đã phân loại";
+    w.CapNhat = now();
+    writeObj(tm, m._r, w); Object.keys(w).forEach(function (k) { m[k] = w[k]; });
+    ["nhan", "chatLieu", "mau", "phuongPhap", "ro", "xuong", "may", "phut", "ruiRo", "dongY", "khopAnh", "dat", "muc", "vet", "dung"].forEach(function (k) { if (d[k] != null) luu[k] = typeof d[k] === "string" ? txt(d[k], 120) : d[k]; });
+    ghiBuoc(me, [{ MaMon: m.MaMon, MaPhieu: m.MaPhieu, Buoc: b, Anh: anh.join(","), DuLieu: JSON.stringify(luu).slice(0, 2000), GhiChu: gc }]);
+    var pp2 = dongBoPhieu(m.MaPhieu, false);
+    log(me, cf.ten, m.MaMon, gc);
+    return { ok: true, mon: strip(m), phieu: pp2, buoc: suKienCua(m.MaMon).map(strip) };
+  });
+}
+
+/* ---------- link khách xem toàn bộ quá trình (không cần đăng nhập, có khoá ngẫu nhiên) ---------- */
+var TEN_BUOC_KHACH = { NHAN: "Nhận đồ, chụp 4 ảnh tình trạng", KIEM_DAU: "Kiểm đầu vào, đối chiếu ảnh", KHACH_DUYET: "Bạn đồng ý cách xử lý", XU_LY_VET: "Xử lý vết bằng tay",
+  BAT_DAU: "Bắt đầu làm", GUI_XUONG: "Gửi xưởng giặt khô đối tác", XONG: "Làm xong", KHO: "Đã khô", XUONG_TRA: "Xưởng trả về, kiểm lại", QC_DAT: "Kiểm tra đạt",
+  QC_LAI: "Kiểm tra chưa đạt, làm lại", DONG_GOI: "Đóng gói", SU_CO: "Tạm dừng, tiệm sẽ liên hệ bạn", XU_LY_SU_CO: "Đã xử lý, tiếp tục", BAN_GIAO: "Đã bàn giao" };
+function tomTat(b, d) {
+  try { d = JSON.parse(d || "{}"); } catch (e) { d = {}; }
+  if (b === "NHAN") return d.tinhTrang ? "Tình trạng khi nhận: " + d.tinhTrang : "";
+  if (b === "KIEM_DAU") return ["Nhãn: " + (d.nhan || ""), "Chất liệu: " + (d.chatLieu || ""), "Cách làm: " + (d.phuongPhap || "")].join(" · ");
+  if (b === "BAT_DAU") return d.phuongPhap || "";
+  if (b === "QC_DAT") return d.muc ? "Đạt " + d.muc + " mục kiểm" : "";
+  if (b === "DONG_GOI") return "Móc treo, túi bọc, thẻ hướng dẫn bảo quản";
+  if (b === "XU_LY_VET") return d.vet ? "Vết: " + d.vet : "";
+  return "";
+}
+function webTheoDoi(q) {
+  var ma = txt(q.p, 20).toUpperCase(), k = txt(q.k, 12);
+  if (!/^PC-\d{4}-\d{2,4}$/.test(ma) || !/^[a-z0-9]{10}$/.test(k)) fail("Link theo dõi chưa đúng", "bad_request");
+  rate("td_" + ma, 120, 3600);
+  var p = find(tab("Phieu"), "MaPhieu", ma);
+  if (!p || p.KhoaXem !== k || p.TrangThai === "Hủy") fail("Không tìm thấy đơn", "not_found");
+  if (p.TrangThai === "Đã trả" && p.HetHanXem && p.HetHanXem < now()) fail("Link đã hết hạn sau " + LINK_NGAY + " ngày kể từ khi bàn giao. Nhắn Zalo 0377 159 189 nếu cần xem lại.", "het_han");
+  var ev = tab("BuocMon").rows.filter(function (r) { return r.MaPhieu === ma; });
+  var mons = tab("Mon").rows.filter(function (m) { return m.MaPhieu === ma; }).map(function (m) {
+    return { ma: m.MaMon, ten: m.TenMon, dv: m.DichVu, tt: m.TrangThai === "Có sự cố" ? "Tạm dừng" : m.TrangThai,
+      buoc: ev.filter(function (r) { return r.MaMon === m.MaMon; }).map(function (r) {
+        return { b: r.Buoc, ten: TEN_BUOC_KHACH[r.Buoc] || r.Buoc, luc: r.Luc, nv: String(r.Ten || "").split(" ").slice(-1)[0], anh: String(r.Anh || "").split(",").filter(Boolean), tom: tomTat(r.Buoc, r.DuLieu) }; }) };
+  });
+  var phai = num(p.PhaiThu), thu = num(p.DaThu);
+  return { ok: true, phieu: { ma: p.MaPhieu, ngayNhan: p.NgayNhan, henTra: p.HenTra, tt: p.TrangThai, ngayTra: p.NgayTra, hetHan: p.HetHanXem, phai: phai, thu: thu, con: Math.max(0, phai - thu), ten: String(p.TenKhach || "").split(" ").slice(-1)[0] }, mon: mons, ngay: LINK_NGAY };
 }
 
 /* Chạy tay trong trình chỉnh sửa nếu muốn đăng xuất mọi người */

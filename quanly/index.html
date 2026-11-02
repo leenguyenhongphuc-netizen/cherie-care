@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="Care">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Be+Vietnam+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../care.css?v=4">
+<link rel="stylesheet" href="../care.css?v=5">
 <style>
 body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 .hd{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top));background:var(--surface);border-bottom:1px solid var(--line)}
@@ -104,8 +104,8 @@ button.it{text-align:left;cursor:pointer;width:100%}
 @media print{.prbar{display:none}}
 @media (min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
 </style>
-<script src="../config.js?v=2"></script>
-<script src="../care.js"></script>
+<script src="../config.js?v=5"></script>
+<script src="../care.js?v=5"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
 </head>
 <body>
@@ -116,8 +116,10 @@ button.it{text-align:left;cursor:pointer;width:100%}
 "use strict";
 var C=window.Care,E=C.esc,$=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
 var D={phieu:[],mon:[],lich:[],gia:[],nhanSu:[]},ME=null,TAB="",luc="",dangTai=false;
-var MON_TT=["Chờ làm","Đang làm","Gửi xưởng","Chờ kiểm","Sẵn sàng trả","Đã trả","Có sự cố"];
-var LOP={"Chờ làm":"cho","Đang làm":"lam","Gửi xưởng":"xuong","Chờ kiểm":"kiem","Sẵn sàng trả":"san","Đã trả":"tra","Có sự cố":"loi","Hủy":"tra","Mới":"loi","Đã xác nhận":"lam","Đã nhận đồ":"san"};
+var MON_TT=["Chờ làm","Chờ khách duyệt","Đã phân loại","Đang làm","Đang phơi","Gửi xưởng","Chờ kiểm","Chờ đóng gói","Sẵn sàng trả","Đã trả","Có sự cố"];
+var THEO_DOI="https://care.cherie.io.vn/theo-doi/",LAUNDERER="../launderer/";
+function linkXem(p){return p&&p.KhoaXem?THEO_DOI+"?p="+p.MaPhieu+"&k="+p.KhoaXem:C.SITE+"?tra="+p.MaPhieu}
+var LOP={"Chờ làm":"cho","Chờ khách duyệt":"loi","Đã phân loại":"cho","Đang làm":"lam","Đang phơi":"lam","Chờ đóng gói":"kiem","Gửi xưởng":"xuong","Chờ kiểm":"kiem","Sẵn sàng trả":"san","Đã trả":"tra","Có sự cố":"loi","Hủy":"tra","Mới":"loi","Đã xác nhận":"lam","Đã nhận đồ":"san"};
 var LOAI_KHACH=["Khách ngoài","Doanh nghiệp","Thuê đầm","Office","Seconde"];
 var LOAI_MON=["Đầm","Đầm dạ hội","Áo dài","Vest","Váy cưới","Áo","Quần","Chân váy","Khác"];
 var NOI_BO={"Thuê đầm":"N01","Office":"N02","Seconde":"N03"};
@@ -303,9 +305,9 @@ function luuPhieu(){var er=$("#eN"),b=$("#bN");er.textContent="";
       mon:nhap.mon.map(function(m){return{TenMon:m.TenMon,Loai:m.Loai,DichVu:m.DichVu,ChiTiet:m.ChiTiet,Gia:m.Gia,GiaTriKhai:m.GiaTriKhai,TinhTrangNhan:m.TinhTrangNhan,NoiLam:m.NoiLam,Anh:m.anh.map(function(a){return a&&a.id||""})}})})})
   .then(function(r){D.phieu.push(r.phieu);r.mon.forEach(function(m){D.mon.push(m)});if(nhap.MaLich)upsert(D.lich,"MaLich",{MaLich:nhap.MaLich,TrangThai:"Đã nhận đồ",MaPhieu:r.phieu.MaPhieu});
     nhap=moiNhap();luuNhap();veNhan($("#view"));xongNhan(r.phieu)},function(e){busy(b,false);er.textContent=e.message})}
-function tinZalo(p,loai){var ms=monCua(p.MaPhieu),ten=p.TenKhach?p.TenKhach.split(" ").pop():"bạn",link=C.SITE+"?tra="+p.MaPhieu;
-  if(loai==="san")return "Chào "+ten+", CHÉRIE Care báo đồ của bạn đã sẵn sàng ("+ms.filter(function(m){return m.TrangThai!=="Đã trả"}).length+" món, phiếu "+p.MaPhieu+")."+(conLai(p)?"\nCòn lại: "+C.tien(conLai(p))+".":"")+"\nBạn ghé quầy hoặc nhắn tụi mình để hẹn giờ giao nhé.\nTra cứu: "+link;
-  return "Chào "+ten+", CHÉRIE Care đã nhận "+ms.length+" món của bạn.\nMã phiếu: "+p.MaPhieu+"\nHẹn trả: "+C.ngayDep(p.HenTra)+"\nTổng: "+C.tien(p.PhaiThu)+(C.num(p.DaThu)?" · đã trả "+C.tien(p.DaThu):"")+"\nTra cứu đơn: "+link+" (nhập 4 số cuối Zalo)\nCảm ơn bạn đã gửi đồ cho tụi mình."}
+function tinZalo(p,loai){var ms=monCua(p.MaPhieu),ten=p.TenKhach?p.TenKhach.split(" ").pop():"bạn",link=linkXem(p),coKhoa=!!p.KhoaXem;
+  if(loai==="san")return "Chào "+ten+", CHÉRIE Care báo đồ của bạn đã sẵn sàng ("+ms.filter(function(m){return m.TrangThai!=="Đã trả"}).length+" món, phiếu "+p.MaPhieu+")."+(conLai(p)?"\nCòn lại: "+C.tien(conLai(p))+".":"")+"\nBạn ghé quầy hoặc nhắn tụi mình để hẹn giờ giao nhé.\nXem từng bước và ảnh: "+link;
+  return "Chào "+ten+", CHÉRIE Care đã nhận "+ms.length+" món của bạn.\nMã phiếu: "+p.MaPhieu+"\nHẹn trả: "+C.ngayDep(p.HenTra)+"\nTổng: "+C.tien(p.PhaiThu)+(C.num(p.DaThu)?" · đã trả "+C.tien(p.DaThu):"")+(coKhoa?"\nTheo dõi từng bước, có ảnh tại xưởng: "+link+"\nLink mở được đến 7 ngày sau khi bạn nhận đồ.":"\nTra cứu đơn: "+link+" (nhập 4 số cuối Zalo)")+"\nCảm ơn bạn đã gửi đồ cho tụi mình."}
 function xongNhan(p){var s=sheet("Đã lưu phiếu",'<div class="form"><div class="card" style="text-align:center"><span class="label">Mã phiếu</span><div class="mono" style="font-size:28px;color:var(--care);margin:6px 0">'+E(p.MaPhieu)+'</div><div class="muted">'+monCua(p.MaPhieu).map(function(m){return E(m.MaMon)}).join(" · ")+'</div></div>'+
   '<div class="bar"><button class="btn" data-a="zl">Copy tin Zalo</button>'+(p.SDT?'<a class="btn soft" href="'+C.zalo(p.SDT)+'" target="_blank" rel="noopener">Mở Zalo khách</a>':'')+'</div><div class="bar"><button class="btn quiet" data-a="in">In tem treo</button><button class="btn quiet" data-a="xem">Xem phiếu</button></div></div>');
   $('[data-a="zl"]',s).onclick=function(){C.copy(tinZalo(p)).then(function(){C.toast("Đã copy. Dán vào Zalo khách.")})};
@@ -347,46 +349,28 @@ function moPhieu(ma){var p=phieu(ma);if(!p)return;var ms=monCua(ma),cl=conLai(p)
     if(a==="huy"){if(!confirm("Huỷ phiếu "+ma+"? Phiếu huỷ không tính doanh thu."))return;C.call("capNhatPhieu",{ma:ma,obj:{TrangThai:"Hủy"}}).then(function(r){upsert(D.phieu,"MaPhieu",r.phieu);ve();s.close()},loi)}
     if(a==="tra")traDo(p,s)}});
   $$("[data-sua]",s).forEach(function(b){b.onclick=function(){suaMon(b.dataset.sua,lai)}})}
-function traDo(p,s0){var ms=monCua(p.MaPhieu).filter(function(m){return m.TrangThai!=="Đã trả"}),cl=conLai(p);
-  var chuaXong=ms.filter(function(m){return m.TrangThai!=="Sẵn sàng trả"});
-  hoi("Trả đồ · "+p.MaPhieu,'<div class="f"><span>Món trả lần này</span><div class="list">'+ms.map(function(m){return '<label class="it" style="flex-direction:row;align-items:center;gap:12px"><input type="checkbox" data-m="'+E(m.MaMon)+'" '+(m.TrangThai==="Sẵn sàng trả"?'checked':'')+' style="width:22px;height:22px"><span style="flex:1"><span class="ma">'+E(m.MaMon)+'</span> '+E(m.TenMon)+'</span>'+tt(m.TrangThai)+'</label>'}).join("")+'</div></div>'+
-   (chuaXong.length?'<p class="s" style="color:var(--warn);margin:0">'+chuaXong.length+' món chưa qua bước kiểm. Kiểm kỹ trước khi trả.</p>':'')+
-   '<label class="f"><span>Thu thêm lúc trả (còn '+C.tien(cl)+')</span><input name="thuThem" inputmode="numeric" class="mono" value="'+cl+'"></label><label class="f"><span>Cách thu</span><select name="cachThu"><option>Tiền mặt</option><option>Chuyển khoản</option><option>Thẻ</option></select></label>',"Xác nhận trả")
-  .then(function(o){if(!o)return;var chon=$$("[data-m]").filter(function(c){return c.checked}).map(function(c){return c.dataset.m});
-   if(!chon.length){C.toast("Chưa chọn món nào",true);return}
-   C.call("traDo",{ma:p.MaPhieu,mon:chon,thuThem:o.thuThem,cachThu:o.cachThu}).then(function(r){upsert(D.phieu,"MaPhieu",r.phieu);r.mon.forEach(function(m){upsert(D.mon,"MaMon",m)});ve();C.toast(r.phieu.TrangThai==="Đã trả"?"Đã trả đủ đồ cho khách":"Đã trả "+chon.length+" món");if(s0)s0.close()},
-     function(e){if(e.code==="con_no"&&confirm(e.message+"\n\nVẫn trả đồ và ghi khách còn nợ?"))C.call("traDo",{ma:p.MaPhieu,mon:chon,thuThem:o.thuThem,cachThu:o.cachThu,choNo:true}).then(function(r){upsert(D.phieu,"MaPhieu",r.phieu);r.mon.forEach(function(m){upsert(D.mon,"MaMon",m)});ve();C.toast("Đã trả, khách còn nợ "+C.tien(conLai(r.phieu)));if(s0)s0.close()},loi);else if(e.code!=="con_no")loi(e)})})}
+function traDo(p,s0){var ms=monCua(p.MaPhieu).filter(function(m){return m.TrangThai!=="Đã trả"}),san=ms.filter(function(m){return m.TrangThai==="Sẵn sàng trả"});
+  if(!san.length){C.toast("Chưa có món nào qua kiểm tra và đóng gói. Món chưa xong không trả được.",true);return}
+  location.href=LAUNDERER+"#"+san[0].MaMon}
 /* setTimeout để checkbox còn trong DOM khi form gửi */
 function suaMon(ma,sau){var m=D.mon.filter(function(x){return x.MaMon===ma})[0];if(!m)return;
   hoi("Sửa "+ma,'<label class="f"><span>Tên món</span><input name="TenMon" value="'+E(m.TenMon)+'"></label><label class="f"><span>Dịch vụ</span><input name="DichVu" value="'+E(m.DichVu)+'"></label><label class="f"><span>Chi tiết</span><input name="ChiTiet" value="'+E(m.ChiTiet)+'"></label>'+
    '<div class="row2"><label class="f"><span>Giá (đ)</span><input name="Gia" inputmode="numeric" class="mono" value="'+E(C.num(m.Gia)||"")+'"></label><label class="f"><span>Giá trị khai (đ)</span><input name="GiaTriKhai" inputmode="numeric" class="mono" value="'+E(C.num(m.GiaTriKhai)||"")+'"></label></div>'+
-   '<label class="f"><span>Trạng thái</span><select name="TrangThai">'+MON_TT.filter(function(x){return x!=="Đã trả"}).map(function(x){return '<option'+(x===m.TrangThai?' selected':'')+'>'+x+'</option>'}).join("")+'</select></label>'+
-   '<div class="row2"><label class="f"><span>Giá xưởng (đ)</span><input name="GiaXuong" inputmode="numeric" class="mono" value="'+E(C.num(m.GiaXuong)||"")+'"></label><label class="f"><span>Đền bù (đ)</span><input name="DenBu" inputmode="numeric" class="mono" value="'+E(C.num(m.DenBu)||"")+'"></label></div>'+
-   '<label class="f"><span>Sự cố</span><input name="SuCo" value="'+E(m.SuCo)+'"></label>').then(function(o){if(!o)return;C.call("capNhatMon",{ma:ma,obj:o}).then(function(r){upsert(D.mon,"MaMon",r.mon);upsert(D.phieu,"MaPhieu",r.phieu);ve();C.toast("Đã lưu "+ma);if(sau)sau()},loi)})}
+   '<p class="s muted" style="margin:0">Trạng thái món đổi bằng từng bước trong Launderer, có ảnh và giờ.</p>'+
+   '<div class="row2"><label class="f"><span>Giá xưởng (đ)</span><input name="GiaXuong" inputmode="numeric" class="mono" value="'+E(C.num(m.GiaXuong)||"")+'"></label><label class="f"><span>Đền bù (đ)</span><input name="DenBu" inputmode="numeric" class="mono" value="'+E(C.num(m.DenBu)||"")+'"></label></div>').then(function(o){if(!o)return;C.call("capNhatMon",{ma:ma,obj:o}).then(function(r){upsert(D.mon,"MaMon",r.mon);upsert(D.phieu,"MaPhieu",r.phieu);ve();C.toast("Đã lưu "+ma);if(sau)sau()},loi)})}
 
-/* ---------- XƯỞNG ---------- */
+/* ---------- XƯỞNG: xem nhanh, thao tác từng bước ở Launderer ---------- */
 var locX="Chờ làm";
-var BUOC={"Chờ làm":[["Bắt đầu làm","Đang làm"],["Gửi xưởng","Gửi xưởng"]],"Đang làm":[["Xong, chờ kiểm","Chờ kiểm"]],"Gửi xưởng":[["Xưởng trả về, chờ kiểm","Chờ kiểm"]],"Chờ kiểm":[["Đạt, sẵn sàng trả","Sẵn sàng trả"],["Làm lại","Đang làm"]],"Có sự cố":[["Đã xử lý, chờ kiểm","Chờ kiểm"]],"Sẵn sàng trả":[]};
-function veXuong(v){var tho=ME.vaiTro==="Thợ may",ds=D.mon.filter(function(m){var p=phieu(m.MaPhieu);return m.TrangThai!=="Đã trả"&&!(p&&p.TrangThai==="Hủy")&&(!tho||laSua(m.DichVu))});
-  var LOC=["Chờ làm","Đang làm","Gửi xưởng","Chờ kiểm","Có sự cố","Sẵn sàng trả"];if(tho)LOC=["Chờ làm","Đang làm","Chờ kiểm","Có sự cố"];
-  if(LOC.indexOf(locX)<0)locX=LOC[0];
+function veXuong(v){if(!desk()){location.href=LAUNDERER;return}
+  var ds=D.mon.filter(function(m){var p=phieu(m.MaPhieu);return m.TrangThai!=="Đã trả"&&!(p&&p.TrangThai==="Hủy")});
+  var LOC=MON_TT.filter(function(x){return x!=="Đã trả"});if(LOC.indexOf(locX)<0)locX=LOC[0];
   var dem={};ds.forEach(function(m){dem[m.TrangThai]=(dem[m.TrangThai]||0)+1});
   var hien=ds.filter(function(m){return m.TrangThai===locX}).sort(function(a,b){var pa=phieu(a.MaPhieu)||{},pb=phieu(b.MaPhieu)||{};return String(pa.HenTra).localeCompare(String(pb.HenTra))});
-  v.innerHTML='<h1>'+(desk()?'Xưởng':'Việc của '+E(ME.ten))+'</h1><div class="seg">'+LOC.map(function(x){return '<button class="chip'+(x===locX?' on':'')+'" data-l="'+x+'">'+x+'<b>'+(dem[x]||0)+'</b></button>'}).join("")+'</div>'+
-   '<div class="list">'+(hien.length?hien.map(function(m){var p=phieu(m.MaPhieu)||{},a=[m.Anh1,m.Anh2,m.Anh3,m.Anh4].filter(Boolean);return '<div class="it" data-mon="'+E(m.MaMon)+'"><div class="r1"><div><span class="ma">'+E(m.MaMon)+'</span><div class="t">'+E(m.TenMon)+' <span class="s">· '+E(m.Loai)+'</span></div></div><div class="s" style="text-align:right">'+hen(p)+'</div></div>'+
-    '<div class="s"><b style="color:var(--ink)">'+E(m.DichVu)+'</b>'+(m.ChiTiet?' · '+E(m.ChiTiet):'')+(m.NoiLam&&m.NoiLam!=="Tại tiệm"?' · '+E(m.NoiLam):'')+'</div>'+
-    (m.TinhTrangNhan?'<div class="s">Khi nhận: '+E(m.TinhTrangNhan)+'</div>':'')+(m.SuCo?'<div class="s" style="color:var(--err)">Sự cố: '+E(m.SuCo)+'</div>':'')+
-    (m.XuongDoiTac||m.GhiChuXuong?'<div class="s">'+E([m.XuongDoiTac,m.GhiChuXuong].filter(Boolean).join(" · "))+'</div>':'')+(m.NguoiLam?'<div class="s">Người làm: '+E(m.NguoiLam)+'</div>':'')+
-    (a.length?'<div class="thumbs">'+a.map(function(id,j){return '<a href="https://drive.google.com/file/d/'+E(id)+'/view" target="_blank" rel="noopener"><img loading="lazy" src="'+E(C.anh(id,200))+'" alt="Ảnh '+(j+1)+'"></a>'}).join("")+'</div>':'')+
-    '<div class="acts">'+(BUOC[m.TrangThai]||[]).filter(function(b){return!(tho&&b[1]==="Gửi xưởng")}).map(function(b,i){return '<button class="btn sm'+(i?' quiet':'')+'" data-to="'+E(b[1])+'">'+E(b[0])+'</button>'}).join("")+(m.TrangThai!=="Có sự cố"&&m.TrangThai!=="Sẵn sàng trả"?'<button class="btn quiet sm" data-to="Có sự cố">Báo sự cố</button>':'')+'<button class="btn quiet sm" data-note>Ghi chú</button></div></div>'}).join(""):'<div class="empty">Không có món nào ở bước này.</div>')+'</div>';
-  $$("[data-l]",v).forEach(function(b){b.onclick=function(){locX=b.dataset.l;veXuong(v)}});
-  $$("[data-mon]",v).forEach(function(c){var ma=c.dataset.mon;
-    $$("[data-to]",c).forEach(function(b){b.onclick=function(){var to=b.dataset.to,obj={TrangThai:to};
-      var go=function(){busy(b,true);C.call("capNhatMon",{ma:ma,obj:obj}).then(function(r){upsert(D.mon,"MaMon",r.mon);upsert(D.phieu,"MaPhieu",r.phieu);ve();C.toast(ma+" → "+to+(r.phieu&&r.phieu.TrangThai==="Sẵn sàng trả"?". Cả phiếu đã xong, báo quầy nhắn khách.":""))},function(e){busy(b,false);loi(e)})};
-      if(to==="Có sự cố")hoi("Báo sự cố · "+ma,'<label class="f"><span>Chuyện gì xảy ra</span><textarea name="SuCo" required placeholder="Phai màu ở gấu váy sau khi giặt"></textarea></label><p class="s muted" style="margin:0">Chụp ảnh gửi nhóm Zalo nội bộ để chủ tiệm xem.</p>',"Báo").then(function(o){if(!o)return;obj.SuCo=o.SuCo;go()});
-      else if(to==="Gửi xưởng")hoi("Gửi xưởng · "+ma,'<label class="f"><span>Xưởng đối tác</span><input name="XuongDoiTac" placeholder="Tên xưởng"></label>'+(desk()?'<label class="f"><span>Giá xưởng (đ)</span><input name="GiaXuong" inputmode="numeric" class="mono"></label>':''),"Gửi").then(function(o){if(!o)return;Object.assign(obj,o);obj.NoiLam="Gửi xưởng giặt khô";go()});
-      else go()}});
-    var nb=$("[data-note]",c);if(nb)nb.onclick=function(){var m=D.mon.filter(function(x){return x.MaMon===ma})[0];hoi("Ghi chú · "+ma,'<label class="f"><span>Ghi chú xưởng</span><textarea name="GhiChuXuong">'+E(m.GhiChuXuong)+'</textarea></label>').then(function(o){if(!o)return;C.call("capNhatMon",{ma:ma,obj:o}).then(function(r){upsert(D.mon,"MaMon",r.mon);ve()},loi)})}})}
+  v.innerHTML='<h1>Xưởng</h1><a class="btn block" href="'+LAUNDERER+'" style="margin-bottom:12px">Mở Launderer để làm từng bước</a><div class="seg">'+LOC.filter(function(x){return dem[x]||x===locX}).map(function(x){return '<button class="chip'+(x===locX?' on':'')+'" data-l="'+x+'">'+x+'<b>'+(dem[x]||0)+'</b></button>'}).join("")+'</div>'+
+   '<div class="list">'+(hien.length?hien.map(function(m){var p=phieu(m.MaPhieu)||{};return '<a class="it" style="text-decoration:none;color:inherit" href="'+LAUNDERER+'#'+E(m.MaMon)+'"><div class="r1"><div><span class="ma">'+E(m.MaMon)+'</span><div class="t">'+E(m.TenMon)+'</div></div><div class="s" style="text-align:right">'+hen(p)+'</div></div>'+
+    '<div class="s"><b style="color:var(--ink)">'+E(m.DichVu)+'</b>'+(m.Ro?' · rổ '+E(m.Ro):'')+(m.PhuongPhap?' · '+E(m.PhuongPhap):'')+(m.NguoiLam?' · '+E(m.NguoiLam):'')+'</div>'+
+    (m.SuCo?'<div class="s" style="color:var(--err)">Sự cố: '+E(m.SuCo)+'</div>':'')+(C.num(m.LanLamLai)?'<div class="s" style="color:var(--err)">Làm lại '+E(m.LanLamLai)+' lần</div>':'')+'</a>'}).join(""):'<div class="empty">Không có món nào ở bước này.</div>')+'</div>';
+  $$("[data-l]",v).forEach(function(b){b.onclick=function(){locX=b.dataset.l;veXuong(v)}})}
 
 /* ---------- TỔNG QUAN (chủ tiệm) ---------- */
 var thang="";
@@ -433,10 +417,10 @@ function caiDat(){var s=sheet(ME.ten+" · "+ME.vaiTro,'<div class="form">'+(owne
 /* ---------- IN TEM TREO 50 × 90 mm ---------- */
 function qrSvg(text){try{if(!window.qrcode)return"";var q=qrcode(0,"M");q.addData(text);q.make();return q.createSvgTag({cellSize:3,margin:0,scalable:true})}catch(e){return""}}
 function inTem(ma){var p=phieu(ma),ms=monCua(ma).filter(function(m){return m.TrangThai!=="Đã trả"});if(!ms.length)ms=monCua(ma);
-  var link=C.SITE+"?tra="+ma,qr=qrSvg(link),duoi=String(p.SDT||"").slice(-3);
+  var link=linkXem(p),duoi=String(p.SDT||"").slice(-3);
   $("#printArea").innerHTML='<div class="prbar"><button class="btn" id="prGo">In</button><button class="btn quiet" id="prX">Đóng</button></div><div class="tems">'+ms.map(function(m){return '<div class="tem"><div class="hole"></div><span class="lk" style="font-size:12pt;flex-direction:column;gap:1.5mm"><span class="w">CHÉRIE</span><span class="d"></span><span class="b" style="font-size:.5em">Care</span></span>'+
-   '<div class="code">'+E(m.MaMon)+'</div><div class="nm">'+E(m.TenMon)+'<br><b>'+E(m.DichVu)+'</b></div><div class="hen">Hẹn trả<br><b>'+E(C.ngayDep(p.HenTra))+'</b></div>'+(qr?'<div class="qr">'+qr+'</div>':'')+
-   '<div class="ft">Phiếu '+E(ma)+(duoi?' · Zalo ···'+E(duoi):'')+'<br>Tra đơn: care.cherie.io.vn</div></div>'}).join("")+'</div>';
+   '<div class="code">'+E(m.MaMon)+'</div><div class="nm">'+E(m.TenMon)+'<br><b>'+E(m.DichVu)+'</b></div><div class="hen">Hẹn trả<br><b>'+E(C.ngayDep(p.HenTra))+'</b></div>'+(function(){var q=qrSvg(link+"#"+m.MaMon);return q?'<div class="qr">'+q+'</div>':''})()+
+   '<div class="ft">Phiếu '+E(ma)+(duoi?' · Zalo ···'+E(duoi):'')+'<br>Quét QR xem từng bước</div></div>'}).join("")+'</div>';
   var pa=$("#printArea");pa.style.cssText="display:block;position:fixed;inset:0;z-index:100;background:var(--bg);overflow:auto;padding:12px";
   $("#prGo").onclick=function(){window.print()};$("#prX").onclick=function(){pa.style.cssText="";pa.innerHTML=""}}
 

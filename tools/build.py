@@ -30,6 +30,7 @@ PAGES = [
     ("doanh-nghiep", "doanh-nghiep.html", "/doanh-nghiep/", "Doanh nghiệp và đối tác · CHÉRIE Care", "Giặt hấp cho tiệm cho thuê đồ, studio, khách sạn, homestay, wedding planner ở Đà Nẵng. Lịch cố định, giá theo tháng.", False),
     ("dat-lich", "dat-lich.html", "/dat-lich/", "Đặt lịch nhận đồ · CHÉRIE Care", "Chọn món, xem tạm tính và đặt lịch gửi đồ tại quầy hoặc giao nhận tận nơi ở Đà Nẵng.", False),
     ("tra-cuu", "tra-cuu.html", "/tra-cuu/", "Tra cứu đơn · CHÉRIE Care", "Tra tình trạng đồ đang chăm bằng mã phiếu và 4 số cuối Zalo.", False),
+    ("theo-doi", "theo-doi.html", "/theo-doi/", "Theo dõi đồ của bạn · CHÉRIE Care", "Xem từng bước chăm đồ, người làm, giờ và ảnh tại xưởng.", False),
     ("404", "404.html", "/404.html", "Không tìm thấy trang · CHÉRIE Care", "Trang không tồn tại.", False),
 ]
 
@@ -73,7 +74,7 @@ def build():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{html.escape(title)}</title>
-<meta name="description" content="{html.escape(desc)}">
+<meta name="description" content="{html.escape(desc)}">{'<meta name="robots" content="noindex">' if key in ("theo-doi", "404") else ""}
 <meta name="theme-color" content="#24476B">
 {"" if key == "404" else f'<link rel="canonical" href="{canon}">'}
 <meta property="og:title" content="{html.escape(title)}">
@@ -109,7 +110,7 @@ def build():
         out = os.path.join(ROOT, path.lstrip("/"), "index.html") if path.endswith("/") else os.path.join(ROOT, path.lstrip("/"))
         os.makedirs(os.path.dirname(out), exist_ok=True)
         open(out, "w", encoding="utf-8").write(page)
-    urls = "".join(f"<url><loc>{SITE}{p}</loc></url>" for k, s, p, *_ in PAGES if k != "404")
+    urls = "".join(f"<url><loc>{SITE}{p}</loc></url>" for k, s, p, *_ in PAGES if k not in ("404", "theo-doi"))
     open(os.path.join(ROOT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     open(os.path.join(ROOT, "ver.txt"), "w").write(VER + "\n")
     print("đã dựng", len(PAGES), "trang, phiên bản", VER)

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Theo dõi đồ của bạn · CHÉRIE Care</title>
+<meta name="description" content="Xem từng bước chăm đồ, người làm, giờ và ảnh tại xưởng."><meta name="robots" content="noindex">
+<meta name="theme-color" content="#24476B">
+<link rel="canonical" href="https://care.cherie.io.vn/theo-doi/">
+<meta property="og:title" content="Theo dõi đồ của bạn · CHÉRIE Care">
+<meta property="og:description" content="Xem từng bước chăm đồ, người làm, giờ và ảnh tại xưởng.">
+<meta property="og:url" content="https://care.cherie.io.vn/theo-doi/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Be+Vietnam+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/care.css?v=202611020623">
+<link rel="stylesheet" href="/site.css?v=202611020623">
+<style>
+.td{padding-bottom:var(--gap-sec);display:grid;gap:16px}
+.td .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.td .ma{font:500 20px/1.2 var(--font-mono)}
+.td .sub{font-size:14px;color:var(--muted);margin-top:2px}
+.note{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--care-soft);font-size:14px;line-height:1.5}
+.note svg{flex:none;width:20px;height:20px;stroke:var(--care);stroke-width:1.6;fill:none;margin-top:1px}
+.money{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.money div{background:var(--surface);padding:10px;display:flex;flex-direction:column;gap:2px;font-size:12.5px;color:var(--muted)}
+.money b{font:500 15px var(--font-mono);color:var(--ink)}
+.mc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.mc .t{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mc .t b{font-size:16px}
+.mc .t small{display:block;font:400 12.5px var(--font-mono);color:var(--muted);margin-top:2px}
+.p6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:14px 0 4px}
+.p6 i{height:4px;border-radius:2px;background:var(--line)}
+.p6 i.on{background:var(--care)}
+.p6l{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;font-size:10.5px;color:var(--muted);text-align:center}
+.tl{list-style:none;margin:16px 0 0 6px;padding:0;border-left:2px solid var(--line)}
+.tl li{position:relative;padding:0 0 16px 18px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--care)}
+.tl li.stop::before{border-color:var(--err)}
+.tl b{font-size:14.5px;font-weight:600}
+.tl .m{display:block;font:400 12px var(--font-mono);color:var(--muted);margin-top:1px}
+.tl p{margin:4px 0 0;font-size:13.5px;color:var(--muted)}
+.th{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px;max-width:320px}
+.th button{aspect-ratio:3/4;border:0;padding:0;border-radius:8px;overflow:hidden;background:var(--care-soft);cursor:zoom-in}
+.th img{width:100%;height:100%;object-fit:cover;display:block;color:transparent;font-size:0}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(18,16,17,.92);display:flex;align-items:center;justify-content:center;padding:16px}
+.lb img{max-width:100%;max-height:calc(100vh - 96px);border-radius:8px}
+.lb button{position:absolute;top:max(12px,env(safe-area-inset-top));right:12px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#1B1618;font-size:22px;cursor:pointer}
+.side{display:grid;gap:12px}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.skel{height:120px;border-radius:16px;background:linear-gradient(90deg,var(--care-soft),var(--surface),var(--care-soft));background-size:200% 100%;animation:sk 1.2s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.skel{animation:none}}
+@media (min-width:860px){.td{grid-template-columns:1.6fr 1fr;align-items:start;gap:32px}.side{position:sticky;top:84px;order:2}.mons{order:1}}
+</style>
+<script src="/config.js?v=202611020623"></script>
+<script src="/care.js?v=202611020623"></script>
+<script src="/site.js?v=202611020623"></script>
+</head>
+<body>
+<a class="sr" href="#main">Bỏ qua menu</a>
+<header class="top"><div class="wrap in">
+<a class="lk" href="/" style="font-size:18px" aria-label="CHÉRIE Care, trang chủ"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a>
+<nav aria-label="Chính"><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true">Dịch vụ <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor;stroke-width:2;fill:none"><path d="m6 9 6 6 6-6"/></svg></button><div class="menu"><a href="/dich-vu/giat-hap/">Giặt và hấp<small>Đầm, áo dài, vest · 2 mức chăm</small></a><a href="/dich-vu/vay-cuoi/">Váy cưới<small>Giặt theo dáng váy, cất giữ chống ẩm</small></a><a href="/dich-vu/sua-do/">Sửa đồ<small>Thợ may ngồi tiệm, hẹn thử đồ</small></a><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi<small>60 phút tại quầy, hấp tại khách sạn, tiệc cưới</small></a></div></div><a href="/bang-gia/">Bảng giá</a><a href="/goi/">Gói và thẻ</a><a href="/cam-ket/">Cam kết</a><a href="/doanh-nghiep/">Doanh nghiệp</a><a href="/tra-cuu/">Tra cứu đơn</a></nav>
+<div class="r"><a class="btn sm" href="/dat-lich/">Đặt lịch</a><button class="mbtn" type="button" data-open-menu aria-label="Mở menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</div></header>
+<div class="drawer" id="drawer"><div class="pn" role="dialog" aria-modal="true" aria-label="Menu"><div class="ph"><a class="lk" href="/" style="font-size:17px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a><button class="mbtn" type="button" data-close-menu aria-label="Đóng menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><a class="lnk" href="/">Trang chủ</a><div class="grp">Dịch vụ</div><a class="lnk" href="/dich-vu/giat-hap/">Giặt và hấp</a><a class="lnk" href="/dich-vu/vay-cuoi/">Váy cưới</a><a class="lnk" href="/dich-vu/sua-do/">Sửa đồ</a><a class="lnk" href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a><div class="grp">Thông tin</div><a class="lnk" href="/bang-gia/">Bảng giá</a><a class="lnk" href="/goi/">Gói và thẻ</a><a class="lnk" href="/cam-ket/">Cam kết</a><a class="lnk" href="/doanh-nghiep/">Doanh nghiệp</a><a class="lnk" href="/tra-cuu/">Tra cứu đơn</a><div class="grp">Liên hệ</div><a class="lnk" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo<span>0377 159 189</span></a><a class="btn block" href="/dat-lich/" style="margin-top:10px">Đặt lịch nhận đồ</a></div></div>
+<main id="main">
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><a href="/tra-cuu/">Tra cứu đơn</a><span aria-hidden="true">/</span><span>Theo dõi</span></nav>
+  <div class="phead" style="grid-template-columns:1fr;padding-bottom:20px"><h1>Hành trình đồ của bạn</h1><p class="lead">Từng bước tụi mình làm, ai làm, lúc nào, kèm ảnh chụp tại xưởng.</p></div>
+  <div class="td" id="td" aria-live="polite">
+    <div><div class="skel"></div><div class="skel" style="margin-top:12px"></div></div>
+    <div class="side"><div class="skel" style="height:160px"></div></div>
+  </div>
+</div>
+</main>
+<footer><div class="wrap fg">
+<div class="brand"><span class="lk rev" style="font-size:22px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></span><p class="tl">Chăm những bộ đồ cho ngày quan trọng của bạn.</p></div>
+<div><h4>Dịch vụ</h4><ul><li><a href="/dich-vu/giat-hap/">Giặt và hấp</a></li><li><a href="/dich-vu/vay-cuoi/">Váy cưới</a></li><li><a href="/dich-vu/sua-do/">Sửa đồ</a></li><li><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a></li></ul></div>
+<div><h4>Thông tin</h4><ul><li><a href="/bang-gia/">Bảng giá</a></li><li><a href="/goi/">Gói và thẻ</a></li><li><a href="/cam-ket/">Cam kết</a></li><li><a href="/doanh-nghiep/">Doanh nghiệp</a></li><li><a href="/tra-cuu/">Tra cứu đơn</a></li></ul></div>
+<div class="lh"><h4>Liên hệ</h4><ul><li><a href="https://zalo.me/84377159189" target="_blank" rel="noopener">Zalo 0377 159 189</a></li><li><a href="/dat-lich/">Đặt lịch nhận đồ</a></li><li><a href="https://cherie.io.vn/">Thuê đầm CHÉRIE</a></li></ul></div>
+<div class="sub"><span>Một thương hiệu của CHÉRIE · Mỗi lần, một chiếc mới.</span><span>Đà Nẵng</span></div>
+</div></footer>
+
+<script>
+(function(){var C=Care,E=C.esc,$=Site.$,box=$("#td"),q=new URLSearchParams(location.search),P=(q.get("p")||"").toUpperCase(),K=q.get("k")||"",MON=(location.hash||"").slice(1).toUpperCase();
+var CHANG=["Nhận","Kiểm","Làm","Kiểm tra","Sẵn sàng","Bàn giao"];
+var MUC={"Chờ làm":0,"Chờ khách duyệt":1,"Đã phân loại":1,"Đang làm":2,"Đang phơi":2,"Gửi xưởng":2,"Chờ kiểm":3,"Chờ đóng gói":3,"Sẵn sàng trả":4,"Đã trả":5};
+var TEN={"Chờ làm":"Đã nhận","Chờ khách duyệt":"Chờ bạn duyệt","Đã phân loại":"Đã kiểm đầu vào","Đang làm":"Đang làm","Đang phơi":"Đang phơi khô","Gửi xưởng":"Đang giặt khô","Chờ kiểm":"Đang kiểm tra","Chờ đóng gói":"Đang đóng gói","Sẵn sàng trả":"Sẵn sàng trả","Đã trả":"Đã bàn giao","Tạm dừng":"Tạm dừng"};
+var LOP={"Sẵn sàng trả":"san","Đã trả":"tra","Tạm dừng":"loi","Chờ khách duyệt":"cho","Chờ làm":"cho"};
+var IC={i:'<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/>',c:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',s:'<path d="M12 3.5 5 6.5v5c0 4.3 3 7.6 7 9 4-1.4 7-4.7 7-9v-5z"/><path d="m9 12 2 2 4-4"/>'};
+function ic(k){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+IC[k]+'</svg>'}
+var ZL="https://zalo.me/84377159189";
+function loi(t,ct){box.innerHTML='<div class="card" style="grid-column:1/-1"><h2 style="font-size:22px;margin-bottom:8px">'+E(t)+'</h2><p class="muted">'+E(ct)+'</p><div class="acts" style="margin-top:16px"><a class="btn" href="/tra-cuu/">Tra cứu bằng mã phiếu</a><a class="btn ghost" href="'+ZL+'" target="_blank" rel="noopener">Nhắn Zalo tiệm</a></div></div>'}
+if(!/^PC-\d{4}-\d{2,4}$/.test(P)||!/^[a-z0-9]{10}$/.test(K)){loi("Link theo dõi chưa đúng","Mở lại link tụi mình gửi qua Zalo, hoặc tra bằng mã phiếu và 4 số cuối Zalo.");return}
+function veMon(m){var i=m.tt==="Tạm dừng"?-1:MUC[m.tt];if(i==null)i=0;var dung=m.tt==="Tạm dừng";
+  return '<article class="mc" id="'+E(m.ma)+'"><div class="t"><div><b>'+E(m.ten)+'</b><small>'+E(m.ma)+' · '+E(m.dv)+'</small></div><span class="tt '+(LOP[m.tt]||"lam")+'">'+E(TEN[m.tt]||m.tt)+'</span></div>'+
+   (dung?'':'<div class="p6" aria-hidden="true">'+CHANG.map(function(x,j){return '<i class="'+(j<=i?'on':'')+'"></i>'}).join("")+'</div><div class="p6l" aria-hidden="true">'+CHANG.map(function(x){return '<span>'+x+'</span>'}).join("")+'</div>')+
+   '<ol class="tl">'+m.buoc.slice().reverse().map(function(b){return '<li'+(b.b==="SU_CO"?' class="stop"':'')+'><b>'+E(b.ten)+'</b><span class="m">'+E(C.ngayDep(b.luc))+(b.nv?' · '+E(b.nv):'')+'</span>'+(b.tom?'<p>'+E(b.tom)+'</p>':'')+
+     (b.anh&&b.anh.length?'<div class="th">'+b.anh.map(function(id){return '<button type="button" data-z="'+E(id)+'" aria-label="Phóng to ảnh bước '+E(b.ten)+'"><img loading="lazy" src="'+E(C.anh(id,240))+'" alt="Ảnh: '+E(b.ten)+'"></button>'}).join("")+'</div>':'')+'</li>'}).join("")+'</ol></article>'}
+C.call("webTheoDoi",{p:P,k:K}).then(function(r){var p=r.phieu,xong=p.tt==="Đã trả",san=p.tt==="Sẵn sàng trả";
+  var nhac=xong?'<div class="note">'+ic("c")+'<span>Đã bàn giao '+E(C.ngayDep(p.ngayTra))+'. Link này xem được đến <b>'+E(C.ngayDep(p.hetHan))+'</b> ('+r.ngay+' ngày). Trong thời gian này, món nào chưa ưng bạn nhắn Zalo, tụi mình làm lại miễn phí.</span></div>':
+    san?'<div class="note">'+ic("s")+'<span>Đồ đã kiểm và đóng gói xong. Ghé quầy hoặc nhắn Zalo hẹn giờ giao. Sau khi bàn giao, link còn mở được '+r.ngay+' ngày.</span></div>':
+    '<div class="note">'+ic("i")+'<span>Trang tự cập nhật mỗi khi tụi mình xong một bước. Sau khi bàn giao, link còn mở được '+r.ngay+' ngày.</span></div>';
+  box.innerHTML='<aside class="side"><div class="card" style="display:grid;gap:14px"><div class="head"><div><div class="ma">'+E(p.ma)+'</div><div class="sub">'+(p.ten?'Của '+E(p.ten)+' · ':'')+'nhận '+E(C.ngayDep(p.ngayNhan))+(p.henTra&&!xong?' · hẹn trả '+E(C.ngayDep(p.henTra)):'')+'</div></div><span class="tt '+(xong?'tra':san?'san':'lam')+'">'+E(xong?'Đã bàn giao':san?'Sẵn sàng trả':'Đang chăm')+'</span></div>'+nhac+
+    '<div class="money"><div>Tổng<b>'+C.tien(p.phai)+'</b></div><div>Đã trả<b>'+C.tien(p.thu)+'</b></div><div>Còn lại<b>'+C.tien(p.con)+'</b></div></div>'+
+    '<div class="acts"><a class="btn" href="'+ZL+'" target="_blank" rel="noopener">Nhắn Zalo tiệm</a><button class="btn ghost" type="button" id="cp">Copy link</button></div></div></aside>'+'<div class="mons" style="display:grid;gap:12px">'+r.mon.map(veMon).join("")+'</div>';
+  $("#cp").onclick=function(){C.copy(location.href).then(function(){C.toast("Đã copy link")})};
+  Site.$$("[data-z]").forEach(function(b){b.onclick=function(){var d=document.createElement("div");d.className="lb";d.setAttribute("role","dialog");d.setAttribute("aria-label","Ảnh phóng to");
+    d.innerHTML='<img src="'+E(C.anh(b.dataset.z,1600))+'" alt="Ảnh phóng to"><button type="button" aria-label="Đóng">×</button>';var dong=function(){d.remove();document.removeEventListener("keydown",k);b.focus()},k=function(e){if(e.key==="Escape")dong()};
+    d.onclick=function(e){if(e.target!==d.querySelector("img"))dong()};document.addEventListener("keydown",k);document.body.appendChild(d);d.querySelector("button").focus()}});
+  if(MON){var el=document.getElementById(MON);if(el)setTimeout(function(){el.scrollIntoView({behavior:"smooth",block:"start"})},150)}
+},function(x){if(x.code==="het_han")loi("Link đã hết hạn",x.message);else if(x.code==="no_api")loi("Theo dõi online sắp mở","Nhắn Zalo 0377 159 189 để hỏi đơn nhé.");else loi("Không mở được đơn",x.message)});
+})();
+</script>
+</body>
+</html>

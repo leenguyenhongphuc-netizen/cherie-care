@@ -38,8 +38,9 @@
 </div>
 <script>
 (function(){var C=Care,E=C.esc,$=Site.$,t=$("#fTra"),BUOC=["Chờ làm","Đang làm","Chờ kiểm","Sẵn sàng trả","Đã trả"],NHAN=["Nhận","Làm","Kiểm","Sẵn sàng","Đã trả"];
-var LOP={"Chờ làm":"cho","Đang làm":"lam","Gửi xưởng":"xuong","Chờ kiểm":"kiem","Sẵn sàng trả":"san","Đã trả":"tra"},TEN={"Gửi xưởng":"Đang giặt khô","Chờ kiểm":"Đang kiểm tra"};
-function buoc(s){var i=BUOC.indexOf(s==="Gửi xưởng"?"Đang làm":s);return i<0?1:i}
+var LOP={"Chờ làm":"cho","Chờ khách duyệt":"cho","Đã phân loại":"cho","Đang làm":"lam","Đang phơi":"lam","Gửi xưởng":"xuong","Chờ kiểm":"kiem","Chờ đóng gói":"kiem","Sẵn sàng trả":"san","Đã trả":"tra"},TEN={"Chờ làm":"Đã nhận","Chờ khách duyệt":"Chờ bạn duyệt","Đã phân loại":"Đã kiểm đầu vào","Đang phơi":"Đang phơi khô","Gửi xưởng":"Đang giặt khô","Chờ kiểm":"Đang kiểm tra","Chờ đóng gói":"Đang đóng gói"};
+var MUC={"Chờ làm":0,"Chờ khách duyệt":0,"Đã phân loại":0,"Đang làm":1,"Đang phơi":1,"Gửi xưởng":1,"Chờ kiểm":2,"Chờ đóng gói":2,"Sẵn sàng trả":3,"Đã trả":4};
+function buoc(s){return MUC[s]==null?1:MUC[s]}
 t.addEventListener("submit",function(e){e.preventDefault();var er=$("#eTra"),res=$("#res");er.textContent="";var ma=t.ma.value.trim().toUpperCase(),so=t.so.value.replace(/\D/g,"");
   if(!/^(PC|CA)-\d{4}-\d{2,4}$/.test(ma)){er.textContent="Mã phiếu có dạng PC-0211-01.";t.ma.focus();return}
   if(so.length!==4){er.textContent="Nhập đủ 4 số cuối Zalo.";t.so.focus();return}
@@ -50,7 +51,7 @@ t.addEventListener("submit",function(e){e.preventDefault();var er=$("#eTra"),res
       '<div class="bar5" aria-hidden="true">'+BUOC.map(function(x,i){return '<i class="'+(i<=b0?'on':'')+'"></i>'}).join("")+'</div><div class="bar5l" aria-hidden="true">'+NHAN.map(function(x){return '<span>'+x+'</span>'}).join("")+'</div>'+
       '<ul class="ml">'+r.mon.map(function(m){return '<li><div><div>'+E(m.ten)+'</div><div class="mm">'+E(m.ma)+' · '+E(m.dv)+'</div></div><span class="tt '+(LOP[m.tt]||"lam")+'">'+E(TEN[m.tt]||m.tt)+'</span></li>'}).join("")+'</ul>'+
       '<div class="money"><div>Tổng<b>'+C.tien(p.phai)+'</b></div><div>Đã trả<b>'+C.tien(p.thu)+'</b></div><div>Còn lại<b>'+C.tien(p.con)+'</b></div></div>'+
-      (p.tt==="Sẵn sàng trả"?'<p style="margin-top:14px">Đồ đã sẵn sàng. Bạn ghé quầy hoặc <a href="https://zalo.me/84377159189">nhắn Zalo</a> để hẹn giao.</p>':'');
+      (p.xem?'<a class="btn soft block" style="margin-top:14px" href="'+E(p.xem)+'">Xem từng bước và ảnh</a>':'')+(p.tt==="Sẵn sàng trả"?'<p style="margin-top:14px">Đồ đã sẵn sàng. Bạn ghé quầy hoặc <a href="https://zalo.me/84377159189">nhắn Zalo</a> để hẹn giao.</p>':'');
      res.style.display="block";try{history.replaceState(null,"","?tra="+encodeURIComponent(p.ma))}catch(x){}},
    function(x){res.style.display="none";er.textContent=x.code==="no_api"?"Tra cứu online sắp mở. Nhắn Zalo 0377 159 189 để hỏi đơn nhé.":x.message})
    .then(function(){b.disabled=false;b.textContent="Tra cứu"})});
