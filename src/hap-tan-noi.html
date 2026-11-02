@@ -1,0 +1,33 @@
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Dịch vụ</span><span aria-hidden="true">/</span><span>Hấp lấy liền và tận nơi</span></nav>
+  <div class="phead">
+    <h1>Hấp lấy liền và chăm đồ tận nơi</h1>
+    <p class="lead">Đồ sạch chỉ bị nhăn vì vali hay tủ chật: hấp tại quầy và lấy trong 60 phút, hoặc tụi mình mang máy hấp đến khách sạn, nhà riêng, tiệc cưới.</p>
+    <div class="meta"><div><b>60 phút</b><span>hấp tại quầy</span></div><div><b data-tu="Hấp lấy liền">từ 40.000đ</b><span>mỗi món</span></div><div><b data-ma="T01">150.000đ</b><span>một lượt tận nơi</span></div><div><b data-ma="T03">2.500.000đ</b><span>một tiệc cưới</span></div></div>
+    <div class="acts"><a class="btn" href="/dat-lich/?nhom=H%E1%BA%A5p%20l%E1%BA%A5y%20li%E1%BB%81n">Đặt lịch hấp</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Hẹn qua Zalo</a></div>
+  </div>
+</div>
+
+<section class="alt" aria-labelledby="h-ai"><div class="wrap">
+  <div class="sec-head"><span class="label">Dành cho</span><h2 id="h-ai">Khi bạn cần đồ phẳng ngay</h2></div>
+  <div class="rows two">
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="2"/><path d="M9 7V4.5h6V7M9 20v1M15 20v1"/></svg><div><b>Khách du lịch</b><p>Đồ nhăn sau chuyến bay, cần mặc tối nay. Có gấp vali chống nhăn khi về.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3.5h5l.8 3.2-1.8 2 4.5 11.8h-12L10.5 8.7l-1.8-2z"/></svg><div><b>Đi tiệc trong ngày</b><p>Hấp, sửa nhanh lai hoặc eo, giao tận nơi trước giờ hẹn.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><div><b>Cô dâu, chú rể</b><p>Hấp, chỉnh váy áo tại tiệc cưới hoặc buổi chụp ảnh, có người túc trực.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="1.5"/><path d="M8 8h2M14 8h2M8 12h2M14 12h2M10 20.5v-4h4v4"/></svg><div><b>Khách sạn, villa</b><p>Lễ tân gọi, tụi mình đến hấp tại phòng trong nội thành.</p></div></div>
+  </div>
+</div></section>
+
+<section aria-labelledby="h-gia"><div class="wrap">
+  <div class="sec-head"><span class="label">Bảng giá</span><h2 id="h-gia">Hấp và dịch vụ tận nơi</h2></div>
+  <div id="bHap"></div>
+  <p class="ptitle">Tận nơi</p>
+  <div id="bTan"></div>
+  <p class="note">Hấp tại khách sạn, nhà riêng: phí lượt cộng giá hấp từng món. Hẹn trước ít nhất 3 giờ.</p>
+</div></section>
+
+<script>
+Site.gia(function(ds){var h=Site.nhom(ds,"Hấp lấy liền").concat(ds.filter(function(x){return x.ma==="C09"}));Site.bang(Site.$("#bHap"),h,{ten:"Giá hấp lấy liền"});Site.bang(Site.$("#bTan"),Site.nhom(ds,"Dịch vụ tận nơi"),{ten:"Giá dịch vụ tận nơi",cot:"Dịch vụ"});
+  var t=Site.tuGia(ds,"Hấp lấy liền");if(t)Site.$("[data-tu]").textContent="từ "+Care.tien(t);
+  Site.$$("[data-ma]").forEach(function(el){var g=ds.filter(function(x){return x.ma===el.dataset.ma})[0];if(g)el.textContent=Care.tien(g.tu)})});
+</script>

@@ -1,0 +1,90 @@
+<style>
+.calc{display:grid;gap:16px}
+.calc .card{display:flex;flex-direction:column;gap:14px;padding:16px}
+.dang{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;font-size:15px}
+.opt input{width:20px;height:20px;accent-color:var(--care);flex:none;margin:0}
+.opt .p{margin-left:auto;font:400 13.5px var(--font-mono);color:var(--muted);white-space:nowrap}
+.opt:has(input:checked){border-color:var(--care);background:var(--care-soft)}
+.seg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.seg label{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;padding:6px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;text-align:center;font-size:14px}
+.seg label small{font:400 12px var(--font-mono);color:var(--muted)}
+.seg input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none}
+.seg label:has(input:checked){border-color:var(--care);background:var(--care-soft);color:var(--care);font-weight:600}
+.seg label:has(input:focus-visible){outline:2px solid var(--care-mid);outline-offset:2px}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding:16px;border-radius:var(--radius-card);background:var(--care-field);color:#fff}
+.total b{font:500 26px var(--font-mono)}
+.total span{font-size:14px;color:#E4ECF4}
+.calc .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sum{position:sticky;top:76px}
+.pk{display:grid;gap:12px;grid-template-columns:1fr}
+.pk .card{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center;padding:16px}
+.pk .card b{font:500 20px var(--font-mono);color:var(--care);grid-row:1/span 2;grid-column:2}
+.pk .card p{color:var(--muted);font-size:14px}
+@media (min-width:760px){.calc{grid-template-columns:1.2fr .8fr;align-items:start}.seg{grid-template-columns:repeat(4,1fr)}}
+</style>
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Dịch vụ</span><span aria-hidden="true">/</span><span>Váy cưới</span></nav>
+  <div class="phead">
+    <h1>Giặt và cất giữ váy cưới</h1>
+    <p class="lead">Giá theo dáng váy, chất liệu và độ dài đuôi. Váy cất lâu ở Đà Nẵng cần hút chân không và hút ẩm để không ngả vàng, không mốc trong mùa nồm.</p>
+    <div class="meta"><div><b data-tu="Váy cưới">từ 300.000đ</b><span>mỗi chiếc</span></div><div><b>5–7 ngày</b><span>tháng 9–12: 7–10 ngày</span></div><div><b>+350.000đ</b><span>gói cất giữ</span></div><div><b>Signature</b><span>áp dụng sẵn</span></div></div>
+    <div class="acts"><a class="btn" href="#tinh-gia">Tính giá váy</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Gửi ảnh váy</a></div>
+  </div>
+</div>
+
+<section class="alt" id="tinh-gia" aria-labelledby="h-tinh"><div class="wrap">
+  <div class="sec-head"><span class="label">Tạm tính</span><h2 id="h-tinh">Chọn đúng chiếc váy của bạn</h2></div>
+  <div class="calc">
+    <div class="card">
+      <div class="f"><span>Dáng váy và chất liệu</span><div class="dang" id="cDang" role="radiogroup" aria-label="Dáng váy và chất liệu"></div></div>
+      <div class="f"><span>Đuôi váy</span><div class="seg" id="cDuoi" role="radiogroup" aria-label="Đuôi váy"></div></div>
+      <div class="f"><span>Thêm</span><div class="dang" id="cThem"></div></div>
+    </div>
+    <div class="card sum">
+      <div class="total" aria-live="polite"><span>Tạm tính</span><b id="cTong">0đ</b></div>
+      <p class="muted" style="font-size:13.5px" id="cTom"></p>
+      <div class="acts"><a class="btn" id="cDat" href="/dat-lich/">Đặt lịch</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Gửi ảnh</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section aria-labelledby="h-goi"><div class="wrap">
+  <div class="sec-head"><span class="label">Sau tiệc cưới</span><h2 id="h-goi">Gói cho cả nhà trai, nhà gái</h2></div>
+  <div class="pk" id="pk"></div>
+  <p class="ptitle" style="margin-top:28px">Bảng giá váy cưới</p>
+  <div id="bVay"></div>
+  <p class="ptitle">Phụ thu</p>
+  <div id="bThu"></div>
+</div></section>
+
+<section class="alt" aria-labelledby="h-faq"><div class="wrap">
+  <div class="sec-head"><span class="label">Hỏi đáp</span><h2 id="h-faq">Về váy cưới</h2></div>
+  <div class="faq">
+    <details><summary>Sau tiệc bao lâu thì nên gửi giặt?</summary><p>Trong 1–2 tuần, trước khi vết mồ hôi, rượu và trang điểm ngả vàng. Để lâu vết bám vào sợi vải, khó tẩy sạch hơn.</p></details>
+    <details><summary>Gói cất giữ gồm những gì?</summary><p>Hút chân không, hộp cứng, túi hút ẩm và thẻ hướng dẫn mở hộp. Bạn mở xem được, sau đó báo tụi mình để đóng lại.</p></details>
+    <details><summary>Váy thuê có nhận giặt không?</summary><p>Có. Tiệm cho thuê váy cưới gửi số lượng đều thì xem trang Doanh nghiệp để có giá theo tháng.</p></details>
+    <details><summary>Váy có pha lê, ren nổi có an toàn không?</summary><p>Đính kết dày được làm tay ở mức Signature. Hạt lỏng sẵn được khâu cố định trước khi giặt, có ghi trong 4 ảnh tình trạng.</p></details>
+  </div>
+</div></section>
+
+<script>
+(function(){var C=Care,E=C.esc,$=Site.$,GIA=[];
+function g(ma){return GIA.filter(function(x){return x.ma===ma})[0]}
+function ve(ds){GIA=ds;var dang=Site.nhom(ds,"Váy cưới"),thu=Site.nhom(ds,"Phụ thu váy cưới"),duoi=thu.filter(function(x){return/^Đuôi/.test(x.dv)}),them=thu.filter(function(x){return!/^Đuôi/.test(x.dv)});
+  var cur=($('#cDang input:checked')||{}).value;
+  $("#cDang").innerHTML=dang.map(function(x,i){return '<label class="opt"><input type="radio" name="dang" value="'+E(x.ma)+'"'+((cur?cur===x.ma:i===1)?' checked':'')+'><span>'+E(x.dv)+'</span><span class="p">'+C.tien(x.tu)+'</span></label>'}).join("");
+  $("#cDuoi").innerHTML='<label><input type="radio" name="duoi" value="" checked>Không đuôi<small>+0đ</small></label>'+duoi.map(function(x){return '<label><input type="radio" name="duoi" value="'+E(x.ma)+'">'+E(x.dv.replace(/^Đuôi váy /,""))+'<small>+'+C.tien(x.tu)+'</small></label>'}).join("");
+  $("#cThem").innerHTML=them.map(function(x){return '<label class="opt"><input type="checkbox" value="'+E(x.ma)+'"><span>'+E(x.dv)+'</span><span class="p">+'+C.tien(x.tu)+'</span></label>'}).join("");
+  Site.bang($("#bVay"),dang,{ten:"Giá váy cưới",cot:"Dáng váy"});Site.bang($("#bThu"),thu,{ten:"Phụ thu váy cưới",cot:"Phụ thu",cong:true});
+  var k=Site.nhom(ds,"Gói").filter(function(x){return/cưới/i.test(x.dv)});
+  $("#pk").innerHTML=k.map(function(x){return '<div class="card"><h3>'+E(x.dv.split(":")[0])+'</h3><b>'+C.tien(x.tu)+'</b><p>'+E((x.dv.split(":")[1]||"").trim())+(x.gc?' · '+E(x.gc):'')+'</p></div>'}).join("")||'<p class="muted">Gói sẽ cập nhật sớm.</p>';
+  var t=Site.tuGia(ds,"Váy cưới");if(t)$("[data-tu]").textContent="từ "+C.tien(t);tinh()}
+function tinh(){var d=g(($('#cDang input:checked')||{}).value),s=d?C.num(d.tu):0,ten=[],ma=[];if(d){ten.push(d.dv);ma.push(d.ma)}
+  var du=($('#cDuoi input:checked')||{}).value;if(du){s+=C.num(g(du).tu);ten.push(g(du).dv);ma.push(du)}
+  Site.$$("#cThem input:checked").forEach(function(c){s+=C.num(g(c.value).tu);ten.push(g(c.value).dv);ma.push(c.value)});
+  $("#cTong").textContent=C.tien(s);$("#cTom").textContent=ten.join(" + ");
+  $("#cDat").href="/dat-lich/?m="+encodeURIComponent(ma.join(","))+"&ghichu="+encodeURIComponent("Váy cưới: "+ten.join(" + ")+". Tạm tính "+C.tien(s)+".")}
+document.addEventListener("change",function(e){if(e.target.closest(".calc"))tinh()});
+Site.gia(ve)})();
+</script>

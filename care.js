@@ -128,6 +128,6 @@
     call: call, saveAuth: saveAuth, token: function () { return token; }, me: function () { return me; },
     esc: esc, num: num, tien: tien, khoangGia: khoangGia, isoVN: isoVN, homNay: homNay, congNgay: congNgay, ngayDep: ngayDep,
     sdtOk: sdtOk, sdtDep: sdtDep, zalo: zalo, anh: anh, nenAnh: nenAnh, copy: copy, toast: toast, GIA_MAU: GIA_MAU,
-    ZALO_TIEM: "0377159189", SITE: "https://care.cherie.io.vn/"
+    ZALO_TIEM: "0377159189", SITE: "https://care.cherie.io.vn/tra-cuu/"
   };
 })();

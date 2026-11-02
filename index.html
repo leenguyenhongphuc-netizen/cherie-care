@@ -4,191 +4,74 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CHÉRIE Care · Giặt khô, hấp, sửa đồ nữ ở Đà Nẵng</title>
-<meta name="description" content="Chăm đầm tiệc, áo dài, váy cưới theo từng món ở Đà Nẵng. Chụp 4 ảnh tình trạng gửi Zalo, đền bù theo giá trị khai báo, làm lại miễn phí 7 ngày, thợ may ngồi tiệm.">
+<meta name="description" content="Chăm đầm tiệc, áo dài, váy cưới theo từng món ở Đà Nẵng. 4 ảnh tình trạng gửi Zalo, đền theo giá trị khai báo, làm lại miễn phí 7 ngày, thợ may ngồi tiệm.">
 <meta name="theme-color" content="#24476B">
 <link rel="canonical" href="https://care.cherie.io.vn/">
-<meta property="og:title" content="CHÉRIE Care · Chăm những bộ đồ cho ngày quan trọng của bạn">
-<meta property="og:description" content="Giặt khô, hấp, sửa đồ nữ theo từng món ở Đà Nẵng. Bảng giá công khai, đặt lịch và tra cứu đơn online.">
+<meta property="og:title" content="CHÉRIE Care · Giặt khô, hấp, sửa đồ nữ ở Đà Nẵng">
+<meta property="og:description" content="Chăm đầm tiệc, áo dài, váy cưới theo từng món ở Đà Nẵng. 4 ảnh tình trạng gửi Zalo, đền theo giá trị khai báo, làm lại miễn phí 7 ngày, thợ may ngồi tiệm.">
 <meta property="og:url" content="https://care.cherie.io.vn/">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Be+Vietnam+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="care.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"DryCleaningOrLaundry","name":"CHÉRIE Care","url":"https://care.cherie.io.vn/","telephone":"+84377159189","address":{"@type":"PostalAddress","addressLocality":"Đà Nẵng","addressCountry":"VN"},"parentOrganization":{"@type":"Organization","name":"CHÉRIE","url":"https://cherie.io.vn/"}}</script>
+<link rel="stylesheet" href="/care.css?v=202611020502">
+<link rel="stylesheet" href="/site.css?v=202611020502">
 <style>
-.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(16px,env(safe-area-inset-left));background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.top nav{display:none;gap:22px;font-size:14.5px}
-.top nav a{color:var(--ink);text-decoration:none}
-.top nav a:hover{color:var(--care)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-section{padding:56px 0;scroll-margin-top:60px}
-section.alt{background:var(--surface);border-block:1px solid var(--line)}
-h1,h2,h3{font-family:var(--font-display);font-weight:500;margin:0}
-h1{font-size:38px;line-height:1.12;letter-spacing:-.005em}
-h1 em{font-style:italic;color:var(--care)}
-h2{font-size:30px;line-height:1.18}
-.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;max-width:40em}
-.sec-head p{margin:0;color:var(--muted)}
-/* hero */
-.hero{display:grid;gap:32px;padding:36px 0 52px}
-.lead{font-size:17px;color:var(--muted);margin:16px 0 0;max-width:34em}
-.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-.proof{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:14px;color:var(--muted)}
-.proof span{display:inline-flex;align-items:center;gap:6px}
-.proof span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.field{position:relative;border-radius:var(--radius-card-lg);background:var(--care-field);padding:28px 22px;overflow:hidden}
-.field::before{content:"";position:absolute;inset:12px;border:1.5px dashed var(--care-field-gold);border-radius:14px;opacity:.55;pointer-events:none}
-.slip{position:relative;background:#fff;color:#1B1618;border-radius:14px;padding:16px;box-shadow:0 12px 32px rgba(0,0,0,.25);max-width:360px;margin:0 auto;transform:rotate(-1.2deg)}
-.slip .sh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed #E4DDDA;padding-bottom:10px}
-.slip .code{font:500 17px var(--font-mono);color:#24476B}
-.slip .meta{font:400 11.5px/1.5 var(--font-mono);color:#6C6266}
-.slip .pics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
-.slip .pic{aspect-ratio:3/4;border-radius:8px;background:#E4ECF4;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:9.5px;color:#24476B;position:relative;overflow:hidden}
-.slip .pic svg{position:absolute;inset:0;margin:auto;width:60%;height:60%;stroke:#527699;stroke-width:.9;fill:none}
-.slip .pic.mark::after{content:"";position:absolute;width:14px;height:14px;border:1.5px solid #B0261E;border-radius:50%;top:38%;left:52%}
-.slip .row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0}
+.hero{display:grid;gap:24px;padding:28px 0 var(--gap-sec)}
+.hero h1 em{font-style:italic;color:var(--care)}
+.hero .lead{margin-top:12px}
+.hero .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px;border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:var(--line);gap:1px}
+.facts div{background:var(--surface);padding:12px 10px;display:flex;flex-direction:column;gap:2px;text-align:center}
+.facts b{font:500 17px var(--font-mono);color:var(--care)}
+.facts span{font-size:12px;color:var(--muted);line-height:1.3}
+.field{position:relative;border-radius:var(--radius-card-lg);background:var(--care-field);padding:24px 18px 18px;overflow:hidden}
+.field::before{content:"";position:absolute;inset:10px;border:1.5px dashed var(--care-field-gold);border-radius:14px;opacity:.55;pointer-events:none}
+.slip{position:relative;background:#fff;color:#1B1618;border-radius:14px;padding:14px;box-shadow:0 12px 32px rgba(0,0,0,.25);max-width:360px;margin:0 auto;transform:rotate(-1deg)}
+.slip .sh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed #E4DDDA;padding-bottom:8px}
+.slip .code{font:500 16px var(--font-mono);color:#24476B}
+.slip .meta{font:400 11px var(--font-mono);color:#6C6266}
+.slip .pics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.slip .pic{aspect-ratio:3/4;border-radius:8px;background:#E4ECF4;display:flex;align-items:flex-end;justify-content:center;padding:3px;font-size:9.5px;color:#24476B;position:relative;overflow:hidden}
+.slip .pic svg{position:absolute;inset:0;margin:auto;width:58%;height:58%;stroke:#527699;stroke-width:.9;fill:none}
+.slip .pic.mark::after{content:"";position:absolute;width:13px;height:13px;border:1.5px solid #B0261E;border-radius:50%;top:38%;left:52%}
+.slip .row{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;padding:3px 0}
 .slip .row b{font-family:var(--font-mono);font-weight:500}
-.slip .ok{margin-top:10px;background:#E4ECF4;border-radius:8px;padding:8px 10px;font-size:12.5px;color:#24476B}
-.field .cap{position:relative;color:#E4ECF4;font:400 12.5px/1.5 var(--font-mono);text-align:center;margin-top:18px}
-/* khác biệt */
-.diff{display:grid;gap:12px}
-.dc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:18px;display:flex;gap:14px}
-section.alt .dc{background:var(--bg)}
-.dc svg,.ic{flex:none;width:30px;height:30px;stroke:var(--care-mid);stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.dc b{display:block;font-weight:600;margin-bottom:2px}
-.dc p{margin:0;color:var(--muted);font-size:14.5px}
-/* bảng giá */
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tabs .chip{flex:none}
-.ptable{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden}
-.pth,.ptr{display:grid;grid-template-columns:1fr 104px 92px;gap:8px;align-items:center;padding:12px 16px}
-.pth{background:var(--care-soft);font-size:12.5px;font-weight:600;color:var(--care);letter-spacing:.04em}
-.pth span:not(:first-child),.ptr .p{text-align:right}
-.ptr{border-top:1px solid var(--line)}
-.ptr .n{font-weight:500}
-.ptr .s{display:block;font-size:12.5px;color:var(--muted);font-weight:400}
-.ptr .p{font:400 13.5px var(--font-mono);white-space:nowrap}
-.ptable.one .pth,.ptable.one .ptr{grid-template-columns:1fr auto}
-.sig{display:grid;gap:12px;margin-top:16px}
-.sig .card{display:flex;flex-direction:column;gap:6px}
-.sig .card b{font-family:var(--font-display);font-size:19px;font-weight:500}
-.sig ul{margin:4px 0 0;padding-left:18px;color:var(--muted);font-size:14.5px}
-.terms{display:grid;gap:6px;margin-top:14px;font-size:14px;color:var(--muted)}
-/* váy cưới */
-.wd{display:grid;gap:16px}
-.calc{display:flex;flex-direction:column;gap:14px}
-.ck{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;font-size:15px}
-.ck input{width:20px;height:20px;accent-color:var(--care);flex:none}
-.ck .p{margin-left:auto;font:400 13.5px var(--font-mono);color:var(--muted);white-space:nowrap}
-.total{display:flex;justify-content:space-between;align-items:baseline;padding:16px;border-radius:var(--radius-card);background:var(--care-field);color:#fff}
-.total b{font:500 26px var(--font-mono)}
-.total span{font-size:14px;color:#E4ECF4}
-/* quy trình */
-.steps{display:grid;gap:12px;counter-reset:b}
-.st{display:flex;gap:14px;align-items:flex-start}
-.st i{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--care);color:var(--care);font:500 14px/32px var(--font-mono);text-align:center;font-style:normal}
-.st b{display:block}
-.st p{margin:2px 0 0;color:var(--muted);font-size:14.5px}
-/* cam kết */
-.comp{display:grid;grid-template-columns:1fr auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden}
-.comp div{padding:12px 16px;border-top:1px solid var(--line);font-size:15px}
-.comp div:nth-child(-n+2){border-top:0;background:var(--care-soft);color:var(--care);font-weight:600;font-size:13px}
-.comp div:nth-child(even){text-align:right;font-family:var(--font-mono)}
-.rules{display:grid;gap:12px;margin-top:16px}
-.rules .card h3{font:600 16px var(--font-body);margin-bottom:6px}
-.rules .card p,.rules .card li{color:var(--muted);font-size:14.5px;margin:0}
-.rules ul{margin:0;padding-left:18px}
-/* đặt lịch */
-.book{display:grid;gap:20px}
-.book .card{padding:18px;display:flex;flex-direction:column;gap:16px}
-.picker{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.pk{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-top:1px solid var(--line);background:var(--surface)}
-.pk:first-child{border-top:0}
-.pk .n{flex:1;font-size:14.5px;line-height:1.35}
-.pk .n small{display:block;color:var(--muted);font:400 12px var(--font-mono)}
-.pk .q{display:flex;align-items:center;gap:2px}
-.pk .q button{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--surface);font-size:18px;line-height:1;cursor:pointer;color:var(--care)}
-.pk .q output{min-width:28px;text-align:center;font:500 15px var(--font-mono)}
-.pk.on{background:var(--care-soft)}
-.pkg{padding:8px 14px;background:var(--bg);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line)}
-.pkg:first-child{border-top:0}
-.est{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;border-radius:12px;background:var(--care-soft);color:var(--care)}
-.est b{font:500 20px var(--font-mono)}
-.seg2{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
-.seg2 button{min-height:42px;border:0;border-radius:999px;background:none;font-weight:500;cursor:pointer;color:var(--muted)}
-.seg2 button[aria-pressed="true"]{background:var(--care);color:var(--on-care)}
-.ok-box{display:none;flex-direction:column;gap:12px;align-items:flex-start}
-.ok-box .ma{font:500 22px/1 var(--font-mono);color:var(--care)}
-/* tra cứu */
-.track form{display:grid;gap:12px}
-.res{margin-top:16px;display:none}
-.res .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.res .ma{font:500 18px/1.2 var(--font-mono)}
-.bar5{display:flex;gap:4px;margin:16px 0 6px}
-.bar5 i{flex:1;height:4px;border-radius:2px;background:var(--line)}
-.bar5 i.on{background:var(--care)}
-.ml{list-style:none;padding:0;margin:12px 0 0}
-.ml li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
-.ml .mm{font:400 12.5px var(--font-mono);color:var(--muted)}
-.money{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:14.5px}
-/* hỏi đáp */
-.faq{display:grid;gap:10px}
-.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:0 16px}
-.faq summary{list-style:none;cursor:pointer;padding:16px 28px 16px 0;font-weight:600;position:relative}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:0;top:12px;font:400 22px var(--font-body);color:var(--care)}
-.faq details[open] summary::after{content:"–"}
-.faq details p{margin:0 0 16px;color:var(--muted);font-size:15px}
-/* doanh nghiệp */
-.b2b{display:grid;gap:16px;align-items:start}
-.b2b ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
-.b2b li{display:flex;gap:10px;font-size:15px}
-.b2b li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:9px}
-footer{background:var(--care-field);color:#E4ECF4;padding:44px 0 calc(44px + env(safe-area-inset-bottom))}
-footer .tl{font-family:var(--font-display);font-size:21px;line-height:1.35;margin:18px 0 20px;color:#fff;max-width:20em}
-footer a{color:#fff}
-footer .ln{display:flex;flex-wrap:wrap;gap:10px 22px;font:400 14px var(--font-mono)}
+.slip .ok{margin-top:8px;background:#E4ECF4;border-radius:8px;padding:7px 10px;font-size:12px;color:#24476B}
+.field .cap{position:relative;color:#E4ECF4;font:400 12px var(--font-mono);text-align:center;margin-top:14px}
 @media (min-width:760px){
-  .top nav{display:flex}
-  h1{font-size:54px}h2{font-size:38px}
-  .hero{grid-template-columns:1.1fr .9fr;align-items:center;padding:64px 0 72px}
-  .diff{grid-template-columns:1fr 1fr}
-  .pth,.ptr{grid-template-columns:1fr 130px 130px}
-  .sig{grid-template-columns:1fr 1fr}
-  .wd{grid-template-columns:1fr 1fr;align-items:start}
-  .steps{grid-template-columns:repeat(3,1fr);gap:24px}
-  .rules{grid-template-columns:repeat(3,1fr)}
-  .book{grid-template-columns:.8fr 1.2fr;align-items:start}
-  .track form{grid-template-columns:1.3fr 1fr auto;align-items:end}
-  .b2b{grid-template-columns:1fr 1fr}
-  .faq{grid-template-columns:1fr 1fr;align-items:start}
+  h1{font-size:52px}
+  .hero{grid-template-columns:1.1fr .9fr;align-items:center;gap:56px;padding:56px 0 var(--gap-sec)}
+  .hero .acts{max-width:440px}
+  .facts{max-width:440px}
+  h2{font-size:34px}
 }
 </style>
-<script src="config.js"></script>
-<script src="care.js"></script>
+<script src="/config.js?v=202611020502"></script>
+<script src="/care.js?v=202611020502"></script>
+<script src="/site.js?v=202611020502"></script>
 </head>
-<body>
-<header class="top">
-  <a class="lk" href="#" style="font-size:19px" aria-label="CHÉRIE Care, về đầu trang"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a>
-  <nav aria-label="Chính"><a href="#bang-gia">Bảng giá</a><a href="#vay-cuoi">Váy cưới</a><a href="#cam-ket">Cam kết</a><a href="#doanh-nghiep">Doanh nghiệp</a><a href="#tra-cuu">Tra cứu đơn</a></nav>
-  <a class="btn sm" href="#dat-lich">Đặt lịch</a>
-</header>
-
-<main>
+<body class="has-dock">
+<a class="sr" href="#main">Bỏ qua menu</a>
+<header class="top"><div class="wrap in">
+<a class="lk" href="/" style="font-size:18px" aria-label="CHÉRIE Care, trang chủ"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a>
+<nav aria-label="Chính"><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true">Dịch vụ <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor;stroke-width:2;fill:none"><path d="m6 9 6 6 6-6"/></svg></button><div class="menu"><a href="/dich-vu/giat-hap/">Giặt và hấp<small>Đầm, áo dài, vest · 2 mức chăm</small></a><a href="/dich-vu/vay-cuoi/">Váy cưới<small>Giặt theo dáng váy, cất giữ chống ẩm</small></a><a href="/dich-vu/sua-do/">Sửa đồ<small>Thợ may ngồi tiệm, hẹn thử đồ</small></a><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi<small>60 phút tại quầy, hấp tại khách sạn, tiệc cưới</small></a></div></div><a href="/bang-gia/">Bảng giá</a><a href="/goi/">Gói và thẻ</a><a href="/cam-ket/">Cam kết</a><a href="/doanh-nghiep/">Doanh nghiệp</a><a href="/tra-cuu/">Tra cứu đơn</a></nav>
+<div class="r"><a class="btn sm" href="/dat-lich/">Đặt lịch</a><button class="mbtn" type="button" data-open-menu aria-label="Mở menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</div></header>
+<div class="drawer" id="drawer"><div class="pn" role="dialog" aria-modal="true" aria-label="Menu"><div class="ph"><a class="lk" href="/" style="font-size:17px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a><button class="mbtn" type="button" data-close-menu aria-label="Đóng menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><a class="lnk" href="/" aria-current=page>Trang chủ</a><div class="grp">Dịch vụ</div><a class="lnk" href="/dich-vu/giat-hap/">Giặt và hấp</a><a class="lnk" href="/dich-vu/vay-cuoi/">Váy cưới</a><a class="lnk" href="/dich-vu/sua-do/">Sửa đồ</a><a class="lnk" href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a><div class="grp">Thông tin</div><a class="lnk" href="/bang-gia/">Bảng giá</a><a class="lnk" href="/goi/">Gói và thẻ</a><a class="lnk" href="/cam-ket/">Cam kết</a><a class="lnk" href="/doanh-nghiep/">Doanh nghiệp</a><a class="lnk" href="/tra-cuu/">Tra cứu đơn</a><div class="grp">Liên hệ</div><a class="lnk" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo<span>0377 159 189</span></a><a class="btn block" href="/dat-lich/" style="margin-top:10px">Đặt lịch nhận đồ</a></div></div>
+<main id="main">
 <div class="wrap">
-  <section class="hero" aria-labelledby="h-hero">
+  <section class="hero" aria-labelledby="h1">
     <div>
       <span class="label">Giặt khô · Hấp · Sửa đồ nữ · Đà Nẵng</span>
-      <h1 id="h-hero" style="margin-top:14px">Chăm những bộ đồ cho <em>ngày quan trọng</em> của bạn.</h1>
-      <p class="lead">Đầm tiệc, áo dài, váy cưới được chăm theo từng món. Bạn nhận 4 ảnh tình trạng qua Zalo ngay lúc gửi, và được đền theo giá trị bạn khai nếu có sự cố.</p>
-      <div class="acts"><a class="btn" href="#dat-lich">Đặt lịch nhận đồ</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Gửi ảnh qua Zalo để báo giá</a></div>
-      <div class="proof"><span>Hấp lấy liền 60 phút</span><span>Thợ may ngồi tiệm</span><span>Làm lại miễn phí 7 ngày</span></div>
+      <h1 id="h1" style="margin-top:12px">Chăm những bộ đồ cho <em>ngày quan trọng</em> của bạn.</h1>
+      <p class="lead">Đầm tiệc, áo dài, váy cưới được chăm theo từng món, có ảnh tình trạng và cam kết đền bù rõ ràng.</p>
+      <div class="acts"><a class="btn" href="/dat-lich/">Đặt lịch nhận đồ</a><a class="btn ghost" href="/bang-gia/">Xem bảng giá</a></div>
+      <div class="facts"><div><b>60′</b><span>hấp lấy liền</span></div><div><b>4 ảnh</b><span>mỗi món, gửi Zalo</span></div><div><b>7 ngày</b><span>làm lại miễn phí</span></div></div>
     </div>
-    <div class="field" aria-label="Ví dụ phiếu nhận đồ">
+    <div class="field" aria-label="Ví dụ phiếu nhận đồ của CHÉRIE Care">
       <div class="slip">
         <div class="sh"><span class="code">CA-1212-014</span><span class="meta">Nhận 12/12 · 10:24</span></div>
-        <div class="pics">
+        <div class="pics" aria-hidden="true">
           <div class="pic"><svg viewBox="0 0 24 24"><path d="M9 3.5h6l1 3-2 2 3 12H7l3-12-2-2z"/></svg>Trước</div>
           <div class="pic"><svg viewBox="0 0 24 24"><path d="M9 3.5h6l1 3-2 2 3 12H7l3-12-2-2z"/></svg>Sau</div>
           <div class="pic"><svg viewBox="0 0 24 24"><rect x="7" y="6" width="10" height="12" rx="1"/><path d="M9 10h6M9 13h4"/></svg>Nhãn</div>
@@ -204,250 +87,59 @@ footer .ln{display:flex;flex-wrap:wrap;gap:10px 22px;font:400 14px var(--font-mo
   </section>
 </div>
 
-<section class="alt" aria-labelledby="h-diff"><div class="wrap">
-  <div class="sec-head"><span class="label">Điều bạn nhận được</span><h2 id="h-diff">Chăm như đồ của chính mình</h2></div>
-  <div class="diff">
-    <div class="dc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M8.5 5.5 10 3.5h4l1.5 2"/><circle cx="12" cy="12" r="3.2"/></svg><div><b>4 ảnh tình trạng gửi qua Zalo</b><p>Mặt trước, mặt sau, nhãn giặt và vết có sẵn. Chụp lúc nhận, gửi bạn ngay, lưu theo mã đồ.</p></div></div>
-    <div class="dc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4.3 3 7.6 7 9 4-1.4 7-4.7 7-9v-5z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><div><b>Đền theo giá trị bạn khai</b><p>Mức đền ghi sẵn trên phiếu, tính theo tuổi món đồ. Xem bảng ở mục Cam kết.</p></div></div>
-    <div class="dc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 19.8 16.1 7.9"/><path d="M16.1 7.9l1.3-1.3a1.3 1.3 0 0 1 1.85 0l.15.15a1.3 1.3 0 0 1 0 1.85l-1.3 1.3a1.3 1.3 0 0 1-1.85 0l-.15-.15a1.3 1.3 0 0 1 0-1.85z"/><path d="M3.5 13.5c2.6-.9 4.6.2 5.6 2.2" stroke-dasharray="1.4 2.2"/></svg><div><b>Chăm kèm, không tính tiền</b><p>Đính lại nút lỏng, gỡ xù lông, khâu lại đường chỉ bung nhỏ. Thợ may ngồi tiệm làm luôn trong lúc giặt hấp.</p></div></div>
-    <div class="dc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><div><b>Làm lại miễn phí trong 7 ngày</b><p>Chưa ưng ý, bạn nhắn Zalo kèm ảnh. Tụi mình làm lại và giao lại, không hỏi thêm.</p></div></div>
+<section class="alt" aria-labelledby="h-why"><div class="wrap">
+  <div class="sec-head"><span class="label">Vì sao chọn CHÉRIE Care</span><h2 id="h-why">Chăm như đồ của chính mình</h2></div>
+  <div class="rows two">
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M8.5 5.5 10 3.5h4l1.5 2"/><circle cx="12" cy="12" r="3.2"/></svg><div><b>4 ảnh tình trạng qua Zalo</b><p>Mặt trước, mặt sau, nhãn giặt và vết có sẵn, chụp ngay lúc nhận.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4.3 3 7.6 7 9 4-1.4 7-4.7 7-9v-5z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><div><b>Đền theo giá trị bạn khai</b><p>Mức đền ghi sẵn trên phiếu, tính theo tuổi món đồ.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 19.8 16.1 7.9"/><path d="M16.1 7.9l1.3-1.3a1.3 1.3 0 0 1 1.85 0l.15.15a1.3 1.3 0 0 1 0 1.85l-1.3 1.3a1.3 1.3 0 0 1-1.85 0l-.15-.15a1.3 1.3 0 0 1 0-1.85z"/><path d="M3.5 13.5c2.6-.9 4.6.2 5.6 2.2" stroke-dasharray="1.4 2.2"/></svg><div><b>Thợ may ngồi tiệm</b><p>Nút lỏng, chỉ bung nhỏ được làm kèm miễn phí trong lúc giặt hấp.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><div><b>Làm lại miễn phí 7 ngày</b><p>Chưa ưng ý, bạn nhắn Zalo kèm ảnh, tụi mình làm lại và giao lại.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.2 5.6a1.8 1.8 0 1 1 2.55 1.64c-.47.22-.75.6-.75 1.1V9.2"/><path d="M12 9.2 3.7 15.3c-.75.55-.36 1.7.57 1.7h15.46c.93 0 1.32-1.15.57-1.7z"/></svg><div><b>Chuyên đồ nữ dịp đặc biệt</b><p>Lụa, ren, đính kết, áo dài, váy cưới: đọc nhãn và thử dung dịch trước khi làm.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M4 12h16M4 17h7"/><circle cx="17" cy="7" r="2"/><circle cx="14" cy="17" r="2"/></svg><div><b>Hai mức chăm, giá công khai</b><p>Chuẩn cho đồ vải thường, Signature cho lụa, đính kết, đồ hiệu.</p></div></div>
   </div>
 </div></section>
 
-<div class="wrap">
-  <section id="bang-gia" aria-labelledby="h-gia">
-    <div class="sec-head"><span class="label">Tính theo món, không theo ký</span><h2 id="h-gia">Bảng giá</h2><p>Giá tham khảo. Tụi mình báo giá chính xác khi xem đồ, trước khi làm.</p></div>
-    <div class="tabs" role="tablist" id="gTabs"></div>
-    <div id="gBody"></div>
-    <div class="sig" id="sigBox">
-      <div class="card"><span class="label">Chuẩn</span><b>Cho đồ vải thường</b><ul><li>Đọc nhãn, chọn cách giặt hoặc giặt khô</li><li>Tẩy vết thường, hấp form, treo móc</li><li>Kiểm tra trước khi trả</li></ul></div>
-      <div class="card" style="border-color:var(--care)"><span class="label" style="color:var(--care)">Signature</span><b>Cho lụa, ren, đính kết, đồ hiệu</b><ul><li>Kỹ thuật viên chính làm từ đầu đến cuối</li><li>Hoàn thiện bằng tay, kiểm 2 lần</li><li>Túi vải bọc đồ và móc gỗ đi kèm</li><li>Bắt buộc với đồ trị giá từ 10.000.000đ</li></ul></div>
-    </div>
-    <div class="terms"><span>Giao nhận tận nơi trong nội thành Đà Nẵng: miễn phí với đơn từ 300.000đ, dưới mức này 30.000đ mỗi chiều.</span><span>Làm gấp trong ngày: cộng 50%. Hấp lấy liền không tính gấp.</span></div>
-  </section>
-</div>
-
-<section class="alt" id="vay-cuoi" aria-labelledby="h-wd"><div class="wrap">
-  <div class="wd">
-    <div class="sec-head"><span class="label">Váy cưới</span><h2 id="h-wd">Giá theo dáng váy, chất liệu và đuôi váy</h2><p>Chọn đúng chiếc váy của bạn để xem tạm tính. Đà Nẵng nồm ẩm, nên váy cất lâu cần hút chân không và hút ẩm. Gói cất giữ làm việc đó, kèm hộp cứng để bạn giữ váy nhiều năm.</p>
-      <p>Mùa cưới tháng 9 đến tháng 12, váy cần 7–10 ngày. Bạn đặt lịch sớm giúp tụi mình.</p></div>
-    <div class="calc card">
-      <label class="f"><span>Dáng váy và chất liệu</span><select id="wdDang"></select></label>
-      <div class="f"><span>Thêm</span><div id="wdThem" style="display:flex;flex-direction:column;gap:8px"></div></div>
-      <div class="total" aria-live="polite"><span>Tạm tính</span><b id="wdTong">0đ</b></div>
-      <div class="bar" style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#dat-lich" id="wdDat" style="flex:1">Đặt lịch với váy này</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener" style="flex:1">Gửi ảnh váy</a></div>
-    </div>
+<section aria-labelledby="h-dv"><div class="wrap">
+  <div class="sec-head"><span class="label">Dịch vụ</span><h2 id="h-dv">Chọn việc bạn cần</h2></div>
+  <div class="svc">
+    <a class="tile" href="/dich-vu/giat-hap/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6C8.9 7.3 6.5 10.6 6.5 13.7a5.5 5.5 0 0 0 11 0c0-3.1-2.4-6.4-5.5-10.1z"/><path d="M9.4 14.1a2.7 2.7 0 0 0 2.2 2.5"/></svg><b>Giặt và hấp</b><p>Đầm, áo dài, vest, áo khoác</p><span class="fr" data-tu="Giặt và hấp"></span></a>
+    <a class="tile" href="/dich-vu/vay-cuoi/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3.5h5l.8 3.2-1.8 2 4.5 11.8h-12L10.5 8.7l-1.8-2z"/><path d="M8.6 13h6.8"/></svg><b>Váy cưới</b><p>Giặt theo dáng váy, cất giữ chống ẩm</p><span class="fr" data-tu="Váy cưới"></span></a>
+    <a class="tile" href="/dich-vu/sua-do/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 19.8 16.1 7.9"/><path d="M16.1 7.9l1.3-1.3a1.3 1.3 0 0 1 1.85 0l.15.15a1.3 1.3 0 0 1 0 1.85l-1.3 1.3a1.3 1.3 0 0 1-1.85 0l-.15-.15a1.3 1.3 0 0 1 0-1.85z"/><path d="M3.5 13.5c2.6-.9 4.6.2 5.6 2.2" stroke-dasharray="1.4 2.2"/></svg><b>Sửa đồ</b><p>Lên lai, bóp eo, thu nhỏ đầm</p><span class="fr" data-tu="Sửa đồ"></span></a>
+    <a class="tile" href="/dich-vu/hap-tan-noi/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 19.5c-1.2-1.2-1.2-2.5 0-3.7s1.2-2.5 0-3.7-1.2-2.5 0-3.7"/><path d="M12 18c-1.2-1.2-1.2-2.5 0-3.7s1.2-2.5 0-3.7-1.2-2.5 0-3.7"/><path d="M16.5 19.5c-1.2-1.2-1.2-2.5 0-3.7s1.2-2.5 0-3.7-1.2-2.5 0-3.7"/></svg><b>Hấp lấy liền, tận nơi</b><p>60 phút tại quầy, hấp tại khách sạn</p><span class="fr" data-tu="Hấp lấy liền"></span></a>
+    <a class="tile" href="/goi/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18v-3H3zM12 6v14"/><path d="M12 6c-1.5-2.5-4.5-2.5-4.5-.5S10 6 12 6zM12 6c1.5-2.5 4.5-2.5 4.5-.5S14 6 12 6z"/></svg><b>Gói và thẻ</b><p>Gói Tết, gói sau cưới, thẻ trả trước</p><span class="fr" data-tu="Gói"></span></a>
+    <a class="tile" href="/doanh-nghiep/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="1.5"/><path d="M8 8h2M14 8h2M8 12h2M14 12h2M10 20.5v-4h4v4"/></svg><b>Doanh nghiệp</b><p>Tiệm cho thuê, khách sạn, wedding planner</p><span class="fr">Giá theo tháng</span></a>
   </div>
 </div></section>
 
-<div class="wrap">
-  <section id="quy-trinh" aria-labelledby="h-qt">
-    <div class="sec-head"><span class="label">Quy trình</span><h2 id="h-qt">Một món đồ đi qua tiệm thế nào</h2></div>
-    <div class="steps">
-      <div class="st"><i>1</i><div><b>Nhận và chụp ảnh</b><p>Gắn mã đồ, chụp 4 ảnh, ghi vết có sẵn. Bạn khai giá trị món đồ, nhận phiếu qua Zalo.</p></div></div>
-      <div class="st"><i>2</i><div><b>Đọc nhãn, phân loại</b><p>Chọn hấp, giặt nước nhẹ hay giặt khô theo nhãn và chất vải. Đồ rủi ro thì báo bạn trước.</p></div></div>
-      <div class="st"><i>3</i><div><b>Xử lý vết</b><p>Tẩy từng vết bằng tay trước khi giặt, thử dung dịch ở đường may khuất.</p></div></div>
-      <div class="st"><i>4</i><div><b>Giặt, hấp, sửa</b><p>Giặt khô bằng dung môi không chứa PERC. Thợ may làm cùng lúc nếu có sửa.</p></div></div>
-      <div class="st"><i>5</i><div><b>Kiểm tra</b><p>Người khác người làm kiểm lại từng món theo ảnh lúc nhận. Signature kiểm 2 lần.</p></div></div>
-      <div class="st"><i>6</i><div><b>Đóng gói, trả</b><p>Treo móc, bọc túi, giữ phom, kèm thẻ hướng dẫn bảo quản theo chất vải. Bạn nhận tại quầy hoặc tụi mình giao tận nơi.</p></div></div>
-    </div>
-  </section>
-</div>
-
-<section class="alt" id="cam-ket" aria-labelledby="h-ck"><div class="wrap">
-  <div class="sec-head"><span class="label">Cam kết và đền bù</span><h2 id="h-ck">Nói rõ trước, để bạn yên tâm gửi</h2><p>Nếu món đồ hư hỏng hoặc thất lạc do lỗi của tiệm, tụi mình đền theo giá trị bạn khai trên phiếu, nhân với tỷ lệ theo tuổi món đồ:</p></div>
-  <div class="comp" role="table" aria-label="Tỷ lệ đền bù theo tuổi món đồ">
-    <div role="columnheader">Món đồ đã dùng</div><div role="columnheader">Mức đền</div>
-    <div>Dưới 6 tháng</div><div>100%</div>
-    <div>6 đến 12 tháng</div><div>70%</div>
-    <div>1 đến 2 năm</div><div>50%</div>
-    <div>Trên 2 năm</div><div>30%</div>
+<section class="alt" aria-labelledby="h-qt"><div class="wrap">
+  <div class="sec-head"><span class="label">Quy trình</span><h2 id="h-qt">Một món đồ đi qua tiệm thế nào</h2></div>
+  <div class="steps">
+    <div class="st"><i>1</i><b>Nhận và chụp ảnh</b><p>Gắn mã, chụp 4 ảnh, bạn khai giá trị.</p></div>
+    <div class="st"><i>2</i><b>Đọc nhãn, phân loại</b><p>Chọn hấp, giặt nước nhẹ hay giặt khô.</p></div>
+    <div class="st"><i>3</i><b>Xử lý vết</b><p>Tẩy tay từng vết, thử ở đường may khuất.</p></div>
+    <div class="st"><i>4</i><b>Giặt, hấp, sửa</b><p>Dung môi không chứa PERC.</p></div>
+    <div class="st"><i>5</i><b>Kiểm tra</b><p>Người khác người làm, đối chiếu ảnh.</p></div>
+    <div class="st"><i>6</i><b>Đóng gói, trả</b><p>Móc, túi, thẻ hướng dẫn bảo quản.</p></div>
   </div>
-  <p class="terms" style="margin-top:12px">Không khai giá trị: đền tối đa 20 lần tiền dịch vụ của món đó. Mức đền tối đa 20.000.000đ một món.</p>
-  <div class="rules">
-    <div class="card"><h3>Làm lại và khiếu nại</h3><p>Làm lại miễn phí trong 7 ngày kể từ khi nhận đồ. Khiếu nại hư hỏng trong 48 giờ, kèm ảnh, đối chiếu với 4 ảnh lúc nhận.</p></div>
-    <div class="card"><h3>Đồ tụi mình báo trước</h3><ul><li>Nhãn ghi không giặt, không giặt khô</li><li>Vải đã mục, phai màu sẵn, keo ép bong</li><li>Đính kết dán keo, sequin nhựa dễ chảy</li></ul><p style="margin-top:6px">Bạn vẫn muốn gửi thì ký xác nhận rủi ro trên phiếu.</p></div>
-    <div class="card"><h3>Giữ đồ</h3><p>Đồ chưa lấy được giữ miễn phí 30 ngày sau ngày hẹn. Sau đó 20.000đ một món mỗi tháng, tối đa 6 tháng.</p></div>
-  </div>
+  <p class="note"><a href="/cam-ket/">Xem cam kết đền bù và chính sách làm lại →</a></p>
 </div></section>
 
-<div class="wrap">
-  <section id="dat-lich" aria-labelledby="h-lich">
-    <div class="book">
-      <div class="sec-head"><span class="label">Đặt lịch nhận đồ</span><h2 id="h-lich">Gửi đồ cho tụi mình</h2><p>Chọn món để xem tạm tính, rồi gửi lịch. Tụi mình nhắn Zalo xác nhận giờ trong giờ làm việc.</p><p>Cần gấp thì nhắn thẳng Zalo <a href="https://zalo.me/84377159189" class="mono">0377 159 189</a>.</p></div>
-      <div class="card">
-        <form id="fLich" novalidate style="display:flex;flex-direction:column;gap:16px">
-          <div class="f"><span>Bạn gửi những món nào</span><div class="picker" id="picker"></div></div>
-          <div class="f"><span>Mức chăm</span><div class="seg2" id="hang"><button type="button" aria-pressed="true" data-h="Chuẩn">Chuẩn</button><button type="button" aria-pressed="false" data-h="Signature">Signature</button></div></div>
-          <div class="est" aria-live="polite"><span id="estN">Chưa chọn món</span><b id="estT">0đ</b></div>
-          <div class="row2">
-            <label class="f"><span>Tên của bạn</span><input name="ten" autocomplete="name" required></label>
-            <label class="f"><span>Số Zalo</span><input name="sdt" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required></label>
-          </div>
-          <label class="f"><span>Cách gửi đồ</span><select name="cachNhan"><option>Mang đến quầy</option><option>Giao nhận tận nơi</option></select></label>
-          <label class="f" id="diaChiF" hidden><span>Địa chỉ nhận đồ</span><input name="diaChi" autocomplete="street-address" placeholder="Số nhà, đường, phường hoặc tên khách sạn, số phòng"></label>
-          <div class="row2">
-            <label class="f"><span>Ngày</span><input name="ngayHen" type="date"></label>
-            <label class="f"><span>Khung giờ</span><select name="khungGio"><option>Sáng 8:00–11:00</option><option>Trưa 11:00–14:00</option><option>Chiều 14:00–17:00</option><option>Tối 17:00–20:00</option></select></label>
-          </div>
-          <label class="f"><span>Ghi chú (không bắt buộc)</span><textarea name="ghiChu" placeholder="Ví dụ: đầm lụa có vết rượu vang, cần trước thứ Bảy"></textarea></label>
-          <input name="web2" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
-          <div class="err-text" id="eLich" role="alert"></div>
-          <button class="btn block" id="bLich">Gửi lịch hẹn</button>
-          <button class="btn quiet block" type="button" id="bZalo">Hoặc gửi qua Zalo</button>
-        </form>
-        <div class="ok-box" id="okLich" role="status">
-          <span class="label">Đã nhận lịch hẹn</span>
-          <span class="ma" id="okMa"></span>
-          <p style="margin:0">Tụi mình sẽ nhắn Zalo để xác nhận giờ. Lưu mã này để tiện hỏi lại.</p>
-          <a class="btn soft" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo tiệm</a>
-          <button class="btn quiet sm" type="button" id="lichMoi">Đặt thêm lịch khác</button>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<section class="alt" id="doanh-nghiep" aria-labelledby="h-b2b"><div class="wrap">
-  <div class="b2b">
-    <div class="sec-head"><span class="label">Doanh nghiệp và đối tác</span><h2 id="h-b2b">Khách sạn, tiệm cho thuê đồ, wedding planner</h2><p>Lịch nhận trả cố định, giá theo khối lượng tháng, hoá đơn gom cuối tháng.</p>
-      <div class="acts" style="margin-top:10px"><a class="btn" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhận báo giá doanh nghiệp</a></div></div>
-    <ul>
-      <li>Tiệm cho thuê áo dài, đầm, studio ảnh: giặt hấp sau mỗi lượt thuê, trả trong 24–48 giờ.</li>
-      <li>Khách sạn, homestay: nhận đồ của khách tại lễ tân. Lễ tân giới thiệu khách được hoa hồng 10% mỗi đơn.</li>
-      <li>Wedding planner: hấp váy, áo dài tại tiệc cưới; giặt và cất giữ váy sau tiệc.</li>
-      <li>Giảm khoảng 20% so với giá khách lẻ khi có cam kết số món mỗi tháng.</li>
-    </ul>
-  </div>
+<section aria-label="Đặt lịch"><div class="wrap">
+  <div class="band"><div><h2>Gửi đồ cho tụi mình</h2><p style="margin-top:8px">Mang đến quầy hoặc hẹn giao nhận tận nơi trong nội thành Đà Nẵng.</p></div>
+    <div class="acts"><a class="btn" href="/dat-lich/">Đặt lịch</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo</a></div></div>
 </div></section>
-
-<div class="wrap">
-  <section id="tra-cuu" class="track" aria-labelledby="h-tra">
-    <div class="sec-head"><span class="label">Tra cứu đơn</span><h2 id="h-tra">Đồ của bạn đang ở đâu</h2><p>Mã phiếu in trên phiếu nhận đồ và tem treo, ví dụ PC-0211-01.</p></div>
-    <div class="card">
-      <form id="fTra" novalidate>
-        <label class="f"><span>Mã phiếu hoặc mã món</span><input name="ma" class="mono" autocapitalize="characters" placeholder="PC-0211-01" required></label>
-        <label class="f"><span>4 số cuối Zalo</span><input name="so" class="mono" inputmode="numeric" maxlength="4" placeholder="9189" required></label>
-        <button class="btn" id="bTra">Tra cứu</button>
-      </form>
-      <div class="err-text" id="eTra" role="alert" style="margin-top:10px"></div>
-      <div class="res" id="res" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section id="hoi-dap" aria-labelledby="h-faq">
-    <div class="sec-head"><span class="label">Hỏi đáp</span><h2 id="h-faq">Câu hỏi hay gặp</h2></div>
-    <div class="faq">
-      <details><summary>Khi nào nên giặt khô thay vì giặt nước?</summary><p>Khi nhãn có ký hiệu vòng tròn chữ P hoặc F, hoặc đồ là lụa, nhung, len, vải có lớp lót, đồ đính kết. Giặt nước dễ làm co, mất phom hoặc phai màu những loại này. Bạn không chắc thì cứ gửi, tụi mình đọc nhãn giúp.</p></details>
-      <details><summary>Vết rượu vang, son, dầu có tẩy được không?</summary><p>Phần lớn là được nếu vết còn mới. Đừng chà hay dùng nước nóng trước khi gửi, chỉ thấm nhẹ bằng khăn khô. Vết đã để lâu, tụi mình báo trước khả năng tẩy sạch đến đâu.</p></details>
-      <details><summary>Váy cưới sau tiệc nên làm gì?</summary><p>Gửi giặt trong 1–2 tuần, trước khi vết mồ hôi và rượu ngả vàng. Nếu muốn giữ lâu, chọn gói cất giữ: hút chân không, hộp cứng, túi hút ẩm, tránh mốc trong mùa nồm.</p></details>
-      <details><summary>Hấp lấy liền là gì?</summary><p>Đồ đã sạch, chỉ bị nhăn vì để trong vali hoặc tủ. Bạn mang đến quầy, khoảng 60 phút là lấy được. Hợp với khách du lịch, đi tiệc ngay trong ngày.</p></details>
-      <details><summary>Tôi khai giá trị món đồ thế nào?</summary><p>Lúc gửi, bạn cho biết giá mua hoặc giá trị ước tính. Tụi mình ghi lên phiếu và gửi bạn qua Zalo. Đây là căn cứ đền bù nếu có sự cố, nên bạn khai đúng giúp tụi mình.</p></details>
-      <details><summary>Có nhận sửa đồ không cần giặt không?</summary><p>Có. Thợ may ngồi tiệm nhận lên lai, bóp eo, thu nhỏ đầm, thay khoá kéo. Cần thử đồ thì bạn hẹn giờ để thợ đo trực tiếp.</p></details>
-    </div>
-  </section>
-</div>
 </main>
-
-<footer>
-  <div class="wrap">
-    <span class="lk rev" style="font-size:22px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></span>
-    <p class="tl">Chăm những bộ đồ cho ngày quan trọng của bạn.</p>
-    <div class="ln"><a href="https://zalo.me/84377159189">Zalo 0377 159 189</a><a href="https://cherie.io.vn/">Thuê đầm tại cherie.io.vn</a><span>Đà Nẵng</span></div>
-    <p style="margin:22px 0 0;font-size:13px;opacity:.8">Một thương hiệu của CHÉRIE · Mỗi lần, một chiếc mới.</p>
-  </div>
-</footer>
-
+<footer><div class="wrap fg">
+<div class="brand"><span class="lk rev" style="font-size:22px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></span><p class="tl">Chăm những bộ đồ cho ngày quan trọng của bạn.</p></div>
+<div><h4>Dịch vụ</h4><ul><li><a href="/dich-vu/giat-hap/">Giặt và hấp</a></li><li><a href="/dich-vu/vay-cuoi/">Váy cưới</a></li><li><a href="/dich-vu/sua-do/">Sửa đồ</a></li><li><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a></li></ul></div>
+<div><h4>Thông tin</h4><ul><li><a href="/bang-gia/">Bảng giá</a></li><li><a href="/goi/">Gói và thẻ</a></li><li><a href="/cam-ket/">Cam kết</a></li><li><a href="/doanh-nghiep/">Doanh nghiệp</a></li><li><a href="/tra-cuu/">Tra cứu đơn</a></li></ul></div>
+<div class="lh"><h4>Liên hệ</h4><ul><li><a href="https://zalo.me/84377159189" target="_blank" rel="noopener">Zalo 0377 159 189</a></li><li><a href="/dat-lich/">Đặt lịch nhận đồ</a></li><li><a href="https://cherie.io.vn/">Thuê đầm CHÉRIE</a></li></ul></div>
+<div class="sub"><span>Một thương hiệu của CHÉRIE · Mỗi lần, một chiếc mới.</span><span>Đà Nẵng</span></div>
+</div></footer>
+<div class="dock" role="region" aria-label="Đặt lịch nhanh"><a class="btn" href="/dat-lich/">Đặt lịch</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo</a></div>
 <script>
-(function(){
-"use strict";
-var C=window.Care,$=function(s,r){return(r||document).querySelector(s)},E=C.esc;
-var GIA=C.GIA_MAU.slice(),hang="Chuẩn",chon={};
-var TAB_TEN=[["Giặt và hấp","Giặt và hấp"],["Váy cưới","Váy cưới"],["Hấp lấy liền","Hấp lấy liền"],["Sửa đồ","Sửa đồ"],["Chăm thêm","Chăm thêm"],["Dịch vụ tận nơi","Tận nơi"],["Gói","Gói và thẻ"]];
-var tabOn="Giặt và hấp";
-function nhom(n){return GIA.filter(function(g){return g.nhom===n})}
-function giaMon(g,h){return h==="Signature"&&C.num(g.cc)?C.num(g.cc):C.num(g.tu)}
-function giaTxt(g){return C.num(g.tu)||C.num(g.den)?C.khoangGia(g.tu,g.den):"–"}
-
-/* ---------- bảng giá ---------- */
-function veTabs(){$("#gTabs").innerHTML=TAB_TEN.filter(function(t){return nhom(t[0]).length}).map(function(t){return '<button class="chip'+(t[0]===tabOn?' on':'')+'" role="tab" aria-selected="'+(t[0]===tabOn)+'" data-t="'+E(t[0])+'">'+E(t[1])+'</button>'}).join("");
-  [].forEach.call(document.querySelectorAll("#gTabs .chip"),function(b){b.onclick=function(){tabOn=b.dataset.t;veTabs();veBang()}})}
-function veBang(){var ds=nhom(tabOn),hai=ds.some(function(g){return C.num(g.cc)});
-  if(tabOn==="Váy cưới")ds=ds.concat(nhom("Phụ thu váy cưới").map(function(g){return Object.assign({},g,{dv:"Thêm · "+g.dv})}));
-  $("#gBody").innerHTML='<div class="ptable'+(hai?'':' one')+'" role="table"><div class="pth" role="row"><span>Món</span>'+(hai?'<span>Chuẩn</span><span>Signature</span>':'<span>Giá</span>')+'</div>'+
-    ds.map(function(g){var s=[g.tg,g.gc].filter(Boolean).join(" · ");return '<div class="ptr" role="row"><span class="n">'+E(g.dv)+(s?'<span class="s">'+E(s)+'</span>':'')+'</span><span class="p">'+(C.num(g.tu)?(g.dv.indexOf("Thêm · ")===0?"+":"")+(hai&&C.num(g.den)>C.num(g.tu)?"từ "+C.tien(g.tu):giaTxt(g)):E(g.gc?"":"–"))+'</span>'+(hai?'<span class="p">'+(C.num(g.cc)?C.tien(g.cc):'–')+'</span>':'')+'</div>'}).join("")+'</div>';
-  $("#sigBox").style.display=hai?"":"none"}
-
-/* ---------- váy cưới ---------- */
-function veVay(){var d=nhom("Váy cưới"),t=nhom("Phụ thu váy cưới"),sel=$("#wdDang"),cu=sel.value;
-  sel.innerHTML=d.map(function(g){return '<option value="'+E(g.ma)+'">'+E(g.dv)+' · '+C.tien(g.tu)+'</option>'}).join("");if(cu)sel.value=cu;
-  var duoi=t.filter(function(g){return /^Đuôi/.test(g.dv)}),khac=t.filter(function(g){return!/^Đuôi/.test(g.dv)});
-  $("#wdThem").innerHTML=(duoi.length?'<label class="ck"><span>Đuôi váy</span><select id="wdDuoi" style="margin-left:auto;border:0;background:none;font:inherit;color:var(--care);text-align:right"><option value="">Không có đuôi</option>'+duoi.map(function(g){return '<option value="'+E(g.ma)+'">'+E(g.dv.replace(/^Đuôi váy /,""))+' · +'+C.tien(g.tu)+'</option>'}).join("")+'</select></label>':'')+
-    khac.map(function(g){return '<label class="ck"><input type="checkbox" value="'+E(g.ma)+'"><span>'+E(g.dv)+'</span><span class="p">+'+C.tien(g.tu)+'</span></label>'}).join("");
-  var tinh=function(){var g=GIA.filter(function(x){return x.ma===sel.value})[0],s=g?C.num(g.tu):0,du=$("#wdDuoi");
-    if(du&&du.value)s+=C.num((GIA.filter(function(x){return x.ma===du.value})[0]||{}).tu);
-    [].forEach.call(document.querySelectorAll("#wdThem input:checked"),function(c){s+=C.num((GIA.filter(function(x){return x.ma===c.value})[0]||{}).tu)});
-    $("#wdTong").textContent=C.tien(s);return{g:g,s:s}};
-  sel.onchange=tinh;$("#wdThem").onchange=tinh;tinh();
-  $("#wdDat").onclick=function(){var r=tinh(),du=$("#wdDuoi"),ex=[];if(du&&du.value)ex.push(du.selectedOptions[0].textContent.split(" · ")[0]);[].forEach.call(document.querySelectorAll("#wdThem input:checked"),function(c){ex.push(c.parentNode.querySelector("span").textContent)});
-    if(r.g){chon={};chon[r.g.ma]=1;vePicker();var gc=$("#fLich [name=ghiChu]");gc.value=("Váy cưới: "+r.g.dv+(ex.length?" + "+ex.join(", "):"")+". Tạm tính "+C.tien(r.s)+". "+gc.value.replace(/^Váy cưới:[^.]*\.[^.]*\.\s*/,"")).trim();tinhDon()}}}
-
-/* ---------- chọn món khi đặt lịch ---------- */
-var PICK=["Giặt và hấp","Váy cưới","Hấp lấy liền","Sửa đồ"];
-function vePicker(){$("#picker").innerHTML=PICK.map(function(n){var ds=nhom(n);if(!ds.length)return"";return '<div class="pkg">'+E(n)+'</div>'+ds.map(function(g){var q=chon[g.ma]||0;return '<div class="pk'+(q?' on':'')+'" data-m="'+E(g.ma)+'"><span class="n">'+E(g.dv)+'<small>'+(n==="Giặt và hấp"&&hang==="Signature"&&C.num(g.cc)?C.tien(g.cc):giaTxt(g))+'</small></span><span class="q"><button type="button" data-d="-1" aria-label="Bớt '+E(g.dv)+'">−</button><output aria-label="Số lượng">'+q+'</output><button type="button" data-d="1" aria-label="Thêm '+E(g.dv)+'">+</button></span></div>'}).join("")}).join("")}
-$("#picker").addEventListener("click",function(e){var b=e.target.closest("button[data-d]");if(!b)return;var m=b.closest(".pk").dataset.m;chon[m]=Math.max(0,Math.min(30,(chon[m]||0)+(+b.dataset.d)));if(!chon[m])delete chon[m];
-  var row=b.closest(".pk");row.querySelector("output").textContent=chon[m]||0;row.classList.toggle("on",!!chon[m]);tinhDon()});
-function dsChon(){return Object.keys(chon).map(function(m){var g=GIA.filter(function(x){return x.ma===m})[0];return g?{g:g,q:chon[m]}:null}).filter(Boolean)}
-function tinhDon(){var ds=dsChon(),n=0,t=0;ds.forEach(function(x){n+=x.q;t+=x.q*(x.g.nhom==="Giặt và hấp"?giaMon(x.g,hang):C.num(x.g.tu))});
-  $("#estN").textContent=n?"Tạm tính "+n+" món":"Chưa chọn món";$("#estT").textContent=C.tien(t);return{n:n,t:t,ds:ds}}
-$("#hang").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;hang=b.dataset.h;[].forEach.call(this.querySelectorAll("button"),function(x){x.setAttribute("aria-pressed",x===b)});vePicker();tinhDon()});
-
-function veHet(){veTabs();veBang();veVay();vePicker();tinhDon()}
-veHet();
-C.call("webInfo").then(function(r){if(r.gia&&r.gia.length){GIA=r.gia;Object.keys(chon).forEach(function(m){if(!GIA.some(function(g){return g.ma===m}))delete chon[m]});veHet()}},function(){});
-
-/* ---------- gửi lịch ---------- */
-var f=$("#fLich");f.ngayHen.min=C.homNay();f.ngayHen.value=C.homNay();
-f.cachNhan.onchange=function(){$("#diaChiF").hidden=f.cachNhan.value!=="Giao nhận tận nơi"};
-function moTa(){var d=tinhDon();return{d:d,txt:d.ds.map(function(x){return x.g.dv+" ×"+x.q}).join(", ")}}
-function kiem(){var er=$("#eLich");er.textContent="";var sdt=C.sdtOk(f.sdt.value);
-  if(!f.ten.value.trim()){er.textContent="Nhập tên để tụi mình gọi cho đúng.";f.ten.focus();return null}
-  if(!sdt){er.textContent="Số Zalo gồm 10 số, bắt đầu bằng 0.";f.sdt.focus();return null}
-  if(f.cachNhan.value==="Giao nhận tận nơi"&&!f.diaChi.value.trim()){er.textContent="Nhập địa chỉ để tụi mình qua nhận đồ.";f.diaChi.focus();return null}
-  return sdt}
-f.addEventListener("submit",function(e){e.preventDefault();var sdt=kiem();if(!sdt)return;var m=moTa(),b=$("#bLich"),er=$("#eLich");
-  b.disabled=true;b.innerHTML='<span class="spin"></span> Đang gửi';
-  C.call("webDatLich",{ten:f.ten.value,sdt:sdt,dichVu:m.txt||"Chưa chọn, cần tư vấn",soMon:m.d.n||1,hang:hang,tamTinh:m.d.t,cachNhan:f.cachNhan.value,diaChi:f.diaChi.value,ngayHen:f.ngayHen.value,khungGio:f.khungGio.value,ghiChu:f.ghiChu.value,web2:f.web2.value})
-   .then(function(r){$("#okMa").textContent=r.ma;f.style.display="none";$("#okLich").style.display="flex"},
-     function(x){er.textContent=x.code==="no_api"?"Đặt lịch online sắp mở. Bấm “Gửi qua Zalo” bên dưới nhé.":x.message})
-   .then(function(){b.disabled=false;b.textContent="Gửi lịch hẹn"})});
-$("#bZalo").onclick=function(){var m=moTa();var t="Chào CHÉRIE Care, mình muốn đặt lịch gửi đồ.\n"+(f.ten.value?"Tên: "+f.ten.value+"\n":"")+(m.txt?"Món: "+m.txt+" ("+hang+")\nTạm tính: "+C.tien(m.d.t)+"\n":"")+"Cách gửi: "+f.cachNhan.value+(f.diaChi.value?" – "+f.diaChi.value:"")+"\nNgày: "+C.ngayDep(f.ngayHen.value)+", "+f.khungGio.value+(f.ghiChu.value?"\nGhi chú: "+f.ghiChu.value:"");
-  C.copy(t).then(function(){C.toast("Đã copy tin nhắn. Dán vào Zalo tiệm nhé.");setTimeout(function(){location.href="https://zalo.me/84377159189"},900)})};
-$("#lichMoi").onclick=function(){f.reset();chon={};vePicker();tinhDon();f.ngayHen.value=C.homNay();$("#diaChiF").hidden=true;f.style.display="";$("#okLich").style.display="none"};
-
-/* ---------- tra cứu ---------- */
-var t=$("#fTra"),BUOC=["Chờ làm","Đang làm","Chờ kiểm","Sẵn sàng trả","Đã trả"];
-var LOP={"Chờ làm":"cho","Đang làm":"lam","Gửi xưởng":"xuong","Chờ kiểm":"kiem","Sẵn sàng trả":"san","Đã trả":"tra"};
-var TEN={"Gửi xưởng":"Đang giặt khô","Chờ kiểm":"Đang kiểm tra"};
-function buoc(tt){var i=BUOC.indexOf(tt==="Gửi xưởng"?"Đang làm":tt);return i<0?1:i}
-t.addEventListener("submit",function(e){e.preventDefault();var er=$("#eTra"),res=$("#res");er.textContent="";
-  var ma=t.ma.value.trim().toUpperCase(),so=t.so.value.replace(/\D/g,"");
-  if(!/^(PC|CA)-\d{4}-\d{2,4}$/.test(ma)){er.textContent="Mã phiếu có dạng PC-0211-01.";t.ma.focus();return}
-  if(so.length!==4){er.textContent="Nhập đủ 4 số cuối Zalo.";t.so.focus();return}
-  var b=$("#bTra");b.disabled=true;b.innerHTML='<span class="spin"></span>';
-  C.call("webTraDon",{ma:ma,so:so}).then(function(r){var p=r.phieu,b0=p.tt==="Đã trả"?4:Math.min.apply(null,r.mon.map(function(m){return buoc(m.tt)}).concat([4]));
-     var ttP=p.tt==="Sẵn sàng trả"?'<span class="tt san">Sẵn sàng trả</span>':p.tt==="Đã trả"?'<span class="tt tra">Đã trả '+E(C.ngayDep(p.ngayTra))+'</span>':'<span class="tt lam">'+E(p.tt)+'</span>';
-     res.innerHTML='<div class="head"><div><div class="ma">'+E(p.ma)+'</div><div class="muted" style="font-size:14px">Nhận '+E(C.ngayDep(p.ngayNhan))+(p.henTra?' · hẹn trả '+E(C.ngayDep(p.henTra)):'')+'</div></div>'+ttP+'</div>'+
-      '<div class="bar5" aria-hidden="true">'+BUOC.map(function(x,i){return '<i class="'+(i<=b0?'on':'')+'"></i>'}).join("")+'</div>'+
-      '<ul class="ml">'+r.mon.map(function(m){return '<li><div><div>'+E(m.ten)+'</div><div class="mm">'+E(m.ma)+' · '+E(m.dv)+'</div></div><span class="tt '+(LOP[m.tt]||"lam")+'">'+E(TEN[m.tt]||m.tt)+'</span></li>'}).join("")+'</ul>'+
-      '<div class="money"><span>Tổng <b class="mono">'+C.tien(p.phai)+'</b></span><span>Đã trả <b class="mono">'+C.tien(p.thu)+'</b></span>'+(p.con?'<span>Còn lại <b class="mono">'+C.tien(p.con)+'</b></span>':'')+'</div>'+
-      (p.tt==="Sẵn sàng trả"?'<p style="margin:14px 0 0">Đồ đã sẵn sàng. Bạn ghé quầy hoặc <a href="https://zalo.me/84377159189">nhắn Zalo</a> để hẹn giao.</p>':'');
-     res.style.display="block";try{history.replaceState(null,"","?tra="+encodeURIComponent(p.ma)+"#tra-cuu")}catch(x){}},
-   function(x){res.style.display="none";er.textContent=x.code==="no_api"?"Tra cứu online sắp mở. Nhắn Zalo 0377 159 189 để hỏi đơn nhé.":x.message})
-   .then(function(){b.disabled=false;b.textContent="Tra cứu"})});
-var q=new URLSearchParams(location.search).get("tra");
-if(q){t.ma.value=q.toUpperCase();setTimeout(function(){$("#tra-cuu").scrollIntoView();t.so.focus()},200)}
-})();
+(function(){var q=new URLSearchParams(location.search).get("tra");if(q)location.replace("/tra-cuu/?tra="+encodeURIComponent(q))})();
+Site.gia(function(ds){Site.$$("[data-tu]").forEach(function(el){var t=Site.tuGia(ds,el.dataset.tu);el.textContent=t?"từ "+Care.tien(t):""})});
 </script>
 </body>
 </html>

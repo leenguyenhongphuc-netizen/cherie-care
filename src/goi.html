@@ -1,0 +1,37 @@
+<style>
+.packs{display:grid;gap:12px}
+.pack{display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:18px}
+.pack .lbl{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--care-mid)}
+.pack h3{font-size:21px}
+.pack p{color:var(--muted);font-size:14.5px}
+.pack .pr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;border-top:1px solid var(--line)}
+.pack .pr b{font:500 20px var(--font-mono);color:var(--care)}
+.pack.card-the{background:var(--care-field);border-color:var(--care-field);color:#fff}
+.pack.card-the p,.pack.card-the .lbl{color:#E4ECF4}
+.pack.card-the .pr{border-color:rgba(228,236,244,.25)}
+.pack.card-the .pr b{color:#fff}
+.pack.card-the .btn{background:#fff;color:#24476B;border-color:#fff}
+@media (min-width:760px){.packs{grid-template-columns:repeat(2,1fr);gap:16px}.pack{padding:24px}}
+@media (min-width:1000px){.packs{grid-template-columns:repeat(3,1fr)}}
+</style>
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Gói và thẻ</span></nav>
+  <div class="phead" style="grid-template-columns:1fr">
+    <h1>Gói và thẻ trả trước</h1>
+    <p class="lead">Gói theo mùa cho Tết, mùa nồm, sau tiệc cưới, và thẻ Care nạp trước có thưởng cho khách gửi đồ thường xuyên.</p>
+  </div>
+  <div class="packs" id="packs" style="padding-bottom:var(--gap-sec)"></div>
+</div>
+<section class="alt" aria-labelledby="h-dk"><div class="wrap">
+  <div class="sec-head"><span class="label">Điều kiện</span><h2 id="h-dk">Dùng gói và thẻ thế nào</h2></div>
+  <div class="rows two">
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6" width="17" height="12" rx="2"/><path d="M3.5 10h17"/></svg><div><b>Thẻ Care</b><p>Dùng cho mọi dịch vụ trong 12 tháng, trừ dần theo từng phiếu, xem số dư qua Zalo.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><div><b>Gói Tết</b><p>Nhận đồ đến 20 tháng Chạp để kịp trả trước Tết.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6C8.9 7.3 6.5 10.6 6.5 13.7a5.5 5.5 0 0 0 11 0c0-3.1-2.4-6.4-5.5-10.1z"/></svg><div><b>Tủ Chérie</b><p>Giữ tối đa 6 tháng trong phòng hút ẩm; báo trước 2 ngày khi cần lấy.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4.3 3 7.6 7 9 4-1.4 7-4.7 7-9v-5z"/></svg><div><b>Cam kết như đơn lẻ</b><p>Mọi món trong gói vẫn có 4 ảnh tình trạng và đền theo giá trị khai báo.</p></div></div>
+  </div>
+</div></section>
+<script>
+Site.gia(function(ds){var E=Care.esc;Site.$("#packs").innerHTML=Site.nhom(ds,"Gói").map(function(x){var p=x.dv.split(":"),the=/^Thẻ/.test(x.dv);
+  return '<div class="pack'+(the?' card-the':'')+'"><span class="lbl">'+(the?'Thẻ trả trước':'Gói')+'</span><h3>'+E(p[0])+'</h3><p>'+E([(p[1]||"").trim(),x.gc].filter(Boolean).join(". "))+'</p><div class="pr"><b>'+Care.tien(x.tu)+'</b><a class="btn sm" href="/dat-lich/?m='+encodeURIComponent(x.ma)+'">Chọn</a></div></div>'}).join("")});
+</script>

@@ -12,7 +12,7 @@ var MON_TT = ["Chờ làm", "Đang làm", "Gửi xưởng", "Chờ kiểm", "S�
 var PHIEU_TT = ["Đang làm", "Sẵn sàng trả", "Đã trả", "Hủy"];
 var LICH_TT = ["Mới", "Đã xác nhận", "Đã nhận đồ", "Hủy"];
 var LOAI_KHACH = ["Khách ngoài", "Doanh nghiệp", "Thuê đầm", "Office", "Seconde"];
-var SITE = "https://care.cherie.io.vn/";
+var SITE = "https://care.cherie.io.vn/tra-cuu/";
 
 function doGet() { return out({ ok: true, app: "CHÉRIE Care" }); }
 function doPost(e) {

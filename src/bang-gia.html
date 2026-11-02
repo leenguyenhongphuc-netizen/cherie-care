@@ -1,0 +1,31 @@
+<style>
+.tabs{position:sticky;top:60px;z-index:20;display:flex;gap:8px;overflow-x:auto;padding:10px 0;margin:0 calc(-1 * var(--gutter));padding-inline:var(--gutter);background:var(--bg);scrollbar-width:none;border-bottom:1px solid var(--line)}
+.tabs::-webkit-scrollbar{display:none}
+.tabs .chip{flex:none;text-decoration:none;color:var(--ink)}
+.grpx{scroll-margin-top:130px;padding-top:24px}
+.grpx h2{font-size:22px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.grpx h2 a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;font:500 14px var(--font-body);color:var(--care);text-decoration:none;white-space:nowrap}
+</style>
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Bảng giá</span></nav>
+  <div class="phead" style="grid-template-columns:1fr">
+    <h1>Bảng giá</h1>
+    <p class="lead">Tính theo món, không theo ký. Giá tham khảo; tụi mình báo giá chính xác khi xem đồ, trước khi làm.</p>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Nhóm dịch vụ"></nav>
+  <div id="all" style="padding-bottom:var(--gap-sec)"></div>
+  <div class="rows" style="margin-bottom:var(--gap-sec)">
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="13" height="10" rx="1"/><path d="M15.5 10h3.5l2.5 3v4h-6"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg><div><b>Giao nhận nội thành Đà Nẵng</b><p>Miễn phí với đơn từ 300.000đ, dưới mức này 30.000đ mỗi chiều.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><div><b>Làm gấp trong ngày</b><p>Cộng 50% giá dịch vụ. Hấp lấy liền không tính gấp.</p></div></div>
+  </div>
+</div>
+<script>
+(function(){var C=Care,E=C.esc,$=Site.$;
+var NH=[["Giặt và hấp","Giặt và hấp","/dich-vu/giat-hap/"],["Váy cưới","Váy cưới","/dich-vu/vay-cuoi/"],["Phụ thu váy cưới","Phụ thu váy cưới",""],["Hấp lấy liền","Hấp lấy liền","/dich-vu/hap-tan-noi/"],["Sửa đồ","Sửa đồ","/dich-vu/sua-do/"],["Chăm thêm","Chăm thêm",""],["Dịch vụ tận nơi","Tận nơi","/dich-vu/hap-tan-noi/"],["Gói","Gói và thẻ","/goi/"]];
+function id(n){return "g-"+NH.map(function(x){return x[0]}).indexOf(n)}
+Site.gia(function(ds){var co=NH.filter(function(x){return Site.nhom(ds,x[0]).length});
+  $("#tabs").innerHTML=co.filter(function(x){return x[0]!=="Phụ thu váy cưới"}).map(function(x){return '<a class="chip" href="#'+id(x[0])+'">'+E(x[1])+'</a>'}).join("");
+  $("#all").innerHTML=co.map(function(x){return '<div class="grpx" id="'+id(x[0])+'"><h2>'+E(x[1])+(x[2]?'<a href="'+x[2]+'">Chi tiết →</a>':'')+'</h2><div data-b="'+E(x[0])+'"></div></div>'}).join("");
+  Site.$$("[data-b]").forEach(function(el){var n=el.dataset.b;Site.bang(el,Site.nhom(ds,n),{ten:n,cot:n==="Gói"?"Gói":"Món",cong:n==="Phụ thu váy cưới"})})});
+})();
+</script>

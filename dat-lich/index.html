@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Đặt lịch nhận đồ · CHÉRIE Care</title>
+<meta name="description" content="Chọn món, xem tạm tính và đặt lịch gửi đồ tại quầy hoặc giao nhận tận nơi ở Đà Nẵng.">
+<meta name="theme-color" content="#24476B">
+<link rel="canonical" href="https://care.cherie.io.vn/dat-lich/">
+<meta property="og:title" content="Đặt lịch nhận đồ · CHÉRIE Care">
+<meta property="og:description" content="Chọn món, xem tạm tính và đặt lịch gửi đồ tại quầy hoặc giao nhận tận nơi ở Đà Nẵng.">
+<meta property="og:url" content="https://care.cherie.io.vn/dat-lich/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Be+Vietnam+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/care.css?v=202611020502">
+<link rel="stylesheet" href="/site.css?v=202611020502">
+<style>
+.book{display:grid;gap:16px;padding-bottom:var(--gap-sec)}
+.book .card{padding:16px;display:flex;flex-direction:column;gap:16px}
+.picker{display:flex;flex-direction:column;gap:8px}
+.picker details{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.picker summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:0 14px;cursor:pointer;font-weight:600}
+.picker summary::-webkit-details-marker{display:none}
+.picker summary .c{font:500 12.5px var(--font-mono);color:var(--care);background:var(--care-soft);border-radius:999px;padding:2px 10px}
+.picker summary .c:empty{display:none}
+.picker summary::after{content:"+";font:400 20px var(--font-body);color:var(--care);margin-left:auto}
+.picker details[open] summary::after{content:"–"}
+.pk{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-top:1px solid var(--line)}
+.pk .n{flex:1;font-size:14.5px;line-height:1.35}
+.pk .n small{display:block;color:var(--muted);font:400 12px var(--font-mono)}
+.pk .q{display:flex;align-items:center;gap:2px}
+.pk .q button{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:var(--surface);font-size:18px;line-height:1;cursor:pointer;color:var(--care)}
+.pk .q button:active{background:var(--care-soft)}
+.pk .q output{min-width:26px;text-align:center;font:500 15px var(--font-mono)}
+.pk.on{background:var(--care-soft)}
+.seg2{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg2 button{min-height:44px;border:0;border-radius:999px;background:none;font-weight:500;cursor:pointer;color:var(--muted)}
+.seg2 button[aria-pressed="true"]{background:var(--care);color:var(--on-care)}
+.est{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;border-radius:12px;background:var(--care-soft);color:var(--care)}
+.est b{font:500 20px var(--font-mono)}
+.ok-box{display:none;flex-direction:column;gap:12px}
+.ok-box .ma{font:500 24px/1 var(--font-mono);color:var(--care)}
+.ok-box .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.side{display:flex;flex-direction:column;gap:16px;order:2}
+.sbar{position:fixed;left:0;right:0;bottom:0;z-index:35;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center;padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.book .sumd{display:none}
+.sbar span{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;line-height:1.3}
+.sbar b{font:500 18px var(--font-mono);color:var(--care)}
+body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+@media (min-width:860px){.book{grid-template-columns:.75fr 1.25fr;align-items:start;gap:32px}.side{position:sticky;top:84px;order:0}.sbar{display:none}body{padding-bottom:0}.book .sumd{display:flex;padding:16px;gap:12px}}
+</style>
+<script src="/config.js?v=202611020502"></script>
+<script src="/care.js?v=202611020502"></script>
+<script src="/site.js?v=202611020502"></script>
+</head>
+<body>
+<a class="sr" href="#main">Bỏ qua menu</a>
+<header class="top"><div class="wrap in">
+<a class="lk" href="/" style="font-size:18px" aria-label="CHÉRIE Care, trang chủ"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a>
+<nav aria-label="Chính"><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true">Dịch vụ <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor;stroke-width:2;fill:none"><path d="m6 9 6 6 6-6"/></svg></button><div class="menu"><a href="/dich-vu/giat-hap/">Giặt và hấp<small>Đầm, áo dài, vest · 2 mức chăm</small></a><a href="/dich-vu/vay-cuoi/">Váy cưới<small>Giặt theo dáng váy, cất giữ chống ẩm</small></a><a href="/dich-vu/sua-do/">Sửa đồ<small>Thợ may ngồi tiệm, hẹn thử đồ</small></a><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi<small>60 phút tại quầy, hấp tại khách sạn, tiệc cưới</small></a></div></div><a href="/bang-gia/">Bảng giá</a><a href="/goi/">Gói và thẻ</a><a href="/cam-ket/">Cam kết</a><a href="/doanh-nghiep/">Doanh nghiệp</a><a href="/tra-cuu/">Tra cứu đơn</a></nav>
+<div class="r"><a class="btn sm" href="/dat-lich/">Đặt lịch</a><button class="mbtn" type="button" data-open-menu aria-label="Mở menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</div></header>
+<div class="drawer" id="drawer"><div class="pn" role="dialog" aria-modal="true" aria-label="Menu"><div class="ph"><a class="lk" href="/" style="font-size:17px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a><button class="mbtn" type="button" data-close-menu aria-label="Đóng menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><a class="lnk" href="/">Trang chủ</a><div class="grp">Dịch vụ</div><a class="lnk" href="/dich-vu/giat-hap/">Giặt và hấp</a><a class="lnk" href="/dich-vu/vay-cuoi/">Váy cưới</a><a class="lnk" href="/dich-vu/sua-do/">Sửa đồ</a><a class="lnk" href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a><div class="grp">Thông tin</div><a class="lnk" href="/bang-gia/">Bảng giá</a><a class="lnk" href="/goi/">Gói và thẻ</a><a class="lnk" href="/cam-ket/">Cam kết</a><a class="lnk" href="/doanh-nghiep/">Doanh nghiệp</a><a class="lnk" href="/tra-cuu/">Tra cứu đơn</a><div class="grp">Liên hệ</div><a class="lnk" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo<span>0377 159 189</span></a><a class="btn block" href="/dat-lich/" style="margin-top:10px">Đặt lịch nhận đồ</a></div></div>
+<main id="main">
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Đặt lịch</span></nav>
+  <div class="phead" style="grid-template-columns:1fr;padding-bottom:20px">
+    <h1>Đặt lịch nhận đồ</h1>
+  </div>
+  <div class="book">
+    <div class="side">
+      <p class="lead">Chọn món để xem tạm tính, rồi gửi lịch. Tụi mình nhắn Zalo xác nhận giờ trong giờ làm việc.</p>
+      <div class="card sumd"><div class="est"><span id="dN">Chưa chọn món</span><b id="dT">0đ</b></div><button class="btn block" type="submit" form="fLich">Gửi lịch hẹn</button></div>
+      <div class="rows">
+        <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg><div><b>1. Xác nhận qua Zalo</b><p>Báo giờ nhận và giá chính xác.</p></div></div>
+        <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><circle cx="12" cy="12" r="3.2"/></svg><div><b>2. Nhận đồ, chụp 4 ảnh</b><p>Bạn nhận phiếu và mã tra cứu.</p></div></div>
+        <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg><div><b>3. Báo khi đồ sẵn sàng</b><p>Lấy tại quầy hoặc giao tận nơi.</p></div></div>
+      </div>
+    </div>
+    <div class="card" style="order:1">
+      <form id="fLich" novalidate style="display:flex;flex-direction:column;gap:16px">
+        <div class="f"><span>Bạn gửi những món nào</span><div class="picker" id="picker"></div></div>
+        <div class="f" id="hangF"><span>Mức chăm cho đồ giặt hấp</span><div class="seg2" id="hang"><button type="button" aria-pressed="true" data-h="Chuẩn">Chuẩn</button><button type="button" aria-pressed="false" data-h="Signature">Signature</button></div></div>
+        <div class="est" aria-live="polite"><span id="estN">Chưa chọn món</span><b id="estT">0đ</b></div>
+        <div class="row2">
+          <label class="f"><span>Tên của bạn</span><input name="ten" autocomplete="name" required></label>
+          <label class="f"><span>Số Zalo</span><input name="sdt" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required></label>
+        </div>
+        <div class="f"><span>Cách gửi đồ</span><div class="seg2" id="cach"><button type="button" aria-pressed="true" data-c="Mang đến quầy">Mang đến quầy</button><button type="button" aria-pressed="false" data-c="Giao nhận tận nơi">Giao nhận tận nơi</button></div></div>
+        <label class="f" id="diaChiF" hidden><span>Địa chỉ nhận đồ</span><input name="diaChi" autocomplete="street-address" placeholder="Số nhà, đường, phường hoặc khách sạn, số phòng"></label>
+        <div class="row2">
+          <label class="f"><span>Ngày</span><input name="ngayHen" type="date"></label>
+          <label class="f"><span>Khung giờ</span><select name="khungGio"><option>Sáng 8:00–11:00</option><option>Trưa 11:00–14:00</option><option>Chiều 14:00–17:00</option><option>Tối 17:00–20:00</option></select></label>
+        </div>
+        <label class="f"><span>Ghi chú (không bắt buộc)</span><textarea name="ghiChu" placeholder="Ví dụ: đầm lụa có vết rượu vang, cần trước thứ Bảy"></textarea></label>
+        <input name="web2" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+        <div class="err-text" id="eLich" role="alert"></div>
+        <div class="fbtns"><button class="btn" id="bLich">Gửi lịch hẹn</button><button class="btn ghost" type="button" id="bZalo">Gửi qua Zalo</button></div>
+      </form>
+      <div class="ok-box" id="okLich" role="status">
+        <span class="label">Đã nhận lịch hẹn</span>
+        <span class="ma" id="okMa"></span>
+        <p>Tụi mình sẽ nhắn Zalo để xác nhận giờ. Lưu mã này để tiện hỏi lại.</p>
+        <div class="acts"><a class="btn" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo tiệm</a><button class="btn ghost" type="button" id="lichMoi">Đặt lịch khác</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sbar" id="sbar" role="region" aria-label="Tạm tính và gửi lịch"><span id="sN">Chưa chọn món<b id="sT">0đ</b></span><button class="btn" type="submit" form="fLich" id="sGui">Gửi lịch hẹn</button></div>
+</main>
+<footer><div class="wrap fg">
+<div class="brand"><span class="lk rev" style="font-size:22px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></span><p class="tl">Chăm những bộ đồ cho ngày quan trọng của bạn.</p></div>
+<div><h4>Dịch vụ</h4><ul><li><a href="/dich-vu/giat-hap/">Giặt và hấp</a></li><li><a href="/dich-vu/vay-cuoi/">Váy cưới</a></li><li><a href="/dich-vu/sua-do/">Sửa đồ</a></li><li><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a></li></ul></div>
+<div><h4>Thông tin</h4><ul><li><a href="/bang-gia/">Bảng giá</a></li><li><a href="/goi/">Gói và thẻ</a></li><li><a href="/cam-ket/">Cam kết</a></li><li><a href="/doanh-nghiep/">Doanh nghiệp</a></li><li><a href="/tra-cuu/">Tra cứu đơn</a></li></ul></div>
+<div class="lh"><h4>Liên hệ</h4><ul><li><a href="https://zalo.me/84377159189" target="_blank" rel="noopener">Zalo 0377 159 189</a></li><li><a href="/dat-lich/">Đặt lịch nhận đồ</a></li><li><a href="https://cherie.io.vn/">Thuê đầm CHÉRIE</a></li></ul></div>
+<div class="sub"><span>Một thương hiệu của CHÉRIE · Mỗi lần, một chiếc mới.</span><span>Đà Nẵng</span></div>
+</div></footer>
+
+<script>
+(function(){var C=Care,E=C.esc,$=Site.$,GIA=[],hang="Chuẩn",cach="Mang đến quầy",chon={},mo={};
+var PICK=[["Giặt và hấp","Giặt và hấp"],["Váy cưới","Váy cưới"],["Phụ thu váy cưới","Thêm cho váy cưới"],["Sửa đồ","Sửa đồ"],["Hấp lấy liền","Hấp lấy liền"],["Chăm thêm","Chăm thêm"],["Dịch vụ tận nơi","Tận nơi"],["Gói","Gói và thẻ"]];
+var q=new URLSearchParams(location.search);(q.get("m")||"").split(",").filter(Boolean).forEach(function(m){chon[m]=1});if(q.get("h")==="Signature")hang="Signature";
+function g(ma){return GIA.filter(function(x){return x.ma===ma})[0]}
+function don(x){return x.nhom==="Giặt và hấp"&&hang==="Signature"&&C.num(x.cc)?C.num(x.cc):C.num(x.tu)}
+function ve(){Object.keys(chon).forEach(function(m){var x=g(m);if(x)mo[x.nhom]=1});if(q.get("nhom"))mo[q.get("nhom")]=1;if(!Object.keys(mo).length)mo["Giặt và hấp"]=1;
+  $("#picker").innerHTML=PICK.map(function(p){var ds=Site.nhom(GIA,p[0]).filter(function(x){return C.num(x.tu)});if(!ds.length)return"";var n=ds.reduce(function(s,x){return s+(chon[x.ma]||0)},0);
+    return '<details data-n="'+E(p[0])+'"'+(mo[p[0]]?' open':'')+'><summary>'+E(p[1])+'<span class="c">'+(n?n+" món":"")+'</span></summary>'+ds.map(function(x){var qn=chon[x.ma]||0;return '<div class="pk'+(qn?' on':'')+'" data-m="'+E(x.ma)+'"><span class="n">'+E(x.dv)+'<small>'+(x.nhom==="Giặt và hấp"&&hang==="Signature"&&C.num(x.cc)?C.tien(x.cc):C.khoangGia(x.tu,x.den))+'</small></span><span class="q"><button type="button" data-d="-1" aria-label="Bớt '+E(x.dv)+'">−</button><output>'+qn+'</output><button type="button" data-d="1" aria-label="Thêm '+E(x.dv)+'">+</button></span></div>'}).join("")+'</details>'}).join("");
+  tinh()}
+function tinh(){var n=0,t=0,txt=[];Object.keys(chon).forEach(function(m){var x=g(m);if(!x)return;n+=chon[m];t+=chon[m]*don(x);txt.push(x.dv+" ×"+chon[m])});
+  $("#estN").textContent=n?"Tạm tính "+n+" món":"Chưa chọn món";$("#estT").textContent=C.tien(t);$("#sN").firstChild.textContent=n?"Tạm tính "+n+" món":"Chưa chọn món";$("#sT").textContent=C.tien(t);$("#dN").textContent=$("#estN").textContent;$("#dT").textContent=C.tien(t);
+  Site.$$("#picker details").forEach(function(d){var c=Site.nhom(GIA,d.dataset.n).reduce(function(s,x){return s+(chon[x.ma]||0)},0);d.querySelector(".c").textContent=c?c+" món":""});
+  return{n:n,t:t,txt:txt.join(", ")}}
+$("#picker").addEventListener("click",function(e){var b=e.target.closest("button[data-d]");if(!b)return;var r=b.closest(".pk"),m=r.dataset.m;chon[m]=Math.max(0,Math.min(30,(chon[m]||0)+(+b.dataset.d)));if(!chon[m])delete chon[m];r.querySelector("output").textContent=chon[m]||0;r.classList.toggle("on",!!chon[m]);tinh()});
+$("#picker").addEventListener("toggle",function(e){var d=e.target;if(d.tagName==="DETAILS"){if(d.open)mo[d.dataset.n]=1;else delete mo[d.dataset.n]}},true);
+function seg(id,attr,set){$(id).addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;Site.$$(id+" button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});set(b.dataset[attr])})}
+Site.$$("#hang button").forEach(function(x){x.setAttribute("aria-pressed",x.dataset.h===hang)});
+seg("#hang","h",function(v){hang=v;ve()});
+seg("#cach","c",function(v){cach=v;$("#diaChiF").hidden=v!=="Giao nhận tận nơi"});
+var f=$("#fLich");f.ngayHen.min=C.homNay();f.ngayHen.value=C.homNay();if(q.get("ghichu"))f.ghiChu.value=q.get("ghichu");
+function kiem(){var er=$("#eLich");er.textContent="";var sdt=C.sdtOk(f.sdt.value);
+  if(!f.ten.value.trim()){er.textContent="Nhập tên để tụi mình gọi cho đúng.";f.ten.focus();return null}
+  if(!sdt){er.textContent="Số Zalo gồm 10 số, bắt đầu bằng 0.";f.sdt.focus();return null}
+  if(cach==="Giao nhận tận nơi"&&!f.diaChi.value.trim()){er.textContent="Nhập địa chỉ để tụi mình qua nhận đồ.";f.diaChi.focus();return null}
+  return sdt}
+f.addEventListener("submit",function(e){e.preventDefault();var sdt=kiem();if(!sdt)return;var d=tinh(),b=$("#bLich"),er=$("#eLich");b.disabled=true;b.innerHTML='<span class="spin"></span>';
+  C.call("webDatLich",{ten:f.ten.value,sdt:sdt,dichVu:d.txt||"Chưa chọn, cần tư vấn",soMon:d.n||1,hang:hang,tamTinh:d.t,cachNhan:cach,diaChi:f.diaChi.value,ngayHen:f.ngayHen.value,khungGio:f.khungGio.value,ghiChu:f.ghiChu.value,web2:f.web2.value})
+   .then(function(r){$("#okMa").textContent=r.ma;f.style.display="none";$("#sbar").style.display="none";$("#okLich").style.display="flex";$("#okLich").scrollIntoView({block:"center"})},function(x){er.textContent=x.code==="no_api"?"Đặt lịch online sắp mở. Bấm “Gửi qua Zalo” bên cạnh nhé.":x.message})
+   .then(function(){b.disabled=false;b.textContent="Gửi lịch hẹn"})});
+$("#bZalo").onclick=function(){var d=tinh(),t="Chào CHÉRIE Care, mình muốn đặt lịch gửi đồ.\n"+(f.ten.value?"Tên: "+f.ten.value+"\n":"")+(d.txt?"Món: "+d.txt+" ("+hang+")\nTạm tính: "+C.tien(d.t)+"\n":"")+"Cách gửi: "+cach+(f.diaChi.value?" – "+f.diaChi.value:"")+"\nNgày: "+C.ngayDep(f.ngayHen.value)+", "+f.khungGio.value+(f.ghiChu.value?"\nGhi chú: "+f.ghiChu.value:"");
+  C.copy(t).then(function(){C.toast("Đã copy tin nhắn. Dán vào Zalo tiệm nhé.");setTimeout(function(){location.href="https://zalo.me/84377159189"},900)})};
+$("#lichMoi").onclick=function(){f.reset();chon={};f.ngayHen.value=C.homNay();ve();f.style.display="";$("#sbar").style.display="";$("#okLich").style.display="none"};
+Site.gia(function(ds){GIA=ds;Object.keys(chon).forEach(function(m){if(!g(m))delete chon[m]});ve()});
+})();
+</script>
+</body>
+</html>

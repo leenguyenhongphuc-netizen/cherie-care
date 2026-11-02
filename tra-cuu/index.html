@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tra cứu đơn · CHÉRIE Care</title>
+<meta name="description" content="Tra tình trạng đồ đang chăm bằng mã phiếu và 4 số cuối Zalo.">
+<meta name="theme-color" content="#24476B">
+<link rel="canonical" href="https://care.cherie.io.vn/tra-cuu/">
+<meta property="og:title" content="Tra cứu đơn · CHÉRIE Care">
+<meta property="og:description" content="Tra tình trạng đồ đang chăm bằng mã phiếu và 4 số cuối Zalo.">
+<meta property="og:url" content="https://care.cherie.io.vn/tra-cuu/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Be+Vietnam+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/care.css?v=202611020502">
+<link rel="stylesheet" href="/site.css?v=202611020502">
+<style>
+.track{display:grid;gap:16px;padding-bottom:var(--gap-sec)}
+.track form{display:grid;gap:12px}
+.res{display:none;margin-top:4px}
+.res .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.res .ma{font:500 18px/1.2 var(--font-mono)}
+.bar5{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:16px 0 4px}
+.bar5 i{height:4px;border-radius:2px;background:var(--line)}
+.bar5 i.on{background:var(--care)}
+.bar5l{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;font-size:11px;color:var(--muted);text-align:center}
+.ml{list-style:none;padding:0;margin:12px 0 0}
+.ml li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.ml .mm{font:400 12.5px var(--font-mono);color:var(--muted)}
+.money{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:12px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.money div{background:var(--surface);padding:10px;display:flex;flex-direction:column;gap:2px;font-size:12.5px;color:var(--muted)}
+.money b{font:500 15px var(--font-mono);color:var(--ink)}
+@media (min-width:760px){.track{grid-template-columns:1fr 1fr;align-items:start;gap:32px}}
+</style>
+<script src="/config.js?v=202611020502"></script>
+<script src="/care.js?v=202611020502"></script>
+<script src="/site.js?v=202611020502"></script>
+</head>
+<body>
+<a class="sr" href="#main">Bỏ qua menu</a>
+<header class="top"><div class="wrap in">
+<a class="lk" href="/" style="font-size:18px" aria-label="CHÉRIE Care, trang chủ"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a>
+<nav aria-label="Chính"><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true">Dịch vụ <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor;stroke-width:2;fill:none"><path d="m6 9 6 6 6-6"/></svg></button><div class="menu"><a href="/dich-vu/giat-hap/">Giặt và hấp<small>Đầm, áo dài, vest · 2 mức chăm</small></a><a href="/dich-vu/vay-cuoi/">Váy cưới<small>Giặt theo dáng váy, cất giữ chống ẩm</small></a><a href="/dich-vu/sua-do/">Sửa đồ<small>Thợ may ngồi tiệm, hẹn thử đồ</small></a><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi<small>60 phút tại quầy, hấp tại khách sạn, tiệc cưới</small></a></div></div><a href="/bang-gia/">Bảng giá</a><a href="/goi/">Gói và thẻ</a><a href="/cam-ket/">Cam kết</a><a href="/doanh-nghiep/">Doanh nghiệp</a><a href="/tra-cuu/" aria-current=page>Tra cứu đơn</a></nav>
+<div class="r"><a class="btn sm" href="/dat-lich/">Đặt lịch</a><button class="mbtn" type="button" data-open-menu aria-label="Mở menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</div></header>
+<div class="drawer" id="drawer"><div class="pn" role="dialog" aria-modal="true" aria-label="Menu"><div class="ph"><a class="lk" href="/" style="font-size:17px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></a><button class="mbtn" type="button" data-close-menu aria-label="Đóng menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><a class="lnk" href="/">Trang chủ</a><div class="grp">Dịch vụ</div><a class="lnk" href="/dich-vu/giat-hap/">Giặt và hấp</a><a class="lnk" href="/dich-vu/vay-cuoi/">Váy cưới</a><a class="lnk" href="/dich-vu/sua-do/">Sửa đồ</a><a class="lnk" href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a><div class="grp">Thông tin</div><a class="lnk" href="/bang-gia/">Bảng giá</a><a class="lnk" href="/goi/">Gói và thẻ</a><a class="lnk" href="/cam-ket/">Cam kết</a><a class="lnk" href="/doanh-nghiep/">Doanh nghiệp</a><a class="lnk" href="/tra-cuu/" aria-current=page>Tra cứu đơn</a><div class="grp">Liên hệ</div><a class="lnk" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo<span>0377 159 189</span></a><a class="btn block" href="/dat-lich/" style="margin-top:10px">Đặt lịch nhận đồ</a></div></div>
+<main id="main">
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Tra cứu đơn</span></nav>
+  <div class="phead" style="grid-template-columns:1fr;padding-bottom:20px"><h1>Đồ của bạn đang ở đâu</h1></div>
+  <div class="track">
+    <div class="card">
+      <form id="fTra" novalidate>
+        <label class="f"><span>Mã phiếu hoặc mã món</span><input name="ma" class="mono" autocapitalize="characters" placeholder="PC-0211-01" required></label>
+        <label class="f"><span>4 số cuối Zalo</span><input name="so" class="mono" inputmode="numeric" maxlength="4" placeholder="9189" required></label>
+        <button class="btn" id="bTra">Tra cứu</button>
+        <div class="err-text" id="eTra" role="alert"></div>
+      </form>
+      <div class="res" id="res" aria-live="polite"></div>
+    </div>
+    <div class="rows">
+      <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><div><b>Mã phiếu ở đâu?</b><p>Trên phiếu nhận đồ gửi qua Zalo và trên tem treo của từng món (quét mã QR là mở trang này).</p></div></div>
+      <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4.3 3 7.6 7 9 4-1.4 7-4.7 7-9v-5z"/></svg><div><b>Vì sao cần 4 số cuối Zalo?</b><p>Để chỉ bạn xem được đơn của mình. Trang không hiện tên đầy đủ, số điện thoại hay địa chỉ.</p></div></div>
+      <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg><div><b>Cần hỏi thêm?</b><p><a href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo 0377 159 189</a> kèm mã phiếu.</p></div></div>
+    </div>
+  </div>
+</div>
+</main>
+<footer><div class="wrap fg">
+<div class="brand"><span class="lk rev" style="font-size:22px"><span class="w">CHÉRIE</span><span class="d"></span><span class="b">Care</span></span><p class="tl">Chăm những bộ đồ cho ngày quan trọng của bạn.</p></div>
+<div><h4>Dịch vụ</h4><ul><li><a href="/dich-vu/giat-hap/">Giặt và hấp</a></li><li><a href="/dich-vu/vay-cuoi/">Váy cưới</a></li><li><a href="/dich-vu/sua-do/">Sửa đồ</a></li><li><a href="/dich-vu/hap-tan-noi/">Hấp lấy liền và tận nơi</a></li></ul></div>
+<div><h4>Thông tin</h4><ul><li><a href="/bang-gia/">Bảng giá</a></li><li><a href="/goi/">Gói và thẻ</a></li><li><a href="/cam-ket/">Cam kết</a></li><li><a href="/doanh-nghiep/">Doanh nghiệp</a></li><li><a href="/tra-cuu/">Tra cứu đơn</a></li></ul></div>
+<div class="lh"><h4>Liên hệ</h4><ul><li><a href="https://zalo.me/84377159189" target="_blank" rel="noopener">Zalo 0377 159 189</a></li><li><a href="/dat-lich/">Đặt lịch nhận đồ</a></li><li><a href="https://cherie.io.vn/">Thuê đầm CHÉRIE</a></li></ul></div>
+<div class="sub"><span>Một thương hiệu của CHÉRIE · Mỗi lần, một chiếc mới.</span><span>Đà Nẵng</span></div>
+</div></footer>
+
+<script>
+(function(){var C=Care,E=C.esc,$=Site.$,t=$("#fTra"),BUOC=["Chờ làm","Đang làm","Chờ kiểm","Sẵn sàng trả","Đã trả"],NHAN=["Nhận","Làm","Kiểm","Sẵn sàng","Đã trả"];
+var LOP={"Chờ làm":"cho","Đang làm":"lam","Gửi xưởng":"xuong","Chờ kiểm":"kiem","Sẵn sàng trả":"san","Đã trả":"tra"},TEN={"Gửi xưởng":"Đang giặt khô","Chờ kiểm":"Đang kiểm tra"};
+function buoc(s){var i=BUOC.indexOf(s==="Gửi xưởng"?"Đang làm":s);return i<0?1:i}
+t.addEventListener("submit",function(e){e.preventDefault();var er=$("#eTra"),res=$("#res");er.textContent="";var ma=t.ma.value.trim().toUpperCase(),so=t.so.value.replace(/\D/g,"");
+  if(!/^(PC|CA)-\d{4}-\d{2,4}$/.test(ma)){er.textContent="Mã phiếu có dạng PC-0211-01.";t.ma.focus();return}
+  if(so.length!==4){er.textContent="Nhập đủ 4 số cuối Zalo.";t.so.focus();return}
+  var b=$("#bTra");b.disabled=true;b.innerHTML='<span class="spin"></span>';
+  C.call("webTraDon",{ma:ma,so:so}).then(function(r){var p=r.phieu,b0=p.tt==="Đã trả"?4:Math.min.apply(null,r.mon.map(function(m){return buoc(m.tt)}).concat([4]));
+     var ttP=p.tt==="Sẵn sàng trả"?'<span class="tt san">Sẵn sàng trả</span>':p.tt==="Đã trả"?'<span class="tt tra">Đã trả</span>':'<span class="tt lam">'+E(p.tt)+'</span>';
+     res.innerHTML='<div class="head"><div><div class="ma">'+E(p.ma)+'</div><div class="muted" style="font-size:14px">Nhận '+E(C.ngayDep(p.ngayNhan))+(p.henTra?' · hẹn trả '+E(C.ngayDep(p.henTra)):'')+'</div></div>'+ttP+'</div>'+
+      '<div class="bar5" aria-hidden="true">'+BUOC.map(function(x,i){return '<i class="'+(i<=b0?'on':'')+'"></i>'}).join("")+'</div><div class="bar5l" aria-hidden="true">'+NHAN.map(function(x){return '<span>'+x+'</span>'}).join("")+'</div>'+
+      '<ul class="ml">'+r.mon.map(function(m){return '<li><div><div>'+E(m.ten)+'</div><div class="mm">'+E(m.ma)+' · '+E(m.dv)+'</div></div><span class="tt '+(LOP[m.tt]||"lam")+'">'+E(TEN[m.tt]||m.tt)+'</span></li>'}).join("")+'</ul>'+
+      '<div class="money"><div>Tổng<b>'+C.tien(p.phai)+'</b></div><div>Đã trả<b>'+C.tien(p.thu)+'</b></div><div>Còn lại<b>'+C.tien(p.con)+'</b></div></div>'+
+      (p.tt==="Sẵn sàng trả"?'<p style="margin-top:14px">Đồ đã sẵn sàng. Bạn ghé quầy hoặc <a href="https://zalo.me/84377159189">nhắn Zalo</a> để hẹn giao.</p>':'');
+     res.style.display="block";try{history.replaceState(null,"","?tra="+encodeURIComponent(p.ma))}catch(x){}},
+   function(x){res.style.display="none";er.textContent=x.code==="no_api"?"Tra cứu online sắp mở. Nhắn Zalo 0377 159 189 để hỏi đơn nhé.":x.message})
+   .then(function(){b.disabled=false;b.textContent="Tra cứu"})});
+var qv=new URLSearchParams(location.search).get("tra");if(qv){t.ma.value=qv.toUpperCase();setTimeout(function(){t.so.focus()},200)}
+})();
+</script>
+</body>
+</html>

@@ -40,7 +40,7 @@ img{max-width:100%;display:block}
 .btn.soft{background:var(--care-soft);border-color:var(--care-soft);color:var(--care)}
 .btn.quiet{background:transparent;border-color:var(--line);color:var(--ink)}
 .btn.danger{background:transparent;border-color:var(--err);color:var(--err)}
-.btn.sm{min-height:40px;padding:0 16px;font-size:14px}
+.btn.sm{min-height:44px;padding:0 16px;font-size:14px}
 .btn.block{width:100%}
 :focus-visible{outline:2px solid var(--care-mid);outline-offset:2px}
 
@@ -53,7 +53,7 @@ img{max-width:100%;display:block}
 .f .hint{font-size:12.5px;color:var(--muted)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.chip{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
 .chip[aria-pressed="true"],.chip.on{border-color:var(--care);background:var(--care-soft);color:var(--care);font-weight:600}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:16px}
 .err-text{color:var(--err);font-size:14px;min-height:1em}

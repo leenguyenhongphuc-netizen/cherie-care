@@ -1,0 +1,55 @@
+<style>
+.comp{display:grid;grid-template-columns:1fr auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden}
+.comp div{padding:12px 16px;border-top:1px solid var(--line);font-size:15px}
+.comp div:nth-child(-n+2){border-top:0;background:var(--care-soft);color:var(--care);font-weight:600;font-size:13px}
+.comp div:nth-child(even){text-align:right;font-family:var(--font-mono)}
+.ex{display:grid;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:16px;font-size:14.5px}
+.ex b{font-family:var(--font-mono);font-weight:500;color:var(--care)}
+.two{display:grid;gap:16px}
+@media (min-width:760px){.two{grid-template-columns:1fr 1fr;align-items:start}}
+</style>
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Cam kết</span></nav>
+  <div class="phead">
+    <h1>Cam kết và đền bù</h1>
+    <p class="lead">Nói rõ trước để bạn yên tâm gửi: món đồ được chụp ảnh khi nhận, ghi giá trị bạn khai, và đền theo bảng công khai nếu tiệm có lỗi.</p>
+    <div class="meta"><div><b>4 ảnh</b><span>mỗi món khi nhận</span></div><div><b>7 ngày</b><span>làm lại miễn phí</span></div><div><b>48 giờ</b><span>báo hư hỏng</span></div><div><b>20.000.000đ</b><span>mức đền tối đa một món</span></div></div>
+  </div>
+</div>
+
+<section class="alt" aria-labelledby="h-den"><div class="wrap">
+  <div class="two">
+    <div><div class="sec-head"><span class="label">Đền bù</span><h2 id="h-den">Theo giá trị khai báo và tuổi món đồ</h2><p>Nếu món đồ hư hỏng hoặc thất lạc do lỗi của tiệm, mức đền bằng giá trị bạn khai trên phiếu nhân với tỷ lệ bên cạnh.</p></div>
+      <div class="ex"><span>Ví dụ: đầm khai 4.500.000đ, đã mặc 8 tháng</span><span>4.500.000đ × 70% = <b>3.150.000đ</b></span></div>
+      <p class="note">Không khai giá trị: đền tối đa 20 lần tiền dịch vụ của món đó.</p></div>
+    <div class="comp" role="table" aria-label="Tỷ lệ đền bù theo tuổi món đồ">
+      <div role="columnheader">Món đồ đã dùng</div><div role="columnheader">Mức đền</div>
+      <div role="cell">Dưới 6 tháng</div><div role="cell">100%</div>
+      <div role="cell">6 đến 12 tháng</div><div role="cell">70%</div>
+      <div role="cell">1 đến 2 năm</div><div role="cell">50%</div>
+      <div role="cell">Trên 2 năm</div><div role="cell">30%</div>
+    </div>
+  </div>
+</div></section>
+
+<section aria-labelledby="h-ck"><div class="wrap">
+  <div class="sec-head"><span class="label">Chính sách</span><h2 id="h-ck">Làm lại, báo trước, giữ đồ</h2></div>
+  <div class="rows two">
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><div><b>Làm lại miễn phí 7 ngày</b><p>Chưa ưng ý, bạn nhắn Zalo kèm ảnh trong 7 ngày kể từ khi nhận đồ.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><div><b>Báo hư hỏng trong 48 giờ</b><p>Kèm ảnh, tụi mình đối chiếu với 4 ảnh lúc nhận và trả lời trong ngày.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.1"/></svg><div><b>Đồ rủi ro được báo trước</b><p>Nhãn cấm giặt, vải mục, phai màu sẵn, đính kết dán keo. Bạn vẫn muốn gửi thì ký xác nhận trên phiếu.</p></div></div>
+    <div class="rw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="1.5"/><path d="M4 10h16M9 14h6"/></svg><div><b>Giữ đồ 30 ngày miễn phí</b><p>Sau ngày hẹn trả; sau đó 20.000đ một món mỗi tháng, tối đa 6 tháng.</p></div></div>
+  </div>
+</div></section>
+
+<section class="alt" aria-labelledby="h-qt"><div class="wrap">
+  <div class="sec-head"><span class="label">Quy trình</span><h2 id="h-qt">6 bước cho mỗi món</h2></div>
+  <div class="steps">
+    <div class="st"><i>1</i><b>Nhận và chụp ảnh</b><p>Gắn mã đồ, chụp 4 ảnh, ghi vết có sẵn, bạn khai giá trị.</p></div>
+    <div class="st"><i>2</i><b>Đọc nhãn, phân loại</b><p>Chọn hấp, giặt nước nhẹ hay giặt khô theo nhãn và chất vải.</p></div>
+    <div class="st"><i>3</i><b>Xử lý vết</b><p>Tẩy tay từng vết trước khi giặt, thử dung dịch ở chỗ khuất.</p></div>
+    <div class="st"><i>4</i><b>Giặt, hấp, sửa</b><p>Giặt khô bằng dung môi không chứa PERC; thợ may làm cùng lúc.</p></div>
+    <div class="st"><i>5</i><b>Kiểm tra</b><p>Người khác người làm kiểm lại theo ảnh lúc nhận.</p></div>
+    <div class="st"><i>6</i><b>Đóng gói, trả</b><p>Treo móc, bọc túi, kèm thẻ hướng dẫn bảo quản theo chất vải.</p></div>
+  </div>
+</div></section>

@@ -1,0 +1,15 @@
+<div class="wrap" style="padding:var(--gap-sec) var(--gutter);display:grid;gap:16px;max-width:640px">
+  <span class="label">Không tìm thấy trang</span>
+  <h1>Trang này không còn ở đây</h1>
+  <p class="lead">Có thể đường dẫn đã đổi. Bạn chọn một mục bên dưới nhé.</p>
+  <div class="svc">
+    <a class="tile" href="/"><b>Trang chủ</b><p>Giới thiệu CHÉRIE Care</p><span class="fr">Mở</span></a>
+    <a class="tile" href="/bang-gia/"><b>Bảng giá</b><p>Tất cả dịch vụ</p><span class="fr">Mở</span></a>
+    <a class="tile" href="/dat-lich/"><b>Đặt lịch</b><p>Gửi đồ cho tụi mình</p><span class="fr">Mở</span></a>
+    <a class="tile" href="/tra-cuu/"><b>Tra cứu đơn</b><p>Mã phiếu + 4 số cuối Zalo</p><span class="fr">Mở</span></a>
+  </div>
+</div>
+<script>
+/* đường dẫn tra cứu cũ ?tra=... trên trang chủ */
+(function(){var q=new URLSearchParams(location.search).get("tra");if(q)location.replace("/tra-cuu/?tra="+encodeURIComponent(q))})();
+</script>

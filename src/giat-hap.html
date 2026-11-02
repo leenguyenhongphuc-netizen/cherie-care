@@ -1,0 +1,46 @@
+<div class="wrap">
+  <nav class="crumb" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span>Dịch vụ</span><span aria-hidden="true">/</span><span>Giặt và hấp</span></nav>
+  <div class="phead">
+    <h1>Giặt và hấp</h1>
+    <p class="lead">Đầm, áo dài, vest, áo khoác được đọc nhãn, xử lý vết bằng tay, giặt khô hoặc giặt nước nhẹ, rồi hấp lại phom.</p>
+    <div class="meta"><div><b data-tu="Giặt và hấp">từ 40.000đ</b><span>mỗi món</span></div><div><b>2–3 ngày</b><span>trả đồ</span></div><div><b>2 mức</b><span>Chuẩn, Signature</span></div><div><b>Miễn phí</b><span>giao nhận đơn từ 300.000đ</span></div></div>
+    <div class="acts"><a class="btn" href="/dat-lich/?nhom=Gi%E1%BA%B7t%20v%C3%A0%20h%E1%BA%A5p">Đặt lịch giặt hấp</a><a class="btn ghost" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Gửi ảnh báo giá</a></div>
+  </div>
+</div>
+
+<section class="alt" aria-labelledby="h-muc"><div class="wrap">
+  <div class="sec-head"><span class="label">Mức chăm</span><h2 id="h-muc">Chuẩn hay Signature</h2><p>Cùng quy trình 6 bước. Signature dành cho đồ cần tay nghề và thời gian hơn.</p></div>
+  <div class="duo">
+    <div class="card"><span class="label">Chuẩn</span><h3>Đồ vải thường</h3><ul><li>Đọc nhãn, chọn cách giặt</li><li>Tẩy vết thường, hấp phom</li><li>Treo móc, bọc túi mỏng</li></ul></div>
+    <div class="card on"><span class="label" style="color:var(--care)">Signature</span><h3>Lụa, ren, đính kết, đồ hiệu</h3><ul><li>Kỹ thuật viên chính làm trọn</li><li>Hoàn thiện tay, kiểm 2 lần</li><li>Túi vải và móc gỗ đi kèm</li></ul></div>
+  </div>
+  <p class="note">Đồ trị giá từ 10.000.000đ áp dụng mức Signature.</p>
+</div></section>
+
+<section aria-labelledby="h-gia"><div class="wrap">
+  <div class="sec-head"><span class="label">Bảng giá</span><h2 id="h-gia">Giá theo món</h2><p>Giá tham khảo. Tụi mình báo giá chính xác khi xem đồ, trước khi làm.</p></div>
+  <div id="bGiat"></div>
+  <p class="ptitle">Chăm thêm, cộng vào giá giặt</p>
+  <div id="bThem"></div>
+  <p class="note">Giao nhận tận nơi trong nội thành Đà Nẵng: miễn phí với đơn từ 300.000đ, dưới mức này 30.000đ mỗi chiều.</p>
+</div></section>
+
+<section class="alt" aria-labelledby="h-faq"><div class="wrap">
+  <div class="sec-head"><span class="label">Hỏi đáp</span><h2 id="h-faq">Câu hỏi hay gặp</h2></div>
+  <div class="faq">
+    <details><summary>Khi nào nên giặt khô thay vì giặt nước?</summary><p>Khi nhãn có vòng tròn chữ P hoặc F, hoặc đồ là lụa, nhung, len, vải có lớp lót, đồ đính kết. Bạn không chắc thì cứ gửi, tụi mình đọc nhãn giúp.</p></details>
+    <details><summary>Vết rượu vang, son, dầu có tẩy được không?</summary><p>Phần lớn được nếu vết còn mới. Đừng chà hay dùng nước nóng, chỉ thấm nhẹ bằng khăn khô. Vết để lâu, tụi mình báo trước khả năng tẩy sạch đến đâu.</p></details>
+    <details><summary>Tôi khai giá trị món đồ thế nào?</summary><p>Bạn cho biết giá mua hoặc giá trị ước tính. Tụi mình ghi lên phiếu và gửi bạn qua Zalo, làm căn cứ đền bù nếu có sự cố.</p></details>
+    <details><summary>Bao lâu thì lấy được đồ?</summary><p>Thường 2–3 ngày. Cần gấp trong ngày thì cộng 50% giá dịch vụ. Đồ chỉ nhăn thì dùng hấp lấy liền 60 phút.</p></details>
+  </div>
+</div></section>
+
+<section aria-label="Đặt lịch"><div class="wrap">
+  <div class="band"><div><h2>Gửi đồ giặt hấp</h2><p style="margin-top:8px">Chọn món ở bước sau để xem tạm tính.</p></div>
+    <div class="acts"><a class="btn" href="/dat-lich/?nhom=Gi%E1%BA%B7t%20v%C3%A0%20h%E1%BA%A5p">Đặt lịch</a><a class="btn ghost" href="/cam-ket/">Xem cam kết</a></div></div>
+</div></section>
+
+<script>
+Site.gia(function(ds){Site.bang(Site.$("#bGiat"),Site.nhom(ds,"Giặt và hấp"),{ten:"Giá giặt và hấp"});Site.bang(Site.$("#bThem"),Site.nhom(ds,"Chăm thêm"),{ten:"Giá chăm thêm",cot:"Dịch vụ",cong:true});
+  var t=Site.tuGia(ds,"Giặt và hấp");if(t)Site.$("[data-tu]").textContent="từ "+Care.tien(t)});
+</script>
