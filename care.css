@@ -4,7 +4,7 @@
   --care:#24476B;--care-soft:#E4ECF4;--care-mid:#527699;--care-field:#24476B;--care-field-gold:#C9A877;
   --gold:#8C6B3A;--wine:#7A1F3D;--ok:#24724F;--ok-soft:#E3F1EA;--warn:#9A5A0A;--warn-soft:#F7ECDC;--err:#B0261E;--err-soft:#F8E4E2;
   --on-care:#FFFFFF;--radius:10px;--radius-card:16px;--radius-card-lg:20px;
-  --font-display:"Bodoni Moda",Didot,Georgia,serif;--font-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;--font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --font-display:"Playfair Display","Noto Serif",Georgia,serif;--font-mark:"Bodoni Moda",Didot,Georgia,serif;--font-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;--font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --shadow:0 1px 2px rgba(27,22,24,.05),0 4px 16px rgba(27,22,24,.06);
   color-scheme:light;
 }
@@ -27,7 +27,7 @@ img{max-width:100%;display:block}
 
 /* logo ghép tên: CHÉRIE + gạch vàng đồng + CARE */
 .lk{display:inline-flex;align-items:center;gap:.5em;text-decoration:none;color:var(--ink);white-space:nowrap}
-.lk .w{font-family:var(--font-display);font-weight:600;letter-spacing:.32em;margin-right:-.32em}
+.lk .w{font-family:var(--font-mark);font-weight:600;letter-spacing:.32em;margin-right:-.32em}
 .lk .d{width:1.1em;height:1px;background:var(--gold)}
 .lk .b{font-family:var(--font-body);font-weight:600;font-size:.4em;letter-spacing:.18em;margin-right:-.18em;text-transform:uppercase;color:var(--care)}
 .lk.rev .w{color:#fff}.lk.rev .d{background:var(--care-field-gold)}.lk.rev .b{color:#E4ECF4}
