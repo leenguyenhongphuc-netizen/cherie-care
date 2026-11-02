@@ -25,6 +25,17 @@
 .ok-box{display:none;flex-direction:column;gap:12px}
 .ok-box .ma{font:500 24px/1 var(--font-mono);color:var(--care)}
 .ok-box .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ok-box dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;padding:14px 16px;border-radius:12px;background:var(--care-soft);font-size:14.5px}
+.ok-box dt{color:var(--muted)}.ok-box dd{margin:0}
+.ok-box ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:b}
+.ok-box ol li{position:relative;padding-left:40px;font-size:14.5px;line-height:1.5;color:var(--muted)}
+.ok-box ol li b{display:block;color:var(--ink);font-weight:600}
+.ok-box ol li::before{counter-increment:b;content:counter(b);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--care);color:var(--on-care);font:500 13px/28px var(--font-mono);text-align:center}
+.ok-box h2{font-size:17px;margin:4px 0 0}
+.top .r .btn[href="/dat-lich/"]{display:none}
+.sbar.an{transform:translateY(110%)}
+.sbar{transition:transform .2s ease}
+@media (prefers-reduced-motion:reduce){.sbar{transition:none}}
 .fbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .side{display:flex;flex-direction:column;gap:16px;order:2}
 .sbar{position:fixed;left:0;right:0;bottom:0;z-index:35;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center;padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line)}
@@ -62,7 +73,7 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
         <label class="f" id="diaChiF" hidden><span>Địa chỉ nhận đồ</span><input name="diaChi" autocomplete="street-address" placeholder="Số nhà, đường, phường hoặc khách sạn, số phòng"></label>
         <div class="row2">
           <label class="f"><span>Ngày</span><input name="ngayHen" type="date"></label>
-          <label class="f"><span>Khung giờ</span><select name="khungGio"><option>Sáng 8:00–11:00</option><option>Trưa 11:00–14:00</option><option>Chiều 14:00–17:00</option><option>Tối 17:00–20:00</option></select></label>
+          <label class="f"><span>Khung giờ</span><select name="khungGio"><option value="Sáng 8:00–11:00" data-het="11">Sáng 8–11h</option><option value="Trưa 11:00–14:00" data-het="14">Trưa 11–14h</option><option value="Chiều 14:00–17:00" data-het="17">Chiều 14–17h</option><option value="Tối 17:00–20:00" data-het="20">Tối 17–20h</option></select></label>
         </div>
         <label class="f"><span>Ghi chú (không bắt buộc)</span><textarea name="ghiChu" placeholder="Ví dụ: đầm lụa có vết rượu vang, cần trước thứ Bảy"></textarea></label>
         <input name="web2" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
@@ -72,7 +83,9 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
       <div class="ok-box" id="okLich" role="status">
         <span class="label">Đã nhận lịch hẹn</span>
         <span class="ma" id="okMa"></span>
-        <p>Tụi mình sẽ nhắn Zalo để xác nhận giờ. Lưu mã này để tiện hỏi lại.</p>
+        <dl id="okTom"></dl>
+        <h2>Tiếp theo sẽ thế nào</h2>
+        <ol id="okBuoc"></ol>
         <div class="acts"><a class="btn" href="https://zalo.me/84377159189" target="_blank" rel="noopener">Nhắn Zalo tiệm</a><button class="btn ghost" type="button" id="lichMoi">Đặt lịch khác</button></div>
       </div>
     </div>
@@ -99,7 +112,14 @@ function seg(id,attr,set){$(id).addEventListener("click",function(e){var b=e.tar
 Site.$$("#hang button").forEach(function(x){x.setAttribute("aria-pressed",x.dataset.h===hang)});
 seg("#hang","h",function(v){hang=v;ve()});
 seg("#cach","c",function(v){cach=v;$("#diaChiF").hidden=v!=="Giao nhận tận nơi"});
-var f=$("#fLich");f.ngayHen.min=C.homNay();f.ngayHen.value=C.homNay();if(q.get("ghichu"))f.ghiChu.value=q.get("ghichu");
+var f=$("#fLich");
+function gioVN(){var t=C.isoVN();return +t.slice(11,13)+(+t.slice(14,16))/60}
+function conKhung(ngay){var hn=ngay===C.homNay(),h=gioVN();return [].slice.call(f.khungGio.options).filter(function(o){var mo=!hn||h<+o.dataset.het-1;o.disabled=!mo;o.hidden=!mo;return mo})}
+function datNgay(){var ok=conKhung(f.ngayHen.value);if(!ok.length){f.ngayHen.value=C.congNgay(C.homNay(),1);ok=conKhung(f.ngayHen.value)}if(f.khungGio.selectedOptions[0]&&f.khungGio.selectedOptions[0].disabled)f.khungGio.value=ok[0].value}
+f.ngayHen.min=C.homNay();f.ngayHen.value=C.homNay();datNgay();
+f.ngayHen.addEventListener("change",function(){if(!f.ngayHen.value||f.ngayHen.value<C.homNay())f.ngayHen.value=C.homNay();datNgay()});
+f.addEventListener("input",function(){$("#eLich").textContent=""});
+if("IntersectionObserver" in window)new IntersectionObserver(function(es){es.forEach(function(e){$("#sbar").classList.toggle("an",e.isIntersecting)})}).observe($(".fbtns"));if(q.get("ghichu"))f.ghiChu.value=q.get("ghichu");
 function kiem(){var er=$("#eLich");er.textContent="";var sdt=C.sdtOk(f.sdt.value);
   if(!f.ten.value.trim()){er.textContent="Nhập tên để tụi mình gọi cho đúng.";f.ten.focus();return null}
   if(!sdt){er.textContent="Số Zalo gồm 10 số, bắt đầu bằng 0.";f.sdt.focus();return null}
@@ -107,11 +127,16 @@ function kiem(){var er=$("#eLich");er.textContent="";var sdt=C.sdtOk(f.sdt.value
   return sdt}
 f.addEventListener("submit",function(e){e.preventDefault();var sdt=kiem();if(!sdt)return;var d=tinh(),b=$("#bLich"),er=$("#eLich");b.disabled=true;b.innerHTML='<span class="spin"></span>';
   C.call("webDatLich",{ten:f.ten.value,sdt:sdt,dichVu:d.txt||"Chưa chọn, cần tư vấn",soMon:d.n||1,hang:hang,tamTinh:d.t,cachNhan:cach,diaChi:f.diaChi.value,ngayHen:f.ngayHen.value,khungGio:f.khungGio.value,ghiChu:f.ghiChu.value,web2:f.web2.value})
-   .then(function(r){$("#okMa").textContent=r.ma;f.style.display="none";$("#sbar").style.display="none";$("#okLich").style.display="flex";$("#okLich").scrollIntoView({block:"center"})},function(x){er.textContent=x.code==="no_api"?"Đặt lịch online sắp mở. Bấm “Gửi qua Zalo” bên cạnh nhé.":x.message})
+   .then(function(r){$("#okMa").textContent=r.ma;var tan=cach==="Giao nhận tận nơi";
+     $("#okTom").innerHTML='<dt>Món</dt><dd>'+E(d.n?d.txt+" ("+hang+")":"Chưa chọn, tiệm tư vấn")+'</dd>'+(d.n?'<dt>Tạm tính</dt><dd class="mono">'+C.tien(d.t)+'</dd>':'')+'<dt>Cách gửi</dt><dd>'+E(cach)+(tan&&f.diaChi.value?', '+E(f.diaChi.value):'')+'</dd><dt>Hẹn</dt><dd>'+E(C.ngayDep(f.ngayHen.value))+', '+E(f.khungGio.value)+'</dd>';
+     var B=tan?[["Tiệm nhắn Zalo xác nhận","Trong giờ làm việc, tụi mình báo giờ nhân viên đến và phí giao nhận (miễn phí với đơn từ 300.000đ)."],["Nhân viên đến nhận đồ","Kiểm từng món cùng bạn, chụp 4 ảnh mỗi món, báo giá chính xác và ngày trả."],["Bạn nhận phiếu qua Zalo","Có mã phiếu và link theo dõi: xem từng bước, ai làm, kèm ảnh tại xưởng."],["Giao trả tận nơi","Đồ kiểm và đóng gói xong, tụi mình hẹn giờ giao. Bạn xem đồ cùng nhân viên rồi mới nhận."]]
+       :[["Tiệm nhắn Zalo xác nhận","Trong giờ làm việc, tụi mình xác nhận khung giờ và gửi địa chỉ quầy."],["Bạn mang đồ đến quầy","Quầy kiểm từng món cùng bạn, chụp 4 ảnh mỗi món, báo giá chính xác và ngày trả."],["Bạn nhận phiếu qua Zalo","Có mã phiếu và link theo dõi: xem từng bước, ai làm, kèm ảnh tại xưởng."],["Đồ sẵn sàng, tụi mình báo","Bạn ghé quầy lấy, hoặc nhắn để giao tận nơi. Xem đồ cùng nhân viên rồi mới nhận."]];
+     $("#okBuoc").innerHTML=B.map(function(x){return '<li><b>'+E(x[0])+'</b>'+E(x[1])+'</li>'}).join("");
+     f.style.display="none";$("#sbar").style.display="none";$(".book .side").style.display="none";$("#okLich").style.display="flex";window.scrollTo({top:0})},function(x){er.textContent=x.code==="no_api"?"Đặt lịch online sắp mở. Bấm “Gửi qua Zalo” bên cạnh nhé.":x.message})
    .then(function(){b.disabled=false;b.textContent="Gửi lịch hẹn"})});
 $("#bZalo").onclick=function(){var d=tinh(),t="Chào CHÉRIE Care, mình muốn đặt lịch gửi đồ.\n"+(f.ten.value?"Tên: "+f.ten.value+"\n":"")+(d.txt?"Món: "+d.txt+" ("+hang+")\nTạm tính: "+C.tien(d.t)+"\n":"")+"Cách gửi: "+cach+(f.diaChi.value?" – "+f.diaChi.value:"")+"\nNgày: "+C.ngayDep(f.ngayHen.value)+", "+f.khungGio.value+(f.ghiChu.value?"\nGhi chú: "+f.ghiChu.value:"");
   C.copy(t).then(function(){C.toast("Đã copy tin nhắn. Dán vào Zalo tiệm nhé.");setTimeout(function(){location.href="https://zalo.me/84377159189"},900)})};
-$("#lichMoi").onclick=function(){f.reset();chon={};f.ngayHen.value=C.homNay();ve();f.style.display="";$("#sbar").style.display="";$("#okLich").style.display="none"};
+$("#lichMoi").onclick=function(){f.reset();chon={};f.ngayHen.value=C.homNay();datNgay();ve();f.style.display="";$("#sbar").style.display="";$(".book .side").style.display="";$("#okLich").style.display="none"};
 Site.gia(function(ds){GIA=ds;Object.keys(chon).forEach(function(m){if(!g(m))delete chon[m]});ve()});
 })();
 </script>
