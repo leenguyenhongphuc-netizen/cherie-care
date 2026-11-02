@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /quanly/
+Sitemap: https://care.cherie.io.vn/sitemap.xml
