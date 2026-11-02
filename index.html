@@ -249,7 +249,7 @@ footer .ln{display:flex;flex-wrap:wrap;gap:10px 22px;font:400 14px var(--font-mo
       <div class="st"><i>3</i><div><b>Xử lý vết</b><p>Tẩy từng vết bằng tay trước khi giặt, thử dung dịch ở đường may khuất.</p></div></div>
       <div class="st"><i>4</i><div><b>Giặt, hấp, sửa</b><p>Giặt khô bằng dung môi không chứa PERC. Thợ may làm cùng lúc nếu có sửa.</p></div></div>
       <div class="st"><i>5</i><div><b>Kiểm tra</b><p>Người khác người làm kiểm lại từng món theo ảnh lúc nhận. Signature kiểm 2 lần.</p></div></div>
-      <div class="st"><i>6</i><div><b>Đóng gói, trả</b><p>Treo móc, bọc túi, giữ phom. Bạn nhận tại quầy hoặc tụi mình giao tận nơi.</p></div></div>
+      <div class="st"><i>6</i><div><b>Đóng gói, trả</b><p>Treo móc, bọc túi, giữ phom, kèm thẻ hướng dẫn bảo quản theo chất vải. Bạn nhận tại quầy hoặc tụi mình giao tận nơi.</p></div></div>
     </div>
   </section>
 </div>
@@ -363,7 +363,7 @@ footer .ln{display:flex;flex-wrap:wrap;gap:10px 22px;font:400 14px var(--font-mo
 "use strict";
 var C=window.Care,$=function(s,r){return(r||document).querySelector(s)},E=C.esc;
 var GIA=C.GIA_MAU.slice(),hang="Chuẩn",chon={};
-var TAB_TEN=[["Giặt và hấp","Giặt và hấp"],["Váy cưới","Váy cưới"],["Hấp lấy liền","Hấp lấy liền"],["Sửa đồ","Sửa đồ"],["Chăm thêm","Chăm thêm"],["Gói","Gói theo mùa"]];
+var TAB_TEN=[["Giặt và hấp","Giặt và hấp"],["Váy cưới","Váy cưới"],["Hấp lấy liền","Hấp lấy liền"],["Sửa đồ","Sửa đồ"],["Chăm thêm","Chăm thêm"],["Dịch vụ tận nơi","Tận nơi"],["Gói","Gói và thẻ"]];
 var tabOn="Giặt và hấp";
 function nhom(n){return GIA.filter(function(g){return g.nhom===n})}
 function giaMon(g,h){return h==="Signature"&&C.num(g.cc)?C.num(g.cc):C.num(g.tu)}
