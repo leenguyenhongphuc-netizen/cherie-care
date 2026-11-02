@@ -15,6 +15,7 @@
   --shadow:0 1px 2px rgba(0,0,0,.3);color-scheme:dark;
 }}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--font-body);-webkit-font-smoothing:antialiased}
 a{color:var(--care)}
